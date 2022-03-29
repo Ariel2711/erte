@@ -28,9 +28,10 @@ class FormKkView extends GetView<FormKkController> {
             child: SingleChildScrollView(
               child: Column(children: [
                 FormField<String>(
-                  validator: (value) => controller.selectedDataKeluarga.isNotEmpty
-                      ? null
-                      : "This field is required",
+                  validator: (value) =>
+                      controller.selectedDataKeluarga.isNotEmpty
+                          ? null
+                          : "This field is required",
                   builder: (datakeluarga) => Obx(
                     () => ListTile(
                       visualDensity: VisualDensity.compact,
@@ -45,8 +46,8 @@ class FormKkView extends GetView<FormKkController> {
                                 child: RadioListTile<String>(
                                   value: "Keluarga WNI",
                                   groupValue: controller.selectedDataKeluarga,
-                                  onChanged: (value) =>
-                                      controller.selectedDataKeluarga = value ?? '',
+                                  onChanged: (value) => controller
+                                      .selectedDataKeluarga = value ?? '',
                                   title: Text("Keluarga WNI"),
                                 ),
                               ),
@@ -54,8 +55,8 @@ class FormKkView extends GetView<FormKkController> {
                                 child: RadioListTile<String>(
                                   value: "Keluarga WNA",
                                   groupValue: controller.selectedDataKeluarga,
-                                  onChanged: (value) =>
-                                      controller.selectedDataKeluarga = value ?? '',
+                                  onChanged: (value) => controller
+                                      .selectedDataKeluarga = value ?? '',
                                   title: Text(
                                     "Keluarga WNA",
                                   ),
@@ -81,7 +82,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Nama Kepala Keluarga")),
+                      border: OutlineInputBorder(),
+                      label: Text("Nama Kepala Keluarga")),
                   controller: controller.namakepalaC,
                 ),
                 SizedBox(
@@ -131,7 +133,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.PHONE,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Jumlah Anggota Keluarga")),
+                      border: OutlineInputBorder(),
+                      label: Text("Jumlah Anggota Keluarga")),
                   controller: controller.jumkeluargaC,
                 ),
                 SizedBox(
@@ -151,7 +154,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Nama Lengkap")),
+                      border: OutlineInputBorder(),
+                      label: Text("Nama Lengkap")),
                   controller: controller.namalengkapC,
                 ),
                 SizedBox(
@@ -171,7 +175,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Gelar Belakang")),
+                      border: OutlineInputBorder(),
+                      label: Text("Gelar Belakang")),
                   controller: controller.gelarbelakangC,
                 ),
                 SizedBox(
@@ -181,7 +186,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Nomor Paspor")),
+                      border: OutlineInputBorder(),
+                      label: Text("Nomor Paspor")),
                   controller: controller.nopasporC,
                 ),
                 SizedBox(
@@ -217,7 +223,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Nama Sponsor")),
+                      border: OutlineInputBorder(),
+                      label: Text("Nama Sponsor")),
                   controller: controller.namasponsorC,
                 ),
                 SizedBox(
@@ -240,7 +247,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Alamat Sponsor")),
+                      border: OutlineInputBorder(),
+                      label: Text("Alamat Sponsor")),
                   controller: controller.alamatsponsorC,
                 ),
                 SizedBox(
@@ -333,7 +341,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 0,
                   thickness: 1,
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
@@ -374,8 +384,8 @@ class FormKkView extends GetView<FormKkController> {
                                 child: RadioListTile<String>(
                                   value: "Ada",
                                   groupValue: controller.selectedAktalahir,
-                                  onChanged: (value) =>
-                                      controller.selectedAktalahir = value ?? '',
+                                  onChanged: (value) => controller
+                                      .selectedAktalahir = value ?? '',
                                   title: Text("Ada"),
                                 ),
                               ),
@@ -383,8 +393,8 @@ class FormKkView extends GetView<FormKkController> {
                                 child: RadioListTile<String>(
                                   value: "Tidak Ada",
                                   groupValue: controller.selectedAktalahir,
-                                  onChanged: (value) =>
-                                      controller.selectedAktalahir = value ?? '',
+                                  onChanged: (value) => controller
+                                      .selectedAktalahir = value ?? '',
                                   title: Text(
                                     "Tidak Ada",
                                   ),
@@ -452,7 +462,8 @@ class FormKkView extends GetView<FormKkController> {
                   controller: controller.orgagamaC,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
-                      label: Text("Nama Organisasi Kepercayaan Terhadap Tuhan YME")),
+                      label: Text(
+                          "Nama Organisasi Kepercayaan Terhadap Tuhan YME")),
                 ),
                 SizedBox(
                   height: 15,
@@ -541,8 +552,8 @@ class FormKkView extends GetView<FormKkController> {
                                 child: RadioListTile<String>(
                                   value: "Ada",
                                   groupValue: controller.selectedAktakawin,
-                                  onChanged: (value) =>
-                                      controller.selectedAktakawin = value ?? '',
+                                  onChanged: (value) => controller
+                                      .selectedAktakawin = value ?? '',
                                   title: Text("Ada"),
                                 ),
                               ),
@@ -550,8 +561,8 @@ class FormKkView extends GetView<FormKkController> {
                                 child: RadioListTile<String>(
                                   value: "Tidak Ada",
                                   groupValue: controller.selectedAktakawin,
-                                  onChanged: (value) =>
-                                      controller.selectedAktakawin = value ?? '',
+                                  onChanged: (value) => controller
+                                      .selectedAktakawin = value ?? '',
                                   title: Text(
                                     "Tidak Ada",
                                   ),
@@ -580,7 +591,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Nomor Akta Perkawinan")),
+                      border: OutlineInputBorder(),
+                      label: Text("Nomor Akta Perkawinan")),
                   controller: controller.noaktakawinC,
                 ),
                 SizedBox(
@@ -609,7 +621,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 0,
                   thickness: 1,
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 FormField<String>(
                   validator: (value) => controller.selectedAktacerai.isNotEmpty
                       ? null
@@ -628,8 +642,8 @@ class FormKkView extends GetView<FormKkController> {
                                 child: RadioListTile<String>(
                                   value: "Ada",
                                   groupValue: controller.selectedAktacerai,
-                                  onChanged: (value) =>
-                                      controller.selectedAktacerai = value ?? '',
+                                  onChanged: (value) => controller
+                                      .selectedAktacerai = value ?? '',
                                   title: Text("Ada"),
                                 ),
                               ),
@@ -637,8 +651,8 @@ class FormKkView extends GetView<FormKkController> {
                                 child: RadioListTile<String>(
                                   value: "Tidak Ada",
                                   groupValue: controller.selectedAktacerai,
-                                  onChanged: (value) =>
-                                      controller.selectedAktacerai = value ?? '',
+                                  onChanged: (value) => controller
+                                      .selectedAktacerai = value ?? '',
                                   title: Text(
                                     "Tidak Ada",
                                   ),
@@ -667,7 +681,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Nomor Akta Cerai")),
+                      border: OutlineInputBorder(),
+                      label: Text("Nomor Akta Cerai")),
                   controller: controller.noaktaceraiC,
                 ),
                 SizedBox(
@@ -696,7 +711,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 0,
                   thickness: 1,
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 DropdownSearch<String>(
                   items: controller.listHubungan,
                   onChanged: (value) => controller.selectedHubungan = value,
@@ -790,15 +807,14 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
-                  items: controller.listPendidikan,
-                  onChanged: (value) => controller.selectedPendidikan = value,
-                  mode: Mode.MENU,
-                  dropdownSearchDecoration: InputDecoration(
-                    labelText: "Jenis Pekerjaan",
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  selectedItem: controller.selectedPekerjaan
-                ),
+                    items: controller.listPendidikan,
+                    onChanged: (value) => controller.selectedPendidikan = value,
+                    mode: Mode.MENU,
+                    dropdownSearchDecoration: InputDecoration(
+                      labelText: "Jenis Pekerjaan",
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                    selectedItem: controller.selectedPekerjaan),
                 SizedBox(
                   height: 15,
                 ),
@@ -806,7 +822,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("No ITAS/ITAP")),
+                      border: OutlineInputBorder(),
+                      label: Text("No ITAS/ITAP")),
                   controller: controller.noitasC,
                 ),
                 SizedBox(
@@ -816,7 +833,8 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Tempat Terbit ITAS/ITAP")),
+                      border: OutlineInputBorder(),
+                      label: Text("Tempat Terbit ITAS/ITAP")),
                   controller: controller.tempatItasC,
                 ),
                 SizedBox(
@@ -829,7 +847,8 @@ class FormKkView extends GetView<FormKkController> {
                       child: Icon(
                         Icons.calendar_today,
                       )),
-                  onTap: () async => await controller.tanggalTerbitItas(context),
+                  onTap: () async =>
+                      await controller.tanggalTerbitItas(context),
                   title: Text(
                     "Tanggal Terbit ITAS/ITAP",
                     style: TextStyle(fontSize: 12),
@@ -845,7 +864,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 0,
                   thickness: 1,
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 ListTile(
                   leading: Container(
                       width: 24,
@@ -869,12 +890,15 @@ class FormKkView extends GetView<FormKkController> {
                   height: 0,
                   thickness: 1,
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Tempat Kedatangan Pertama")),
+                      border: OutlineInputBorder(),
+                      label: Text("Tempat Kedatangan Pertama")),
                   controller: controller.tempatPertamaC,
                 ),
                 SizedBox(
@@ -903,7 +927,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 0,
                   thickness: 1,
                 ),
-                SizedBox(height: 15,),
+                SizedBox(
+                  height: 15,
+                ),
                 AppTextField(
                   textFieldType: TextFieldType.PHONE,
                   textInputAction: TextInputAction.next,
