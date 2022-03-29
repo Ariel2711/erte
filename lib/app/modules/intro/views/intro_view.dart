@@ -13,7 +13,7 @@ class IntroView extends GetView<IntroController> {
       pages: [
         PageViewModel(
           title: "Selamat Datang",
-          decoration: PageDecoration(titleTextStyle: TextStyle(color: blue, fontSize: 20),
+          decoration: PageDecoration(titleTextStyle: TextStyle(color: primary, fontSize: 20),
           ),
           body:
               "Aplikasi dapat membantu warga untuk membuat dan menyerahkan surat pengantar tanpa menemui Ketua Rukun Tetangga (RT) ",
@@ -38,7 +38,7 @@ class IntroView extends GetView<IntroController> {
         ),
         PageViewModel(
           title: "Surat Pengantar",
-          decoration: PageDecoration(titleTextStyle: TextStyle(color: blue, fontSize: 20),
+          decoration: PageDecoration(titleTextStyle: TextStyle(color: primary, fontSize: 20),
           ),
           body:
               "Surat Pengantar dikenal sebagai sebuah dokumen yang menjadi pembuka relasi atau formal antar individu maupun instansi",
@@ -49,13 +49,13 @@ class IntroView extends GetView<IntroController> {
       ],
       done: const Text(
         "DONE",
-        style: TextStyle(fontWeight: FontWeight.w600),
+        style: TextStyle(fontWeight: FontWeight.w600, color: primary),
       ),
       showNextButton: true,
-      next: Text("NEXT"),
+      next: Text("NEXT", style: TextStyle(color: primary),),
       onDone: () => Get.offAndToNamed(Routes.HOME),
       showSkipButton: true,
-      skip: Text("SKIP"),
+      skip: Text("SKIP", style: TextStyle(color: primary),),
       onSkip: ()=> Get.offAndToNamed(Routes.HOME),
     );
   }

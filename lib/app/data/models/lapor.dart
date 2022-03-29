@@ -19,30 +19,37 @@ class Lapor {
   DateTime? waktu;
 
   Lapor(
-      {this.id,
-      this.nama,
-      this.deskripsi,
-      this.judul,
-      this.image,
-      this.waktu});
+      {this.id, this.nama, this.deskripsi, this.judul, this.image, this.waktu});
 
-  Lapor fromJson(DocumentSnapshot doc) {
+  Lapor.fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
-    return Lapor(
-      id: doc.id,
-      nama: json[lnama],
-      judul: json[ljudul],
-      deskripsi: json[ldeskripsi],
-      image: json[limage],
-      waktu: (json[lwaktu] as Timestamp?)?.toDate(),
-    );
+    // return Lapor(
+    //   id: doc.id,
+    //   nama: json[lnama],
+    //   judul: json[ljudul],
+    //   deskripsi: json[ldeskripsi],
+    //   image: json[limage],
+    //   waktu: (json[lwaktu] as Timestamp?)?.toDate(),
+    // );
+    id =
+    doc.id;
+    nama =
+    json[lnama];
+    judul =
+    json[ljudul];
+    deskripsi =
+    json[ldeskripsi];
+    image =
+    json[limage];
+    waktu =
+    (json[lwaktu] as Timestamp?)?.toDate();
   }
 
   Map<String, dynamic> get toJson => {
-        lid : id,
+        lid: id,
         ldeskripsi: deskripsi,
-        ljudul : judul,
-        limage : image,
+        ljudul: judul,
+        limage: image,
         lwaktu: waktu,
       };
 
@@ -59,5 +66,22 @@ class Lapor {
       db.edit(toJson);
     }
     return this;
+  }
+
+  Stream<List<Lapor>> streamList() async* {
+    yield* db.collectionReference
+        .orderBy("time", descending: true)
+        .snapshots()
+        .map((query) {
+      List<Lapor> list = [];
+      for (var doc in query.docs) {
+        list.add(
+          Lapor.fromJson(
+            doc,
+          ),
+        );
+      }
+      return list;
+    });
   }
 }

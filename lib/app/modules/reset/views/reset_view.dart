@@ -14,10 +14,10 @@ class ResetView extends GetView<ResetController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Reset'),
-        // centerTitle: true,
-      ),
+      // appBar: AppBar(
+      //   title: Text('Reset'),
+      //   // centerTitle: true,
+      // ),
       body: Center(
         child: SingleChildScrollView(
           child: Padding(
@@ -25,19 +25,20 @@ class ResetView extends GetView<ResetController> {
             child: Column(
               children: [
                 Center(
-                    child: Text("ERTE",
-                        style: TextStyle(
-                            fontSize: 40,
-                            fontWeight: FontWeight.bold,
-                            color: blue))),
-                SizedBox(
-                  height: 10,
-                ),
+                    child: Container(
+            height: 90,
+            width: 130,
+            child: Image.asset("images/erte.png", fit: BoxFit.fitWidth,)),),
+                    SizedBox(height: 10,),
                 Container(
                   height: 300,
                   width: 300,
                   child: Lottie.asset("images/reset.json", fit: BoxFit.cover),
                 ),
+                SizedBox(
+                  height: 10,
+                ),
+                Center(child: Text("Reset Password", style: TextStyle(fontSize:20, fontWeight: FontWeight.bold, color: primary))),
                 SizedBox(
                   height: 10,
                 ),
@@ -67,7 +68,7 @@ class ResetView extends GetView<ResetController> {
                   height: 30,
                 ),
                 AppButton(
-                    color: blue,
+                    color: primary,
                     textColor: white,
                     shapeBorder: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(100)),
@@ -79,7 +80,7 @@ class ResetView extends GetView<ResetController> {
                 ),
                 TextButton(
                   onPressed: () => Get.toNamed(Routes.AUTH),
-                  child: Text("Sudah Punya Akun? Login Disini!"),
+                  child: Text("Sudah Punya Akun? Login Disini!", style: TextStyle(color: primary)),
                 )
               ],
             ),

@@ -1,3 +1,4 @@
+import 'package:erte/app/const/color.dart';
 import 'package:erte/app/modules/auth/controllers/auth_controller.dart';
 import 'package:erte/app/modules/profil/controllers/profil_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,6 +22,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
+      theme: ThemeData(
+        
+        appBarTheme: AppBarTheme(backgroundColor: primary),
+        bottomAppBarColor: primary,
+        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: primary)
+      ),
       debugShowCheckedModeBanner: false,
       title: "ERTE",
       initialRoute: Routes.INTRO,

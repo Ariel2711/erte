@@ -339,8 +339,11 @@ class FormKtpView extends GetView<FormKtpController> {
                                 width: 400,
                                 height: 200,
                                 child: Center(
-                                    child: Image(
-                                        image: AssetImage("images/home.png"))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Image(
+                                          image: AssetImage("images/profil.png")),
+                                    )),
                                 decoration: BoxDecoration(
                                   color: white,
                                   borderRadius: BorderRadius.circular(20),
@@ -353,26 +356,41 @@ class FormKtpView extends GetView<FormKtpController> {
                   Center(
                     child: Container(
                       width: 160,
-                      child: ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                              shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(20),
-                          )),
-                          onPressed: () {
-                            controller.pickImage();
-                          },
-                          child: Row(
+                      child: 
+                      FloatingActionButton.extended(
+                        onPressed: () => controller.pickImage(),
+                        label: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.upload,
                                 color: white,
                               ),
-                              Text("Upload Gambar",
+                              Text("Upload Foto",
                                   style: TextStyle(color: white)),
                             ],
                           )),
+                      
+                      // ElevatedButton(
+                      //     style: ElevatedButton.styleFrom(
+                      //         shape: RoundedRectangleBorder(
+                      //       borderRadius: BorderRadius.circular(20),
+                      //     )),
+                      //     onPressed: () {
+                      //       controller.pickImage();
+                      //     },
+                      //     child: Row(
+                      //       children: [
+                      //         Icon(
+                      //           Icons.upload,
+                      //           color: white,
+                      //         ),
+                      //         Text("Upload Foto",
+                      //             style: TextStyle(color: white)),
+                      //       ],
+                      //     )),
                     ),
-                  ),
+                    ),
                   SizedBox(height: 10,),
                 Obx(
                   () => Container(
@@ -387,9 +405,10 @@ class FormKtpView extends GetView<FormKtpController> {
                               },
                         label: controller.isSaving
                             ? Text("Loading...")
-                            : Text("Submit")),
+                            : Text("Kirim")),
                   ),
                 ),
+                SizedBox(height: 10,),
               ]),
             ),
           ),

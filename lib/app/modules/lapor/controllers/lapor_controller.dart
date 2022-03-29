@@ -19,6 +19,10 @@ class LaporController extends GetxController {
     }
   }
 
+  RxList<Lapor> rxLapor = RxList<Lapor>();
+  List<Lapor> get lapors => rxLapor.value;
+  set lapors(List<Lapor> value) => rxLapor.value = value;
+
   var _isSaving = false.obs;
   bool get isSaving => _isSaving.value;
   set isSaving(bool value) => _isSaving.value = value;
@@ -55,6 +59,7 @@ class LaporController extends GetxController {
     namaC = TextEditingController();
     judulC = TextEditingController();
     deskripsiC = TextEditingController();
+    rxLapor.bindStream(Lapor().streamList());
     super.onInit();
   }
 

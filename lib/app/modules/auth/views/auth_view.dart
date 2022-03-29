@@ -41,8 +41,8 @@ class AuthView extends GetView<AuthController> {
                     ),
                     SizedBox(height: 10,),
                     controller.isRegis
-                    ? Center(child: Text("Register", style: TextStyle(fontSize:20, fontWeight: FontWeight.bold, color: blue)))
-                    : Center(child: Text("Login", style: TextStyle(fontSize:20, fontWeight: FontWeight.bold, color: blue))),
+                    ? Center(child: Text("Register", style: TextStyle(fontSize:20, fontWeight: FontWeight.bold, color: primary)))
+                    : Center(child: Text("Login", style: TextStyle(fontSize:20, fontWeight: FontWeight.bold, color: primary))),
                     SizedBox(
                             height: 20,
                           ),
@@ -202,14 +202,39 @@ class AuthView extends GetView<AuthController> {
                     SizedBox(
                       height: 20,
                     ),
+                    controller.isRegis 
+                    ?
                     Obx(
                       () => AppButton(
-                        color: blue,
+                        color: primary,
                         textColor: white,
                         shapeBorder: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(100)),
                         width: Get.width,
-                        text: controller.isSaving ? "Loading..." : "Submit",
+                        text: controller.isSaving ? "Loading..." : "Daftar",
+                        child: controller.isSaving ? Text("Loading...") : null,
+                        onTap: controller.isSaving
+                            ? null
+                            : () async {
+                                if (form.currentState!.validate()) {
+                                  controller.isSaving = true;
+                                  controller.isRegis
+                                      ? await controller.register()
+                                      : await controller.login();
+                                  controller.isSaving = false;
+                                }
+                              },
+                      ),
+                    )
+                    :
+                    Obx(
+                      () => AppButton(
+                        color: primary,
+                        textColor: white,
+                        shapeBorder: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(100)),
+                        width: Get.width,
+                        text: controller.isSaving ? "Loading..." : "Masuk",
                         child: controller.isSaving ? Text("Loading...") : null,
                         onTap: controller.isSaving
                             ? null
@@ -224,6 +249,7 @@ class AuthView extends GetView<AuthController> {
                               },
                       ),
                     ),
+
                     SizedBox(height: 15,),
                     TextButton(
                       onPressed: () {
@@ -235,10 +261,10 @@ class AuthView extends GetView<AuthController> {
                       style: ButtonStyle(visualDensity: VisualDensity.compact),
                       child: Text(controller.isRegis
                           ? "Sudah Punya Akun? Login Disini!"
-                          : "Belum Punya Akun? Register!"),
+                          : "Belum Punya Akun? Register!", style: TextStyle(color: primary)),
                     ),
                     TextButton(
-                        child: Text("Lupa Password?"),
+                        child: Text("Lupa Password?", style: TextStyle(color: primary)),
                         onPressed: () => Get.toNamed(Routes.RESET),
                       ),
                     SizedBox(height: 20,),
@@ -246,9 +272,9 @@ class AuthView extends GetView<AuthController> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Icon(Icons.person, color: blue,),
+                            Icon(Icons.person, color: primary,),
                             SizedBox(width: 5,),
-                            Text("Masuk sebagai guest"),
+                            Text("Masuk sebagai guest",style: TextStyle(color: primary)),
                           ],
                         ),
                         onPressed: () => Get.offAndToNamed(Routes.HOME),

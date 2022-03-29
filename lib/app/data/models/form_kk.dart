@@ -35,7 +35,7 @@ const String stempatlahir = "tempatlahir";
 const String stanggallahir = "tanggallahir";
 const String sagama = "agama";
 const String sstatuskawin = "statuskawin";
-const String swni = "wni";
+// const String swni = "wni";
 const String spekerjaan = "pekerjaan";
 const String snikibu = "nikibu";
 const String snamaibu = "namaibu";
@@ -89,7 +89,7 @@ class KK {
   DateTime? tanggallahir;
   String? agama;
   String? statuskawin;
-  String? wni;
+  // String? wni;
   String? pekerjaan;
   int? nikibu;
   String? namaibu;
@@ -157,7 +157,7 @@ class KK {
     this.tempatlahir,
     this.tempatpertama,
     this.waktu,
-    this.wni,
+    // this.wni,
     this.kewarganegaraan
   });
 
@@ -176,7 +176,7 @@ class KK {
       agama: json[sagama],
       statuskawin: json[sstatuskawin],
       statuskeluarga: json[sstatuskeluarga],
-      wni: json[swni],
+      // wni: json[swni],
       pekerjaan: json[spekerjaan],
       nikibu: json[snikibu],
       nikayah: json[nikayah],
@@ -263,7 +263,7 @@ class KK {
         stanggallahir: tanggallahir,
         sagama: agama,
         sstatuskawin: statuskawin,
-        swni: wni,
+        // swni: wni,
         spekerjaan: pekerjaan,
         salamat: alamat,
         swaktu: waktu,

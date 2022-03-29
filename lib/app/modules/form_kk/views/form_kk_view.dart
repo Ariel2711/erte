@@ -481,59 +481,7 @@ class FormKkView extends GetView<FormKkController> {
                 SizedBox(
                   height: 15,
                 ),
-                // FormField<String>(
-                //   validator: (value) => controller.selectedWNI.isNotEmpty
-                //       ? null
-                //       : "This field is required",
-                //   builder: (wni) => Obx(
-                //     () => ListTile(
-                //       visualDensity: VisualDensity.compact,
-                //       title: Text("Kewarganegaraan"),
-                //       shape: RoundedRectangleBorder(
-                //           borderRadius: BorderRadius.circular(15)),
-                //       subtitle: Column(
-                //         children: [
-                //           Row(
-                //             children: [
-                //               Expanded(
-                //                 child: RadioListTile<String>(
-                //                   value: "WNI",
-                //                   groupValue: controller.selectedWNI,
-                //                   onChanged: (value) =>
-                //                       controller.selectedWNI = value ?? '',
-                //                   title: Text("WNI"),
-                //                 ),
-                //               ),
-                //               Expanded(
-                //                 child: RadioListTile<String>(
-                //                   value: "WNA",
-                //                   groupValue: controller.selectedWNI,
-                //                   onChanged: (value) =>
-                //                       controller.selectedWNI = value ?? '',
-                //                   title: Text(
-                //                     "WNA",
-                //                   ),
-                //                 ),
-                //               ),
-                //             ],
-                //           ),
-                //           if (wni.hasError)
-                //             Align(
-                //               alignment: Alignment.centerLeft,
-                //               child: Text(
-                //                 wni.errorText!,
-                //                 style:
-                //                     TextStyle(color: Colors.red, fontSize: 12),
-                //               ),
-                //             ),
-                //         ],
-                //       ),
-                //     ),
-                //   ),
-                // ),
-                // SizedBox(
-                //   height: 15,
-                // ),
+                
                 FormField<String>(
                   validator: (value) => controller.selectedAktakawin.isNotEmpty
                       ? null
@@ -605,7 +553,7 @@ class FormKkView extends GetView<FormKkController> {
                       child: Icon(
                         Icons.calendar_today,
                       )),
-                  onTap: () async => await controller.tanggalLahir(context),
+                  onTap: () async => await controller.tanggalkawin(context),
                   title: Text(
                     "Tanggal Perkawinan",
                     style: TextStyle(fontSize: 12),
@@ -695,7 +643,7 @@ class FormKkView extends GetView<FormKkController> {
                       child: Icon(
                         Icons.calendar_today,
                       )),
-                  onTap: () async => await controller.tanggalLahir(context),
+                  onTap: () async => await controller.tanggalcerai(context),
                   title: Text(
                     "Tanggal Perceraian",
                     style: TextStyle(fontSize: 12),
@@ -807,7 +755,7 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
-                    items: controller.listPendidikan,
+                    items: controller.listPekerjaan,
                     onChanged: (value) => controller.selectedPendidikan = value,
                     mode: Mode.MENU,
                     dropdownSearchDecoration: InputDecoration(
@@ -962,7 +910,7 @@ class FormKkView extends GetView<FormKkController> {
                 ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
-                  textInputAction: TextInputAction.next,
+                  textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), label: Text("Nama Ayah")),
                   controller: controller.namaayahC,
@@ -986,6 +934,7 @@ class FormKkView extends GetView<FormKkController> {
                             : Text("Submit")),
                   ),
                 ),
+                SizedBox(height: 10,),
               ]),
             ),
           ),

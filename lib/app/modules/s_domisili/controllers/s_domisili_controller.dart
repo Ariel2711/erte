@@ -7,12 +7,61 @@ import 'package:get/get.dart';
 class SDomisiliController extends GetxController {
   late TextEditingController namaC;
   late TextEditingController tempatC;
-  late TextEditingController pekerjaanC;
-  late TextEditingController nikC;
-  late TextEditingController kkC;
+  late TextEditingController nktpC;
   late TextEditingController alamatC;
-  late TextEditingController keperluanC;
   UserModel? selectedUser;
+
+  List<String> listKeperluan1 = [
+    "Pengurusan Surat Pindah",
+    "Pengurusan Surat Datang",
+    "Surat Kontrak Rumah",
+    "Pengurusan Surat Kelahiran",
+    "Pengurusan Surat Kematian",
+    "Surat Keterangan Tidak Mampu",
+    "Surat Pernyataan Waris",
+    "Surat Ijin Keramaian",
+    "Pengurusan Surat Ijin Usaha",
+    "Pengantar Surat Nikah",
+    "Pengurusan Surat Pensiun",
+    "Surat Keterangan Penghasilan",
+    "Surat Keterangan Permohonan KPR",
+    "Surat Keterangan Bersih Diri",
+    "Surat Keterangan Catatan Kepolisian",
+    "Surat Tunjangan Keluarga",
+    "Surat Pengurusan Paspor",
+    "Surat Keterangan Domisili",
+    "Surat Boro Kerja",
+    "Pengurusan KTP Baru",
+    "Pengurusan KK Baru",
+    "Surat Ijin Mendirikan Bangunan"
+  ];
+  String? selectedKeperluan1;
+
+  List<String> listKeperluan2 = [
+    "Pengurusan Surat Pindah",
+    "Pengurusan Surat Datang",
+    "Surat Kontrak Rumah",
+    "Pengurusan Surat Kelahiran",
+    "Pengurusan Surat Kematian",
+    "Surat Keterangan Tidak Mampu",
+    "Surat Pernyataan Waris",
+    "Surat Ijin Keramaian",
+    "Pengurusan Surat Ijin Usaha",
+    "Pengantar Surat Nikah",
+    "Pengurusan Surat Pensiun",
+    "Surat Keterangan Penghasilan",
+    "Surat Keterangan Permohonan KPR",
+    "Surat Keterangan Bersih Diri",
+    "Surat Keterangan Catatan Kepolisian",
+    "Surat Tunjangan Keluarga",
+    "Surat Pengurusan Paspor",
+    "Surat Keterangan Domisili",
+    "Surat Boro Kerja",
+    "Pengurusan KTP Baru",
+    "Pengurusan KK Baru",
+    "Surat Ijin Mendirikan Bangunan"
+  ];
+  String? selectedKeperluan2;
 
   RxList<UserModel> rxUser = RxList<UserModel>();
   List<UserModel> get users => rxUser.value;
@@ -26,9 +75,7 @@ class SDomisiliController extends GetxController {
     selectedTanggal = await showDatePicker(
             context: context,
             initialDate: selectedTanggal ?? DateTime.now(),
-            // initialDatePickerMode: DatePickerMode.year,
-            firstDate:
-                DateTime(1900),
+            firstDate: DateTime(1900),
             lastDate: DateTime(2050)) ??
         selectedTanggal;
   }
@@ -37,72 +84,18 @@ class SDomisiliController extends GetxController {
   String get selectedKelamin => _selectedKelamin.value;
   set selectedKelamin(String value) => _selectedKelamin.value = value;
 
-  var _selectedWNI = ''.obs;
-  String get selectedWNI => _selectedWNI.value;
-  set selectedWNI(String value) => _selectedWNI.value = value;
-
-  List<String> listAgama = [
-    "Islam",
-    "Katholik",
-    "Kristen",
-    "Hindu",
-    "Budha",
-    "Konghucu"
-  ];
-  String? selectedAgama;
-
-  List<String> listStatus = [
-    "Belum Kawin",
-    "Kawin",
-    "Cerai Hidup",
-    "Cerai Mati",
-  ];
-  String? selectedStatus;
-
-  List<String> listPendidikan = [
-    "SD",
-    "SLTP",
-    "SLTA",
-    "SMK",
-    "SI",
-    "SII",
-    "Sederajat"
-  ];
-  String? selectedPendidikan;
-
   var _isSaving = false.obs;
   bool get isSaving => _isSaving.value;
   set isSaving(bool value) => _isSaving.value = value;
 
-  // modelToController(domisili domisili) {
-  //   namaC.text = domisili.nama ?? '';
-  //   tempatC.text = domisili.tempatlahir ?? '';
-  //   pekerjaanC.text = domisili.pekerjaan ?? '';
-  //   alamatC.text = domisili.alamat ?? '';
-  //   keperluanC.text = domisili.keperluan ?? '';
-  //   nikC.text = domisili.nik?.toString() ?? '';
-  //   kkC.text = domisili.kk?.toString() ?? '';
-  //   selectedAgama = domisili.agama;
-  //   selectedKelamin = domisili.kelamin ?? '';
-  //   selectedTanggal = domisili.tanggallahir ?? DateTime.now();
-  //   selectedPendidikan = domisili.pekerjaan;
-  //   selectedStatus = domisili.status;
-  //   selectedWNI = domisili.wni ?? '';
-  // }
-
   Future store(Domisili domisili) async {
     isSaving = true;
     domisili.nama = namaC.text;
-    domisili.pekerjaan = pekerjaanC.text;
-    domisili.agama = selectedAgama;
-    domisili.pendidikan = selectedPendidikan;
-    domisili.status = selectedStatus;
     domisili.alamat = alamatC.text;
-    domisili.keperluan = keperluanC.text;
-    domisili.wni = selectedWNI;
+    domisili.keperluan1 = selectedKeperluan1;
+    domisili.keperluan2 = selectedKeperluan2;
     domisili.kelamin = selectedKelamin;
-    domisili.nik = int.tryParse(nikC.text);
-    domisili.kk = int.tryParse(kkC.text);
+    domisili.nktp = int.tryParse(nktpC.text);
     domisili.tanggallahir = selectedTanggal;
     domisili.tempatlahir = tempatC.text;
     if (domisili.id == null) {
@@ -115,17 +108,12 @@ class SDomisiliController extends GetxController {
           textConfirm: "Okay",
           onConfirm: () {
             namaC.clear();
-            pekerjaanC.clear();
             tempatC.clear();
-            nikC.clear();
-            kkC.clear();
+            nktpC.clear();
             alamatC.clear();
-            keperluanC.clear();
-            selectedAgama = '';
             selectedKelamin = '';
-            selectedPendidikan = '';
-            selectedStatus = '';
-            selectedWNI = '';
+            selectedKeperluan1 = '';
+            selectedKeperluan2 = '';
             selectedTanggal = DateTime.now();
             Get.back();
           });
@@ -141,11 +129,8 @@ class SDomisiliController extends GetxController {
     super.onInit();
     namaC = TextEditingController();
     tempatC = TextEditingController();
-    pekerjaanC = TextEditingController();
-    nikC = TextEditingController();
-    kkC = TextEditingController();
+    nktpC = TextEditingController();
     alamatC = TextEditingController();
-    keperluanC = TextEditingController();
     rxUser.bindStream(UserModel().allstreamList());
   }
 
@@ -157,17 +142,12 @@ class SDomisiliController extends GetxController {
   @override
   void onClose() {
     namaC.clear();
-    pekerjaanC.clear();
     tempatC.clear();
-    nikC.clear();
-    kkC.clear();
+    nktpC.clear();
     alamatC.clear();
-    keperluanC.clear();
-    selectedAgama = '';
     selectedKelamin = '';
-    selectedPendidikan = '';
-    selectedStatus = '';
-    selectedWNI = '';
+    selectedKeperluan1 = '';
+    selectedKeperluan2 = '';
     selectedTanggal = DateTime.now();
   }
 }

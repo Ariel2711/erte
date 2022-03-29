@@ -16,16 +16,6 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
         key: _globalKey,
         backgroundColor: Color.fromARGB(255, 252, 247, 247),
-        // appBar: AppBar(
-        //     title: Text('ERTE'),
-        //     // centerTitle: true,
-        //     actions: [
-        //       // IconButton(
-        //       //     onPressed: () => Get.toNamed(Routes.PROFIL),
-        //       //     icon: Icon(Icons.person))
-        //       Center(child: Text("${DateFormat.yMMMEd().format(DateTime.now())}"))
-        //     ],
-        //   ),
         drawer: Drawer(
           backgroundColor: white,
           child:
@@ -33,7 +23,7 @@ class HomeView extends GetView<HomeController> {
             Container(
               width: double.infinity,
               height: 155,
-              color: blue,
+              color: primary,
               child: Center(
                 child: Column(
                   children: [
@@ -50,7 +40,7 @@ class HomeView extends GetView<HomeController> {
                                     height: 80,
                                     width: 80,
                                     decoration: BoxDecoration(
-                                      color: blue,
+                                      color: primary,
                                       borderRadius:
                                           BorderRadius.circular(80 / 2),
                                     ),
@@ -124,147 +114,95 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       Column(
                         children: [
+                          Obx(()=> authC.user.role == "Admin"
+                          ? ListTile(
+                            onTap: () => Get.toNamed(Routes.ADMIN),
+                            leading: Icon(
+                              Icons.person_outline_outlined,
+                              color: primary,
+                            ),
+                            title: Text(
+                              "Halaman Admin",
+                              style: TextStyle(color: primary),
+                            ),
+                          )
+                          : Container(),),
                           ListTile(
                             onTap: () => Get.toNamed(Routes.PROFIL),
                             leading: Icon(
                               Icons.person,
-                              color: blue,
+                              color: primary,
                             ),
                             title: Text(
                               "Profil",
-                              style: TextStyle(color: blue),
+                              style: TextStyle(color: primary),
                             ),
                           ),
-                          // ListTile(
-                          //   onTap: () => Get.defaultDialog(
-                          //     title: "Notifications",
-                          //     middleText: "This is Notifications",
-                          //     titleStyle: TextStyle(color: blue),
-                          //     middleTextStyle: TextStyle(color: blue),
-                          //     textConfirm: "Okay",
-                          //     onConfirm: () => Get.back(),
-                          //     confirmTextColor: white,
-                          //     buttonColor: blue,
-                          //   ),
-                          //   leading: Icon(
-                          //     Icons.notifications,
-                          //     color: blue,
-                          //   ),
-                          //   title: Text(
-                          //     "Notifications",
-                          //     style: TextStyle(color: blue),
-                          //   ),
-                          // ),
-                          // ListTile(
-                          //   onTap: () => Get.defaultDialog(
-                          //     title: "Help",
-                          //     middleText: "This is Help",
-                          //     titleStyle: TextStyle(color: blue),
-                          //     middleTextStyle: TextStyle(color: blue),
-                          //     textConfirm: "Okay",
-                          //     onConfirm: () => Get.back(),
-                          //     confirmTextColor: white,
-                          //     buttonColor: blue,
-                          //   ),
-                          //   leading: Icon(
-                          //     Icons.info_outline,
-                          //     color: blue,
-                          //   ),
-                          //   title: Text(
-                          //     "Help",
-                          //     style: TextStyle(color: blue),
-                          //   ),
-                          // ),
+                          
                           Obx(() =>
-                              authC.user.id != null && authC.user.role == "User"
+                              authC.user.id != null
                                   ? ListTile(
                                       onTap: () => Get.toNamed(Routes.RIWAYAT),
                                       leading: Icon(
                                         Icons.history,
-                                        color: blue,
+                                        color: primary,
                                       ),
                                       title: Text(
                                         "Riwayat",
-                                        style: TextStyle(color: blue),
+                                        style: TextStyle(color: primary),
                                       ),
                                     )
                                   : Container()),
-                          Obx(() => authC.user.role == "Admin"
-                              ? ListTile(
-                                  onTap: () => Get.toNamed(Routes.ADMIN),
-                                  leading: Icon(
-                                    Icons.notifications_active,
-                                    color: blue,
-                                  ),
-                                  title: Text(
-                                    "Surat Warga",
-                                    style: TextStyle(color: blue),
-                                  ),
-                                )
-                              : Container()),
-                          Obx(() => authC.user.role == "Admin"
-                              ? ListTile(
+                          
+                              ListTile(
                                   onTap: () => Get.toNamed(Routes.LAPOR),
                                   leading: Icon(
                                     Icons.notifications,
-                                    color: blue,
-                                  ),
-                                  title: Text(
-                                    "Laporan Warga",
-                                    style: TextStyle(color: blue),
-                                  ),
-                                )
-                              : ListTile(
-                                  onTap: () => Get.toNamed(Routes.LAPOR),
-                                  leading: Icon(
-                                    Icons.notifications,
-                                    color: blue,
+                                    color: primary,
                                   ),
                                   title: Text(
                                     "Lapor RT",
-                                    style: TextStyle(color: blue),
+                                    style: TextStyle(color: primary),
                                   ),
-                                )),
+                                ),
+                                ListTile(
+                                  onTap: () => Get.toNamed(Routes.KAS),
+                                  leading: Icon(
+                                    Icons.money,
+                                    color: primary,
+                                  ),
+                                  title: Text(
+                                    "Kas RT",
+                                    style: TextStyle(color: primary),
+                                  ),
+                                ),
                           Obx(
                             () => authC.user.id == null
                                 ? ListTile(
                                     onTap: () => Get.toNamed(Routes.AUTH),
                                     leading: Icon(
                                       Icons.login,
-                                      color: blue,
+                                      color: primary,
                                     ),
                                     title: Text(
                                       "Login",
-                                      style: TextStyle(color: blue),
+                                      style: TextStyle(color: primary),
                                     ),
                                   )
                                 : ListTile(
                                     onTap: () => authC.logout(),
                                     leading: Icon(
                                       Icons.logout,
-                                      color: blue,
+                                      color: primary,
                                     ),
                                     title: Text(
                                       "Logout",
-                                      style: TextStyle(color: blue),
+                                      style: TextStyle(color: primary),
                                     ),
                                   ),
                           ),
                         ],
                       ),
-                      // authC.user.id == null
-                      // ? AppButton(
-                      //   color: blue,
-                      //   text: "Login",
-                      //   textColor: white,
-                      //   onTap: ()=> Get.toNamed(Routes.AUTH),
-                      // )
-                      // : AppButton(
-                      //   color: blue,
-                      //   text: "Logout",
-                      //   textColor: white,
-                      //   onTap: ()=> authC.logout(),
-                      // )
                     ],
                   )
                 ],
@@ -278,7 +216,7 @@ class HomeView extends GetView<HomeController> {
               Container(
                 width: Get.width,
                 height: 250,
-                color: blue,
+                color: primary,
               ),
               Column(
                 children: [
@@ -365,7 +303,197 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       Column(
                         children: [
-                          // Container(
+                          Container(
+                            height: 130,
+                            width: 130,
+                            decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      height: 70,
+                                      width: 70,
+                                      child: InkWell(
+                                        onTap: () =>
+                                            Get.toNamed(Routes.S_PENGANTAR),
+                                        child: Image.asset(
+                                          "images/pernyataan.png",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                InkWell(
+                                  onTap: () => Get.toNamed(Routes.S_PENGANTAR),
+                                  child: Column(
+                                    children: [
+                                      Text("Surat"),
+                                      Text("Pengantar")
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            height: 130,
+                            width: 130,
+                            decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      height: 70,
+                                      width: 70,
+                                      child: InkWell(
+                                        onTap: () =>
+                                            Get.toNamed(Routes.FORM_KK),
+                                        child: Image.asset(
+                                          "images/kk.png",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                InkWell(
+                                  onTap: () => Get.toNamed(Routes.FORM_KK),
+                                  child: Column(
+                                    children: [Text("Form"), Text("KK")],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          Container(
+                            height: 130,
+                            width: 130,
+                            decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      height: 70,
+                                      width: 70,
+                                      child: InkWell(
+                                        onTap: () =>
+                                            Get.toNamed(Routes.S_DOMISILI),
+                                        child: Image.asset(
+                                          "images/domisili.png",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                InkWell(
+                                  onTap: () => Get.toNamed(Routes.S_DOMISILI),
+                                  child: Column(
+                                    children: [Text("Surat"), Text("Domisili")],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          SizedBox(
+                            height: 20,
+                          ),
+                          Container(
+                            height: 130,
+                            width: 130,
+                            decoration: BoxDecoration(
+                                color: white,
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Column(
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Container(
+                                      height: 70,
+                                      width: 70,
+                                      child: InkWell(
+                                        onTap: () =>
+                                            Get.toNamed(Routes.FORM_KTP),
+                                        child: Image.asset(
+                                          "images/ktp.png",
+                                          fit: BoxFit.cover,
+                                        ),
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                InkWell(
+                                  onTap: () => Get.toNamed(Routes.FORM_KTP),
+                                  child: Column(
+                                    children: [Text("Form"), Text("KTP")],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Align(
+                      alignment: Alignment.centerLeft,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                        child: Text(
+                          "Informasi",
+                          style: TextStyle(
+                              color: primary,
+                              fontSize: 20,
+                              fontWeight: FontWeight.w600),
+                        ),
+                      )),
+                      SizedBox(height: 100,),
+                ],
+              ),
+            ],
+          ),
+        ));
+  }
+}
+
+// appBar: AppBar(
+        //   title: Text('Home'),
+        //   centerTitle: true,
+        //   actions: [
+        //     IconButton(
+        //         onPressed: () => Get.toNamed(Routes.PROFIL),
+        //         icon: Icon(Icons.person))
+        //   ],
+        // ),
+
+// Container(
                           //   height: 130,
                           //   width: 130,
                           //   decoration: BoxDecoration(
@@ -405,81 +533,6 @@ class HomeView extends GetView<HomeController> {
                           // SizedBox(
                           //   height: 20,
                           // ),
-                          Container(
-                            height: 130,
-                            width: 130,
-                            decoration: BoxDecoration(
-                                color: white,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.S_PENGANTAR),
-                                        child: Image.asset(
-                                          "images/pernyataan.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.S_PENGANTAR),
-                                  child: Column(
-                                    children: [
-                                      Text("Surat"),
-                                      Text("Pengantar")
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            height: 130,
-                            width: 130,
-                            decoration: BoxDecoration(
-                                color: white,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.FORM_KK),
-                                        child: Image.asset(
-                                          "images/kk.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.FORM_KK),
-                                  child: Column(
-                                    children: [Text("Form"), Text("KK")],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
                           // Container(
                           //   height: 130,
                           //   width: 130,
@@ -557,14 +610,7 @@ class HomeView extends GetView<HomeController> {
                           //     ],
                           //   ),
                           // ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                        ],
-                      ),
-                      Column(
-                        children: [
-                          // Container(
+                           // Container(
                           //   height: 130,
                           //   width: 130,
                           //   decoration: BoxDecoration(
@@ -601,78 +647,6 @@ class HomeView extends GetView<HomeController> {
                           // SizedBox(
                           //   height: 20,
                           // ),
-                          Container(
-                            height: 130,
-                            width: 130,
-                            decoration: BoxDecoration(
-                                color: white,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.S_DOMISILI),
-                                        child: Image.asset(
-                                          "images/domisili.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.S_DOMISILI),
-                                  child: Column(
-                                    children: [Text("Surat"), Text("Domisili")],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            height: 130,
-                            width: 130,
-                            decoration: BoxDecoration(
-                                color: white,
-                                borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.FORM_KTP),
-                                        child: Image.asset(
-                                          "images/ktp.png",
-                                          fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.FORM_KTP),
-                                  child: Column(
-                                    children: [Text("Form"), Text("KTP")],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-
                           // Container(
                           //   height: 130,
                           //   width: 130,
@@ -713,55 +687,3 @@ class HomeView extends GetView<HomeController> {
                           // SizedBox(
                           //   height: 20,
                           // ),
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
-            ],
-          ),
-        ));
-  }
-}
-
-// appBar: AppBar(
-        //   title: Text('Home'),
-        //   centerTitle: true,
-        //   actions: [
-        //     IconButton(
-        //         onPressed: () => Get.toNamed(Routes.PROFIL),
-        //         icon: Icon(Icons.person))
-        //   ],
-        // ),
-
-// Padding(
-        //   padding: const EdgeInsets.all(20),
-        //   child: Center(
-        //     child: Column(
-        //       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        //       children: [
-        //         TextButton(
-        //             onPressed: () => Get.toNamed(Routes.S_PENGANTAR),
-        //             child: Text("Surat Pengantar")),
-        //         TextButton(
-        //             onPressed: () => Get.toNamed(Routes.S_PERNYATAAN),
-        //             child: Text("Surat Pernyataan")),
-        //         TextButton(
-        //             onPressed: () => Get.toNamed(Routes.FORM_KTP),
-        //             child: Text("Form KTP")),
-        //         Obx(
-        //           () => authC.user.id == null
-        //               ? AppButton(
-        //                   text: "Login",
-        //                   onTap: () => Get.toNamed(Routes.AUTH),
-        //                 )
-        //               : AppButton(
-        //                   text: "Logout",
-        //                   onTap: () => authC.logout(),
-        //                 ),
-        //         ),
-        //       ],
-        //     ),
-        //   ),
-        // )

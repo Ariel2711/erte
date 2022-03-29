@@ -8,15 +8,10 @@ const String snama = "nama";
 const String skelamin = "kelamin";
 const String stempatlahir = "tempatlahir";
 const String stanggallahir = "tanggallahir";
-const String sagama = "agama";
-const String sstatus = "status";
-const String swni = "wni";
-const String spendidikan = "pendidikan";
-const String spekerjaan = "pekerjaan";
-const String snik = "nik";
-const String skk = "kk";
+const String snktp = "nktp";
 const String salamat = "alamat";
-const String skeperluan = "keperluan";
+const String skeperluan1 = "keperluan1";
+const String skeperluan2 = "keperluan2";
 const String swaktu = "waktu";
 
 class Domisili {
@@ -25,18 +20,23 @@ class Domisili {
   String? kelamin;
   String? tempatlahir;
   DateTime? tanggallahir;
-  String? agama;
-  String? status;
-  String? wni;
-  String? pendidikan;
-  String? pekerjaan;
-  int? nik;
-  int? kk;
+  int? nktp;
   String? alamat;
-  String? keperluan;
+  String? keperluan1;
+  String? keperluan2;
   DateTime? waktu;
 
-  Domisili({this.id, this.nama, this.kelamin, this.tempatlahir, this.tanggallahir, this.agama, this.status, this.wni, this.pendidikan, this.pekerjaan, this.nik, this.kk, this.alamat, this.keperluan, this.waktu});
+  Domisili(
+      {this.id,
+      this.nama,
+      this.kelamin,
+      this.tempatlahir,
+      this.tanggallahir,
+      this.nktp,
+      this.alamat,
+      this.keperluan1,
+      this.keperluan2,
+      this.waktu});
 
   Domisili fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
@@ -46,15 +46,10 @@ class Domisili {
       kelamin: json[skelamin],
       tempatlahir: json[stempatlahir],
       tanggallahir: (json[stanggallahir] as Timestamp?)?.toDate(),
-      agama: json[sagama],
-      status: json[sstatus],
-      wni: json[swni],
-      pendidikan: json[spendidikan],
-      pekerjaan: json[spekerjaan],
-      nik: json[snik],
-      kk: json[skk],
+      nktp: json[snktp],
       alamat: json[salamat],
-      keperluan: json[skeperluan],
+      keperluan1: json[skeperluan1],
+      keperluan2: json[skeperluan2],
       waktu: (json[swaktu] as Timestamp?)?.toDate(),
     );
   }
@@ -65,15 +60,10 @@ class Domisili {
         skelamin: kelamin,
         stempatlahir: tempatlahir,
         stanggallahir: tanggallahir,
-        sagama: agama,
-        sstatus: status,
-        swni: wni,
-        spendidikan: pendidikan,
-        spekerjaan: pekerjaan,
-        snik: nik,
-        skk: kk,
+        snktp : nktp,
         salamat: alamat,
-        skeperluan: keperluan,
+        skeperluan1: keperluan1,
+        skeperluan2: keperluan2,
         swaktu: waktu,
       };
 
@@ -90,5 +80,4 @@ class Domisili {
     }
     return this;
   }
-
 }

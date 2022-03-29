@@ -21,6 +21,9 @@ abstract class Routes {
   static const ADMIN = _Paths.ADMIN;
   static const RIWAYAT = _Paths.RIWAYAT;
   static const FORM_KK = _Paths.FORM_KK;
+  static const ADMIN_SURAT = _Paths.ADMIN_SURAT;
+  static const KAS = _Paths.KAS;
+  static const INFORMASI = _Paths.INFORMASI;
 }
 
 abstract class _Paths {
@@ -43,4 +46,7 @@ abstract class _Paths {
   static const ADMIN = '/admin';
   static const RIWAYAT = '/riwayat';
   static const FORM_KK = '/form-kk';
+  static const ADMIN_SURAT = '/admin-surat';
+  static const KAS = '/kas';
+  static const INFORMASI = '/informasi';
 }

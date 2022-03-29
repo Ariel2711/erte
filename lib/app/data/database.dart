@@ -7,17 +7,19 @@ import 'package:firebase_storage/firebase_storage.dart';
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseStorage storage = FirebaseStorage.instance;
 const pengantarCollection = "surat_pengantar";
-const pernyataanCollection = "surat_pernyataan";
-const kelahiranCollection = "surat_kelahiran";
-const kematianCollection = "surat_kematian";
 const domisiliCollection = "surat_domisili";
-const usahaCollection = "surat_usaha";
-const acaraCollection = "surat_acara";
-const kontrakCollection = "surat_kontrak";
 const ktpCollection = "form_ktp";
 const kkCollection = "form_kk";
 const laporCollection = "surat_lapor";
 const userCollection = "user";
+const kasCollection = "kas";
+const informasiCollection = "informasi";
+// const pernyataanCollection = "surat_pernyataan";
+// const kelahiranCollection = "surat_kelahiran";
+// const kematianCollection = "surat_kematian";
+// const usahaCollection = "surat_usaha";
+// const acaraCollection = "surat_acara";
+// const kontrakCollection = "surat_kontrak";
 
 
 class Database {

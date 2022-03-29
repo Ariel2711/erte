@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ProfilController extends GetxController {
+  RxBool edit = false.obs;
   late TextEditingController namaC;
   late TextEditingController emailC;
   late TextEditingController passC;

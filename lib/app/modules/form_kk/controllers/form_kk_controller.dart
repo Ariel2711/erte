@@ -145,10 +145,6 @@ class FormKkController extends GetxController {
   String get selectedKelamin => _selectedKelamin.value;
   set selectedKelamin(String value) => _selectedKelamin.value = value;
 
-  var _selectedWNI = ''.obs;
-  String get selectedWNI => _selectedWNI.value;
-  set selectedWNI(String value) => _selectedWNI.value = value;
-
   var _selectedAktalahir = ''.obs;
   String get selectedAktalahir => _selectedAktalahir.value;
   set selectedAktalahir(String value) => _selectedAktalahir.value = value;
@@ -244,10 +240,104 @@ class FormKkController extends GetxController {
   String? selectGoldarah;
 
   List<String> listPekerjaan = [
-    "A",
-    "B",
-    "AB",
-    "O",
+    "Belum/Tidak Bekerja",
+    "Mengurus Rumah Tangga",
+    "Pelajar/Mahasiswa",
+    "Pensiunan",
+    "Pegawai Negeri Sipil",
+    "Tentara Nasional Indonesia",
+    "Kepolisian RI",
+    "Perdagangan",
+    "Petani/Pekebun",
+    "Peternak",
+    "Nelayan/Perikanan",
+    "Industri",
+    "Konstruksi",
+    "Transportasi",
+    "Karyawan Swasta",
+    "Karyawan BUMN",
+    "Karyawan BUMD",
+    "Karyawan Honorer",
+    "Buruh Harian Lepas",
+    "Buruh Tani/Perkebunan",
+    "Buruh Nelayan/Perikanan",
+    "Buruh Peternakan",
+    "Pembantu Rumah Tangga",
+    "Tukang Cukur",
+    "Tukang Listrik",
+    "Tukang Batu",
+    "Tukang Kayu",
+    "Tukang Sol Sepatu",
+    "Tukang Las/Pandai Besi",
+    "Tukang Jahit",
+    "Tukang Gigi",
+    "Penata Rias",
+    "Penata Busana",
+    "Penata Rambut",
+    "Mekanik",
+    "Seniman",
+    "Tabib",
+    "Paraji",
+    "Perancang Busana",
+    "Penterjemah",
+    "Imam Masjid",
+    "Pendeta",
+    "Pastor",
+    "Wartawan",
+    "Ustadz/Mubaligh",
+    "Juru Masak",
+    "Promotor Acara",
+    "Anggota DPR-RI",
+    "Anggota DPD",
+    "Anggota BPK",
+    "Presiden",
+    "Wakil Presiden",
+    "Anggota Mahkamah Konstitusi",
+    "Anggota Kabinet/Kementrian",
+    "Duta Besar",
+    "Gubernur",
+    "Wakil Gubernur",
+    "Bupati",
+    "Wakil Bupati",
+    "Walikota",
+    "Wakil Walikota",
+    "Anggota DPRD Provinsi",
+    "Anggota DPRD Kab/Kota",
+    "Dosen",
+    "Guru",
+    "Pilot",
+    "Pengacara",
+    "Notaris",
+    "Arsitek",
+    "Akuntan",
+    "Konsultan",
+    "Dokter",
+    "Bidan",
+    "Perawat",
+    "Apoteker",
+    "Psikiater/Psikolog",
+    "Penyiar Televisi",
+    "Penyiar Radio",
+    "Pelaut",
+    "Peneliti",
+    "Sopir",
+    "Pialang",
+    "Paranormal",
+    "Pedagang",
+    "Perangkat Desa",
+    "Kepala Desa",
+    "Biarawati",
+    "Wiraswasta",
+    "Anggota Lembaga Tinggi Lainnya",
+    "Artis",
+    "Atlit",
+    "Chef",
+    "Manajer",
+    "Tenaga Tata Usaha",
+    "Operator",
+    "Pekerja Pengolahan Kerajinan",
+    "Teknisi",
+    "Asisten Ahli"
   ];
   String? selectedPekerjaan;
 
@@ -305,7 +395,6 @@ class FormKkController extends GetxController {
     kk.agama = selectedAgama;
     kk.statuskawin = selectedStatus;
     kk.alamat = alamatC.text;
-    kk.wni = selectedWNI;
     kk.kelamin = selectedKelamin;
     kk.nikibu = int.tryParse(nikibuC.text);
     kk.tanggallahir = selectedTanggallahir;

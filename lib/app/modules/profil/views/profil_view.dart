@@ -8,6 +8,7 @@ import 'package:erte/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:nb_utils/nb_utils.dart';
 import '../../../const/color.dart';
 import '../controllers/profil_controller.dart';
@@ -20,32 +21,59 @@ class ProfilView extends GetView<ProfilController> {
   Widget build(BuildContext context) {
     controller.modelToController(authC.user);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          controller.edit.value = true;
+          if (controller.edit.value == true) {
+            Get.defaultDialog(
+                title: "Mode Edit",
+                titleStyle: TextStyle(color: primary),
+                middleText: "Mode Edit Aktif",
+                middleTextStyle: TextStyle(color: primary),
+                textConfirm: "Oke",
+                onConfirm: () => Get.back(),
+                confirmTextColor: white,
+                buttonColor: primary);
+          }
+        },
+        child: Icon(Icons.edit, color: white),
+      ),
       backgroundColor: Color.fromARGB(255, 252, 247, 247),
       appBar: AppBar(
         leading: InkWell(
-          onTap: () => Get.offAndToNamed(Routes.HOME),
-          child: Icon(Icons.arrow_back, color: white,)),
-        title: Text('Profil User'),
-        centerTitle: true,
+            onTap: () => authC.user.role == "Admin"
+            ? Get.offAndToNamed(Routes.ADMIN) : Get.offAndToNamed(Routes.HOME),
+            child: Icon(
+              Icons.arrow_back,
+              color: white,
+            )),
+        title: Text('Profil'),
+        // centerTitle: true,
       ),
       body: authC.user.id == null
           ? Center(
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    "Login Terlebih Dahulu",
-                    style: TextStyle(fontSize: 20),
+                  Container(
+                    height: 300,
+                    width: 300,
+                    child: Lottie.asset("images/login.json", fit: BoxFit.cover),
                   ),
                   SizedBox(
                     height: 15,
                   ),
-                  AppButton(
-                    text: "Login",
-                    color: blue,
-                    textColor: white,
-                    onTap: () => Get.toNamed(Routes.AUTH),
-                  )
+                  Padding(
+                    padding: const EdgeInsets.all(20.0),
+                    child: Container(
+                      width: Get.width,
+                      child: FloatingActionButton.extended(
+                          onPressed: () {
+                            Get.toNamed(Routes.AUTH);
+                          },
+                          label: Text("Login Terlebih Dahulu")),
+                    ),
+                  ),
                 ],
               ),
             )
@@ -55,7 +83,7 @@ class ProfilView extends GetView<ProfilController> {
                   Container(
                     width: Get.width,
                     height: 120,
-                    color: blue,
+                    color: primary,
                   ),
                   Form(
                     key: form,
@@ -90,7 +118,24 @@ class ProfilView extends GetView<ProfilController> {
                                               ),
                                               InkWell(
                                                 onTap: () {
-                                                  controller.pickImage();
+                                                  if (controller.edit == true) {
+                                                    controller.pickImage();
+                                                  } else {
+                                                    Get.defaultDialog(
+                                                      title: "Peringatan",
+                                                      middleText:
+                                                          "Hidupkan Mode Edit Terlebih Dahulu",
+                                                      titleStyle: TextStyle(
+                                                          color: primary),
+                                                      middleTextStyle:
+                                                          TextStyle(
+                                                              color: primary),
+                                                      onConfirm: () =>
+                                                          Get.back(),
+                                                      buttonColor: primary,
+                                                      textConfirm: "Oke",
+                                                    );
+                                                  }
                                                 },
                                                 child: Badge(
                                                   badgeColor: white,
@@ -99,7 +144,7 @@ class ProfilView extends GetView<ProfilController> {
                                                   badgeContent: Icon(
                                                     Icons
                                                         .camera_enhance_outlined,
-                                                    color: blue,
+                                                    color: primary,
                                                   ),
                                                   child: Container(
                                                     height: 80,
@@ -145,7 +190,26 @@ class ProfilView extends GetView<ProfilController> {
                                                   ),
                                                   InkWell(
                                                     onTap: () {
-                                                      controller.pickImage();
+                                                      if (controller.edit ==
+                                                          true) {
+                                                        controller.pickImage();
+                                                      } else {
+                                                        Get.defaultDialog(
+                                                          title: "Peringatan",
+                                                          middleText:
+                                                              "Hidupkan Mode Edit Terlebih Dahulu",
+                                                          titleStyle: TextStyle(
+                                                              color: primary),
+                                                          middleTextStyle:
+                                                              TextStyle(
+                                                                  color:
+                                                                      primary),
+                                                          onConfirm: () =>
+                                                              Get.back(),
+                                                          buttonColor: primary,
+                                                          textConfirm: "Oke",
+                                                        );
+                                                      }
                                                     },
                                                     child: Badge(
                                                       badgeColor: white,
@@ -154,7 +218,7 @@ class ProfilView extends GetView<ProfilController> {
                                                       badgeContent: Icon(
                                                         Icons
                                                             .camera_enhance_outlined,
-                                                        color: blue,
+                                                        color: primary,
                                                       ),
                                                       child: Container(
                                                         height: 80,
@@ -189,7 +253,24 @@ class ProfilView extends GetView<ProfilController> {
                                               duration: Duration(seconds: 2),
                                               child: InkWell(
                                                 onTap: () {
-                                                  controller.pickImage();
+                                                  if (controller.edit == true) {
+                                                    controller.pickImage();
+                                                  } else {
+                                                    Get.defaultDialog(
+                                                      title: "Peringatan",
+                                                      middleText:
+                                                          "Hidupkan Mode Edit Terlebih Dahulu",
+                                                      titleStyle: TextStyle(
+                                                          color: primary),
+                                                      middleTextStyle:
+                                                          TextStyle(
+                                                              color: primary),
+                                                      onConfirm: () =>
+                                                          Get.back(),
+                                                      buttonColor: primary,
+                                                      textConfirm: "Oke",
+                                                    );
+                                                  }
                                                 },
                                                 child: Badge(
                                                   badgeColor: white,
@@ -198,15 +279,18 @@ class ProfilView extends GetView<ProfilController> {
                                                   badgeContent: Icon(
                                                     Icons
                                                         .camera_enhance_outlined,
-                                                    color: blue,
+                                                    color: primary,
                                                   ),
                                                   child: Container(
                                                     height: 80,
                                                     width: 80,
                                                     child: Container(
-                                                      width: 80,
-                                                      height: 80,
-                                                        child: Image.asset("images/profil.png", fit: BoxFit.cover,)),
+                                                        width: 80,
+                                                        height: 80,
+                                                        child: Image.asset(
+                                                          "images/profil.png",
+                                                          fit: BoxFit.cover,
+                                                        )),
                                                     decoration: BoxDecoration(
                                                       // image: DecorationImage(
                                                       //     image: FileImage(
@@ -217,7 +301,7 @@ class ProfilView extends GetView<ProfilController> {
                                                       border: Border.all(
                                                           color: white,
                                                           width: 3),
-                                                          color: white,
+                                                      color: white,
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               90 / 2),
@@ -264,6 +348,7 @@ class ProfilView extends GetView<ProfilController> {
                             AppTextField(
                                 textFieldType: TextFieldType.NAME,
                                 showCursor: true,
+                                enabled: controller.edit.value,
                                 textInputAction: TextInputAction.next,
                                 controller: controller.namaC,
                                 decoration: InputDecoration(
@@ -300,6 +385,9 @@ class ProfilView extends GetView<ProfilController> {
                                         children: [
                                           Expanded(
                                             child: RadioListTile<String>(
+                                              selectedTileColor: primary,
+                                              activeColor: primary,
+                                              enableFeedback: controller.edit.value,
                                               value: "Laki-Laki",
                                               groupValue:
                                                   controller.selectedKelamin,
@@ -311,15 +399,16 @@ class ProfilView extends GetView<ProfilController> {
                                           ),
                                           Expanded(
                                             child: RadioListTile<String>(
+                                              selectedTileColor: primary,
+                                              activeColor: primary,
+                                              enableFeedback: controller.edit.value,
                                               value: "Perempuan",
                                               groupValue:
                                                   controller.selectedKelamin,
                                               onChanged: (value) =>
                                                   controller.selectedKelamin =
                                                       value ?? '',
-                                              title: Text(
-                                                "Perempuan"
-                                              ),
+                                              title: Text("Perempuan"),
                                             ),
                                           ),
                                         ],
@@ -343,6 +432,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.NAME,
                               textInputAction: TextInputAction.next,
                               controller: controller.tempatC,
@@ -354,6 +444,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             ListTile(
+                              enabled: controller.edit.value,
                               leading: Container(
                                   width: 24,
                                   alignment: Alignment.centerLeft,
@@ -381,6 +472,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             DropdownSearch<String>(
+                              enabled: controller.edit.value,
                               items: controller.listAgama,
                               onChanged: (value) =>
                                   controller.selectedAgama = value,
@@ -395,6 +487,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             DropdownSearch<String>(
+                              enabled: controller.edit.value,
                               items: controller.listStatus,
                               onChanged: (value) =>
                                   controller.selectedStatus = value,
@@ -425,6 +518,9 @@ class ProfilView extends GetView<ProfilController> {
                                         children: [
                                           Expanded(
                                             child: RadioListTile<String>(
+                                              selectedTileColor: primary,
+                                              activeColor: primary,
+                                              enableFeedback: controller.edit.value,
                                               value: "WNI",
                                               groupValue:
                                                   controller.selectedWNI,
@@ -435,6 +531,9 @@ class ProfilView extends GetView<ProfilController> {
                                           ),
                                           Expanded(
                                             child: RadioListTile<String>(
+                                              selectedTileColor: primary,
+                                              activeColor: primary,
+                                              enableFeedback: controller.edit.value,
                                               value: "WNA",
                                               groupValue:
                                                   controller.selectedWNI,
@@ -466,6 +565,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             DropdownSearch<String>(
+                              enabled: controller.edit.value,
                               items: controller.listPendidikan,
                               onChanged: (value) =>
                                   controller.selectedPendidikan = value,
@@ -480,6 +580,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             DropdownSearch<String>(
+                              enabled: controller.edit.value,
                               items: controller.listGoldarah,
                               onChanged: (value) =>
                                   controller.selectGoldarah = value,
@@ -494,6 +595,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.NAME,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -505,6 +607,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.PHONE,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -516,6 +619,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.PHONE,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -527,6 +631,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.NAME,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -538,6 +643,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.PHONE,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -549,6 +655,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.PHONE,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -560,6 +667,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.NAME,
                               textInputAction: TextInputAction.next,
                               decoration: InputDecoration(
@@ -571,6 +679,7 @@ class ProfilView extends GetView<ProfilController> {
                               height: 15,
                             ),
                             AppTextField(
+                              enabled: controller.edit.value,
                               textFieldType: TextFieldType.NAME,
                               textInputAction: TextInputAction.done,
                               decoration: InputDecoration(
@@ -642,7 +751,23 @@ class ProfilView extends GetView<ProfilController> {
                                       ? null
                                       : () {
                                           if (form.currentState!.validate()) {
-                                            controller.store(authC.user);
+                                            if (controller.edit == true) {
+                                              controller.store(authC.user);
+                                              controller.edit.value = false;
+                                            } else {
+                                              Get.defaultDialog(
+                                                title: "Peringatan",
+                                                middleText:
+                                                    "Hidupkan Mode Edit Terlebih Dahulu",
+                                                titleStyle:
+                                                    TextStyle(color: primary),
+                                                middleTextStyle:
+                                                    TextStyle(color: primary),
+                                                onConfirm: () => Get.back(),
+                                                buttonColor: primary,
+                                                textConfirm: "Oke",
+                                              );
+                                            }
                                           }
                                         },
                                   label: controller.isSaving
@@ -650,7 +775,7 @@ class ProfilView extends GetView<ProfilController> {
                                           "Loading...",
                                         )
                                       : Text(
-                                          "Ubah Profil",
+                                          "Simpan",
                                         )),
                             ),
                           ),

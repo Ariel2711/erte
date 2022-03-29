@@ -31,30 +31,6 @@ class SPengantarView extends GetView<SPengantarController> {
             key: form,
             child: SingleChildScrollView(
               child: Column(children: [
-                // Obx(() => authC.user.id == null
-                //         ? AppTextField(
-                //             textFieldType: TextFieldType.NAME,
-                //             decoration: InputDecoration(label: Text("Nama")),
-                //             controller: controller.namaC,
-                //           )
-                //         : AppTextField(
-                //             textFieldType: TextFieldType.NAME,
-                //             decoration: InputDecoration(label: Text("Nama")),
-                //             controller: controller.namaC,
-                //           )
-                // : DropdownSearch<UserModel>(
-                //     // items: authC.user.nama!,
-                //     items: controller.users,
-                //     itemAsString: (user)=> user!.nama!,
-                //     onChanged: (value) => controller.selectedUser  = value,
-                //     mode: Mode.MENU,
-                //     dropdownSearchDecoration: InputDecoration(
-                //       labelText: "Nama",
-                //       contentPadding: EdgeInsets.zero,
-                //     ),
-                //     selectedItem: controller.selectedUser,
-                //   ),
-                // ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
                   decoration: InputDecoration(
@@ -323,6 +299,7 @@ class SPengantarView extends GetView<SPengantarController> {
                             : Text("Kirim")),
                   ),
                 ),
+                SizedBox(height: 10,),
               ]),
             ),
           ),

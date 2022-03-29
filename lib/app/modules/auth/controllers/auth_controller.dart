@@ -35,7 +35,11 @@ class AuthController extends GetxController {
           email: emailC.text, password: passwordC.text);
       // .then((value) => Get.toNamed(Routes.HOME));
       if (myuser.user!.emailVerified) {
-        Get.offAndToNamed(Routes.HOME);
+        if (user.role == "Admin") {
+          Get.offAndToNamed(Routes.ADMIN);
+        } else {
+          Get.offAndToNamed(Routes.HOME);
+        }
       } else {
         Get.defaultDialog(
           title: "Failed Login",
@@ -128,6 +132,9 @@ class AuthController extends GetxController {
         await FirebaseAuth.instance.signOut();
         Get.back();
         isSaving = false;
+        emailC.clear();
+        passwordC.clear();
+        Get.offAndToNamed(Routes.AUTH);
         // selectedGender = 0;
         // selectedDate = DateTime.now();
       },
