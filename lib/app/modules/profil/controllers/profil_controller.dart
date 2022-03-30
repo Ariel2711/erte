@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:erte/app/const/color.dart';
 import 'package:erte/app/data/models/user.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class ProfilController extends GetxController {
   RxBool edit = false.obs;
@@ -143,12 +145,18 @@ class ProfilController extends GetxController {
       await user.save(
           file: imagePath.value == '' ? null : File(imagePath.value));
       Get.defaultDialog(
-          title: "Succeed",
-          middleText: "Profile has been updated",
-          textConfirm: "Okay",
+          title: "Berhasil",
+          middleText: "Profil telah dipebarui",
+          textConfirm: "Oke",
           onConfirm: () {
             Get.back();
-          });
+          },
+          buttonColor: primary,
+          cancelTextColor: primary,
+          confirmTextColor: white,
+          titleStyle: TextStyle(color: primary),
+          middleTextStyle: TextStyle(color: primary)
+          );
     } catch (e) {
       print(e);
     } finally {

@@ -1,5 +1,8 @@
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:erte/app/const/color.dart';
+import 'package:erte/app/data/models/absen.dart';
 import 'package:erte/app/data/models/s_domisili.dart';
+import 'package:erte/app/data/models/s_pengantar.dart';
 import 'package:erte/app/modules/auth/controllers/auth_controller.dart';
 import 'package:erte/app/modules/profil/controllers/profil_controller.dart';
 import 'package:flutter/material.dart';
@@ -13,11 +16,11 @@ import '../controllers/s_domisili_controller.dart';
 class SDomisiliView extends GetView<SDomisiliController> {
   final GlobalKey<FormState> form = GlobalKey<FormState>();
   final authC = Get.find<AuthController>();
-  final profilC = Get.find<ProfilController>();
   Domisili domisili = Domisili();
+  Pengantar pengantar = Pengantar();
+  Absen absen = Absen();
   @override
   Widget build(BuildContext context) {
-    profilC.modelToController(authC.user);
     return Scaffold(
         appBar: AppBar(
           title: Text('Surat Domisili'),
@@ -35,30 +38,6 @@ class SDomisiliView extends GetView<SDomisiliController> {
             key: form,
             child: SingleChildScrollView(
               child: Column(children: [
-                // Obx(() => authC.user.id == null
-                //         ? AppTextField(
-                //             textFieldType: TextFieldType.NAME,
-                //             decoration: InputDecoration(label: Text("Nama")),
-                //             controller: controller.namaC,
-                //           )
-                //         : AppTextField(
-                //             textFieldType: TextFieldType.NAME,
-                //             decoration: InputDecoration(label: Text("Nama")),
-                //             controller: controller.namaC,
-                //           )
-                // : DropdownSearch<UserModel>(
-                //     // items: authC.user.nama!,
-                //     items: controller.users,
-                //     itemAsString: (user)=> user!.nama!,
-                //     onChanged: (value) => controller.selectedUser  = value,
-                //     mode: Mode.MENU,
-                //     dropdownSearchDecoration: InputDecoration(
-                //       labelText: "Nama",
-                //       contentPadding: EdgeInsets.zero,
-                //     ),
-                //     selectedItem: controller.selectedUser,
-                //   ),
-                // ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
@@ -85,6 +64,9 @@ class SDomisiliView extends GetView<SDomisiliController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Laki-Laki",
                                   groupValue: controller.selectedKelamin,
                                   onChanged: (value) =>
@@ -94,6 +76,9 @@ class SDomisiliView extends GetView<SDomisiliController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Perempuan",
                                   groupValue: controller.selectedKelamin,
                                   onChanged: (value) =>
@@ -159,7 +144,6 @@ class SDomisiliView extends GetView<SDomisiliController> {
                 SizedBox(
                   height: 15,
                 ),
-
                 AppTextField(
                   textFieldType: TextFieldType.PHONE,
                   textInputAction: TextInputAction.next,
@@ -170,7 +154,6 @@ class SDomisiliView extends GetView<SDomisiliController> {
                 SizedBox(
                   height: 15,
                 ),
-
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.next,
@@ -207,6 +190,144 @@ class SDomisiliView extends GetView<SDomisiliController> {
                 SizedBox(
                   height: 15,
                 ),
+                DropdownSearch<String>(
+                  items: controller.listAgama,
+                  onChanged: (value) => controller.selectedAgama = value,
+                  mode: Mode.MENU,
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: "Agama",
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                  selectedItem: controller.selectedAgama,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                DropdownSearch<String>(
+                  items: controller.listStatus,
+                  onChanged: (value) => controller.selectedStatus = value,
+                  mode: Mode.MENU,
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: "Status",
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                  selectedItem: controller.selectedStatus,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                FormField<String>(
+                  validator: (value) => controller.selectedWNI.isNotEmpty
+                      ? null
+                      : "This field is required",
+                  builder: (wni) => Obx(
+                    () => ListTile(
+                      visualDensity: VisualDensity.compact,
+                      title: Text("Kewarganegaraan"),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      subtitle: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
+                                  value: "WNI",
+                                  groupValue: controller.selectedWNI,
+                                  onChanged: (value) =>
+                                      controller.selectedWNI = value ?? '',
+                                  title: Text("WNI"),
+                                ),
+                              ),
+                              Expanded(
+                                child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
+                                  value: "WNA",
+                                  groupValue: controller.selectedWNI,
+                                  onChanged: (value) =>
+                                      controller.selectedWNI = value ?? '',
+                                  title: Text(
+                                    "WNA",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (wni.hasError)
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                wni.errorText!,
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 12),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                DropdownSearch<String>(
+                  items: controller.listPendidikan,
+                  onChanged: (value) => controller.selectedPendidikan = value,
+                  mode: Mode.MENU,
+                  dropdownSearchDecoration: InputDecoration(
+                    labelText: "Pendidikan",
+                    contentPadding: EdgeInsets.zero,
+                  ),
+                  selectedItem: controller.selectedPendidikan,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                AppTextField(
+                  textFieldType: TextFieldType.NAME,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), label: Text("Pekerjaan")),
+                  controller: controller.pekerjaanC,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                AppTextField(
+                  textFieldType: TextFieldType.PHONE,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), label: Text("NIK")),
+                  controller: controller.nikC,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                AppTextField(
+                  textFieldType: TextFieldType.PHONE,
+                  textInputAction: TextInputAction.next,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), label: Text("No KK")),
+                  controller: controller.kkC,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                AppTextField(
+                  textFieldType: TextFieldType.NAME,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), label: Text("Email")),
+                  controller: controller.emailC,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 Obx(
                   () => Container(
                     width: Get.width,
@@ -216,6 +337,8 @@ class SDomisiliView extends GetView<SDomisiliController> {
                             : () {
                                 if (form.currentState!.validate()) {
                                   controller.store(domisili);
+                                  controller.storeabsen(absen);
+                                  controller.storepengantar(pengantar);
                                 }
                               },
                         label: controller.isSaving

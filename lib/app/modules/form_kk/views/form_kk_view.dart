@@ -1,5 +1,8 @@
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:erte/app/const/color.dart';
+import 'package:erte/app/data/models/absen.dart';
 import 'package:erte/app/data/models/form_kk.dart';
+import 'package:erte/app/data/models/s_pengantar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -11,6 +14,8 @@ import '../controllers/form_kk_controller.dart';
 class FormKkView extends GetView<FormKkController> {
   final GlobalKey<FormState> form = GlobalKey<FormState>();
   KK kk = KK();
+  Absen absen = Absen();
+  Pengantar pengantar = Pengantar();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,6 +49,9 @@ class FormKkView extends GetView<FormKkController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Keluarga WNI",
                                   groupValue: controller.selectedDataKeluarga,
                                   onChanged: (value) => controller
@@ -53,6 +61,9 @@ class FormKkView extends GetView<FormKkController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Keluarga WNA",
                                   groupValue: controller.selectedDataKeluarga,
                                   onChanged: (value) => controller
@@ -270,6 +281,9 @@ class FormKkView extends GetView<FormKkController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Laki-Laki",
                                   groupValue: controller.selectedKelamin,
                                   onChanged: (value) =>
@@ -279,6 +293,9 @@ class FormKkView extends GetView<FormKkController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Perempuan",
                                   groupValue: controller.selectedKelamin,
                                   onChanged: (value) =>
@@ -382,6 +399,9 @@ class FormKkView extends GetView<FormKkController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Ada",
                                   groupValue: controller.selectedAktalahir,
                                   onChanged: (value) => controller
@@ -391,6 +411,9 @@ class FormKkView extends GetView<FormKkController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Tidak Ada",
                                   groupValue: controller.selectedAktalahir,
                                   onChanged: (value) => controller
@@ -481,7 +504,6 @@ class FormKkView extends GetView<FormKkController> {
                 SizedBox(
                   height: 15,
                 ),
-                
                 FormField<String>(
                   validator: (value) => controller.selectedAktakawin.isNotEmpty
                       ? null
@@ -498,6 +520,9 @@ class FormKkView extends GetView<FormKkController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Ada",
                                   groupValue: controller.selectedAktakawin,
                                   onChanged: (value) => controller
@@ -507,6 +532,9 @@ class FormKkView extends GetView<FormKkController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Tidak Ada",
                                   groupValue: controller.selectedAktakawin,
                                   onChanged: (value) => controller
@@ -588,6 +616,9 @@ class FormKkView extends GetView<FormKkController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Ada",
                                   groupValue: controller.selectedAktacerai,
                                   onChanged: (value) => controller
@@ -597,6 +628,9 @@ class FormKkView extends GetView<FormKkController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Tidak Ada",
                                   groupValue: controller.selectedAktacerai,
                                   onChanged: (value) => controller
@@ -691,6 +725,9 @@ class FormKkView extends GetView<FormKkController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Ada",
                                   groupValue: controller.selectedCacat,
                                   onChanged: (value) =>
@@ -700,6 +737,9 @@ class FormKkView extends GetView<FormKkController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Tidak Ada",
                                   groupValue: controller.selectedCacat,
                                   onChanged: (value) =>
@@ -756,7 +796,7 @@ class FormKkView extends GetView<FormKkController> {
                 ),
                 DropdownSearch<String>(
                     items: controller.listPekerjaan,
-                    onChanged: (value) => controller.selectedPendidikan = value,
+                    onChanged: (value) => controller.selectedPekerjaan = value,
                     mode: Mode.MENU,
                     dropdownSearchDecoration: InputDecoration(
                       labelText: "Jenis Pekerjaan",
@@ -910,10 +950,122 @@ class FormKkView extends GetView<FormKkController> {
                 ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
-                  textInputAction: TextInputAction.done,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), label: Text("Nama Ayah")),
                   controller: controller.namaayahC,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
+                // AppTextField(
+                //   textFieldType: TextFieldType.PHONE,
+                //   textInputAction: TextInputAction.next,
+                //   decoration: InputDecoration(
+                //       border: OutlineInputBorder(), label: Text("NIK")),
+                //   controller: controller.nikC,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // AppTextField(
+                //   textFieldType: TextFieldType.PHONE,
+                //   textInputAction: TextInputAction.next,
+                //   decoration: InputDecoration(
+                //       border: OutlineInputBorder(), label: Text("No KK")),
+                //   controller: controller.kkC,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                FormField<String>(
+                  validator: (value) => controller.selectedWNI.isNotEmpty
+                      ? null
+                      : "This field is required",
+                  builder: (wni) => Obx(
+                    () => ListTile(
+                      visualDensity: VisualDensity.compact,
+                      title: Text("Kewarganegaraan"),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(15)),
+                      subtitle: Column(
+                        children: [
+                          Row(
+                            children: [
+                              Expanded(
+                                child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
+                                  value: "WNI",
+                                  groupValue: controller.selectedWNI,
+                                  onChanged: (value) =>
+                                      controller.selectedWNI = value ?? '',
+                                  title: Text("WNI"),
+                                ),
+                              ),
+                              Expanded(
+                                child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
+                                  value: "WNA",
+                                  groupValue: controller.selectedWNI,
+                                  onChanged: (value) =>
+                                      controller.selectedWNI = value ?? '',
+                                  title: Text(
+                                    "WNA",
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                          if (wni.hasError)
+                            Align(
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                wni.errorText!,
+                                style:
+                                    TextStyle(color: Colors.red, fontSize: 12),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                // DropdownSearch<String>(
+                //   items: controller.listKeperluan1,
+                //   onChanged: (value) => controller.selectedKeperluan1 = value,
+                //   mode: Mode.MENU,
+                //   dropdownSearchDecoration: InputDecoration(
+                //     labelText: "Keperluan 1",
+                //     contentPadding: EdgeInsets.zero,
+                //   ),
+                //   selectedItem: controller.selectedKeperluan1,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // DropdownSearch<String>(
+                //   items: controller.listKeperluan2,
+                //   onChanged: (value) => controller.selectedKeperluan2 = value,
+                //   mode: Mode.MENU,
+                //   dropdownSearchDecoration: InputDecoration(
+                //     labelText: "Keperluan 2",
+                //     contentPadding: EdgeInsets.zero,
+                //   ),
+                //   selectedItem: controller.selectedKeperluan2,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                AppTextField(
+                  textFieldType: TextFieldType.NAME,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), label: Text("Email")),
+                  controller: controller.emailC,
                 ),
                 SizedBox(
                   height: 15,
@@ -927,14 +1079,18 @@ class FormKkView extends GetView<FormKkController> {
                             : () {
                                 if (form.currentState!.validate()) {
                                   controller.store(kk);
+                                  controller.storeabsen(absen);
+                                  controller.storepengantar(pengantar);
                                 }
                               },
                         label: controller.isSaving
                             ? Text("Loading...")
-                            : Text("Submit")),
+                            : Text("Kirim")),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
               ]),
             ),
           ),

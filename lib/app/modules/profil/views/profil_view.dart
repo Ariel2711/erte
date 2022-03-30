@@ -42,7 +42,8 @@ class ProfilView extends GetView<ProfilController> {
       appBar: AppBar(
         leading: InkWell(
             onTap: () => authC.user.role == "Admin"
-            ? Get.offAndToNamed(Routes.ADMIN) : Get.offAndToNamed(Routes.HOME),
+                ? Get.offAndToNamed(Routes.ADMIN)
+                : Get.offAndToNamed(Routes.HOME),
             child: Icon(
               Icons.arrow_back,
               color: white,
@@ -122,19 +123,20 @@ class ProfilView extends GetView<ProfilController> {
                                                     controller.pickImage();
                                                   } else {
                                                     Get.defaultDialog(
-                                                      title: "Peringatan",
-                                                      middleText:
-                                                          "Hidupkan Mode Edit Terlebih Dahulu",
-                                                      titleStyle: TextStyle(
-                                                          color: primary),
-                                                      middleTextStyle:
-                                                          TextStyle(
-                                                              color: primary),
-                                                      onConfirm: () =>
-                                                          Get.back(),
-                                                      buttonColor: primary,
-                                                      textConfirm: "Oke",
-                                                    );
+                                                        title: "Peringatan",
+                                                        middleText:
+                                                            "Hidupkan Mode Edit Terlebih Dahulu",
+                                                        titleStyle: TextStyle(
+                                                            color: primary),
+                                                        middleTextStyle:
+                                                            TextStyle(
+                                                                color: primary),
+                                                        onConfirm: () =>
+                                                            Get.back(),
+                                                        buttonColor: primary,
+                                                        textConfirm: "Oke",
+                                                        confirmTextColor:
+                                                            white);
                                                   }
                                                 },
                                                 child: Badge(
@@ -195,20 +197,24 @@ class ProfilView extends GetView<ProfilController> {
                                                         controller.pickImage();
                                                       } else {
                                                         Get.defaultDialog(
-                                                          title: "Peringatan",
-                                                          middleText:
-                                                              "Hidupkan Mode Edit Terlebih Dahulu",
-                                                          titleStyle: TextStyle(
-                                                              color: primary),
-                                                          middleTextStyle:
-                                                              TextStyle(
-                                                                  color:
-                                                                      primary),
-                                                          onConfirm: () =>
-                                                              Get.back(),
-                                                          buttonColor: primary,
-                                                          textConfirm: "Oke",
-                                                        );
+                                                            title: "Peringatan",
+                                                            middleText:
+                                                                "Hidupkan Mode Edit Terlebih Dahulu",
+                                                            titleStyle:
+                                                                TextStyle(
+                                                                    color:
+                                                                        primary),
+                                                            middleTextStyle:
+                                                                TextStyle(
+                                                                    color:
+                                                                        primary),
+                                                            onConfirm: () =>
+                                                                Get.back(),
+                                                            buttonColor:
+                                                                primary,
+                                                            textConfirm: "Oke",
+                                                            confirmTextColor:
+                                                                white);
                                                       }
                                                     },
                                                     child: Badge(
@@ -257,19 +263,20 @@ class ProfilView extends GetView<ProfilController> {
                                                     controller.pickImage();
                                                   } else {
                                                     Get.defaultDialog(
-                                                      title: "Peringatan",
-                                                      middleText:
-                                                          "Hidupkan Mode Edit Terlebih Dahulu",
-                                                      titleStyle: TextStyle(
-                                                          color: primary),
-                                                      middleTextStyle:
-                                                          TextStyle(
-                                                              color: primary),
-                                                      onConfirm: () =>
-                                                          Get.back(),
-                                                      buttonColor: primary,
-                                                      textConfirm: "Oke",
-                                                    );
+                                                        title: "Peringatan",
+                                                        middleText:
+                                                            "Hidupkan Mode Edit Terlebih Dahulu",
+                                                        titleStyle: TextStyle(
+                                                            color: primary),
+                                                        middleTextStyle:
+                                                            TextStyle(
+                                                                color: primary),
+                                                        onConfirm: () =>
+                                                            Get.back(),
+                                                        buttonColor: primary,
+                                                        textConfirm: "Oke",
+                                                        confirmTextColor:
+                                                            white);
                                                   }
                                                 },
                                                 child: Badge(
@@ -326,7 +333,7 @@ class ProfilView extends GetView<ProfilController> {
                         Center(
                             child: Obx(() => Text(
                                   authC.user.email!,
-                                  style: TextStyle(fontSize: 20),
+                                  style: TextStyle(fontSize: 17),
                                 ))),
                         SizedBox(
                           height: 20,
@@ -345,7 +352,7 @@ class ProfilView extends GetView<ProfilController> {
                         Padding(
                           padding: EdgeInsets.all(20),
                           child: Column(children: [
-                            AppTextField(
+                            Obx(() => AppTextField(
                                 textFieldType: TextFieldType.NAME,
                                 showCursor: true,
                                 enabled: controller.edit.value,
@@ -364,7 +371,7 @@ class ProfilView extends GetView<ProfilController> {
                                       "Nama",
                                     ),
                                   ]),
-                                )),
+                                ))),
                             SizedBox(
                               height: 15,
                             ),
@@ -375,6 +382,7 @@ class ProfilView extends GetView<ProfilController> {
                                       : "This field is required",
                               builder: (kelamin) => Obx(
                                 () => ListTile(
+                                  enabled: controller.edit.value,
                                   visualDensity: VisualDensity.compact,
                                   title: Text("Jenis Kelamin"),
                                   shape: RoundedRectangleBorder(
@@ -387,7 +395,7 @@ class ProfilView extends GetView<ProfilController> {
                                             child: RadioListTile<String>(
                                               selectedTileColor: primary,
                                               activeColor: primary,
-                                              enableFeedback: controller.edit.value,
+                                              toggleable: true,
                                               value: "Laki-Laki",
                                               groupValue:
                                                   controller.selectedKelamin,
@@ -401,7 +409,7 @@ class ProfilView extends GetView<ProfilController> {
                                             child: RadioListTile<String>(
                                               selectedTileColor: primary,
                                               activeColor: primary,
-                                              enableFeedback: controller.edit.value,
+                                              toggleable: true,
                                               value: "Perempuan",
                                               groupValue:
                                                   controller.selectedKelamin,
@@ -431,15 +439,15 @@ class ProfilView extends GetView<ProfilController> {
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.NAME,
-                              textInputAction: TextInputAction.next,
-                              controller: controller.tempatC,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("Tempat Lahir")),
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.NAME,
+                                  textInputAction: TextInputAction.next,
+                                  controller: controller.tempatC,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("Tempat Lahir")),
+                                )),
                             SizedBox(
                               height: 15,
                             ),
@@ -471,33 +479,33 @@ class ProfilView extends GetView<ProfilController> {
                             SizedBox(
                               height: 15,
                             ),
-                            DropdownSearch<String>(
-                              enabled: controller.edit.value,
-                              items: controller.listAgama,
-                              onChanged: (value) =>
-                                  controller.selectedAgama = value,
-                              mode: Mode.MENU,
-                              dropdownSearchDecoration: InputDecoration(
-                                labelText: "Agama",
-                                contentPadding: EdgeInsets.zero,
-                              ),
-                              selectedItem: controller.selectedAgama,
-                            ),
+                            Obx(() => DropdownSearch<String>(
+                                  enabled: controller.edit.value,
+                                  items: controller.listAgama,
+                                  onChanged: (value) =>
+                                      controller.selectedAgama = value,
+                                  mode: Mode.MENU,
+                                  dropdownSearchDecoration: InputDecoration(
+                                    labelText: "Agama",
+                                    contentPadding: EdgeInsets.zero,
+                                  ),
+                                  selectedItem: controller.selectedAgama,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            DropdownSearch<String>(
-                              enabled: controller.edit.value,
-                              items: controller.listStatus,
-                              onChanged: (value) =>
-                                  controller.selectedStatus = value,
-                              mode: Mode.MENU,
-                              dropdownSearchDecoration: InputDecoration(
-                                labelText: "Status",
-                                contentPadding: EdgeInsets.zero,
-                              ),
-                              selectedItem: controller.selectedStatus,
-                            ),
+                            Obx(() => DropdownSearch<String>(
+                                  enabled: controller.edit.value,
+                                  items: controller.listStatus,
+                                  onChanged: (value) =>
+                                      controller.selectedStatus = value,
+                                  mode: Mode.MENU,
+                                  dropdownSearchDecoration: InputDecoration(
+                                    labelText: "Status",
+                                    contentPadding: EdgeInsets.zero,
+                                  ),
+                                  selectedItem: controller.selectedStatus,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
@@ -508,6 +516,7 @@ class ProfilView extends GetView<ProfilController> {
                                       : "This field is required",
                               builder: (wni) => Obx(
                                 () => ListTile(
+                                  enabled: controller.edit.value,
                                   visualDensity: VisualDensity.compact,
                                   title: Text("Kewarganegaraan"),
                                   shape: RoundedRectangleBorder(
@@ -520,7 +529,7 @@ class ProfilView extends GetView<ProfilController> {
                                             child: RadioListTile<String>(
                                               selectedTileColor: primary,
                                               activeColor: primary,
-                                              enableFeedback: controller.edit.value,
+                                              toggleable: true,
                                               value: "WNI",
                                               groupValue:
                                                   controller.selectedWNI,
@@ -533,7 +542,7 @@ class ProfilView extends GetView<ProfilController> {
                                             child: RadioListTile<String>(
                                               selectedTileColor: primary,
                                               activeColor: primary,
-                                              enableFeedback: controller.edit.value,
+                                              toggleable: true,
                                               value: "WNA",
                                               groupValue:
                                                   controller.selectedWNI,
@@ -564,129 +573,129 @@ class ProfilView extends GetView<ProfilController> {
                             SizedBox(
                               height: 15,
                             ),
-                            DropdownSearch<String>(
-                              enabled: controller.edit.value,
-                              items: controller.listPendidikan,
-                              onChanged: (value) =>
-                                  controller.selectedPendidikan = value,
-                              mode: Mode.MENU,
-                              dropdownSearchDecoration: InputDecoration(
-                                labelText: "Pendidikan",
-                                contentPadding: EdgeInsets.zero,
-                              ),
-                              selectedItem: controller.selectedPendidikan,
-                            ),
+                            Obx(() => DropdownSearch<String>(
+                                  enabled: controller.edit.value,
+                                  items: controller.listPendidikan,
+                                  onChanged: (value) =>
+                                      controller.selectedPendidikan = value,
+                                  mode: Mode.MENU,
+                                  dropdownSearchDecoration: InputDecoration(
+                                    labelText: "Pendidikan",
+                                    contentPadding: EdgeInsets.zero,
+                                  ),
+                                  selectedItem: controller.selectedPendidikan,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            DropdownSearch<String>(
-                              enabled: controller.edit.value,
-                              items: controller.listGoldarah,
-                              onChanged: (value) =>
-                                  controller.selectGoldarah = value,
-                              mode: Mode.MENU,
-                              dropdownSearchDecoration: InputDecoration(
-                                labelText: "Golongan Darah",
-                                contentPadding: EdgeInsets.zero,
-                              ),
-                              selectedItem: controller.selectGoldarah,
-                            ),
+                            Obx(() => DropdownSearch<String>(
+                                  enabled: controller.edit.value,
+                                  items: controller.listGoldarah,
+                                  onChanged: (value) =>
+                                      controller.selectGoldarah = value,
+                                  mode: Mode.MENU,
+                                  dropdownSearchDecoration: InputDecoration(
+                                    labelText: "Golongan Darah",
+                                    contentPadding: EdgeInsets.zero,
+                                  ),
+                                  selectedItem: controller.selectGoldarah,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.NAME,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("Pekerjaan")),
-                              controller: controller.pekerjaanC,
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.NAME,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("Pekerjaan")),
+                                  controller: controller.pekerjaanC,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.PHONE,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("NIK")),
-                              controller: controller.nikC,
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.PHONE,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("NIK")),
+                                  controller: controller.nikC,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.PHONE,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("No KK")),
-                              controller: controller.kkC,
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.PHONE,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("No KK")),
+                                  controller: controller.kkC,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.NAME,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("Alamat")),
-                              controller: controller.alamatC,
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.NAME,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("Alamat")),
+                                  controller: controller.alamatC,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.PHONE,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("RT")),
-                              controller: controller.rtC,
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.PHONE,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("RT")),
+                                  controller: controller.rtC,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.PHONE,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("RW")),
-                              controller: controller.rwC,
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.PHONE,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("RW")),
+                                  controller: controller.rwC,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.NAME,
-                              textInputAction: TextInputAction.next,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("Kelurahan")),
-                              controller: controller.kelurahanC,
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.NAME,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("Kelurahan")),
+                                  controller: controller.kelurahanC,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
-                            AppTextField(
-                              enabled: controller.edit.value,
-                              textFieldType: TextFieldType.NAME,
-                              textInputAction: TextInputAction.done,
-                              decoration: InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  label: Text("Kecamatan")),
-                              controller: controller.kecamatanC,
-                            ),
+                            Obx(() => AppTextField(
+                                  enabled: controller.edit.value,
+                                  textFieldType: TextFieldType.NAME,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      label: Text("Kecamatan")),
+                                  controller: controller.kecamatanC,
+                                )),
                             SizedBox(
                               height: 15,
                             ),
@@ -756,17 +765,17 @@ class ProfilView extends GetView<ProfilController> {
                                               controller.edit.value = false;
                                             } else {
                                               Get.defaultDialog(
-                                                title: "Peringatan",
-                                                middleText:
-                                                    "Hidupkan Mode Edit Terlebih Dahulu",
-                                                titleStyle:
-                                                    TextStyle(color: primary),
-                                                middleTextStyle:
-                                                    TextStyle(color: primary),
-                                                onConfirm: () => Get.back(),
-                                                buttonColor: primary,
-                                                textConfirm: "Oke",
-                                              );
+                                                  title: "Peringatan",
+                                                  middleText:
+                                                      "Hidupkan Mode Edit Terlebih Dahulu",
+                                                  titleStyle:
+                                                      TextStyle(color: primary),
+                                                  middleTextStyle:
+                                                      TextStyle(color: primary),
+                                                  onConfirm: () => Get.back(),
+                                                  buttonColor: primary,
+                                                  textConfirm: "Oke",
+                                                  confirmTextColor: white);
                                             }
                                           }
                                         },

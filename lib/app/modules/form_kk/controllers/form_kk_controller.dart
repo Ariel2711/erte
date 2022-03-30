@@ -1,10 +1,14 @@
 import 'dart:io';
 
+import 'package:erte/app/const/color.dart';
+import 'package:erte/app/data/models/absen.dart';
 import 'package:erte/app/data/models/form_kk.dart';
+import 'package:erte/app/data/models/s_pengantar.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class FormKkController extends GetxController {
   late TextEditingController namalengkapC;
@@ -35,6 +39,9 @@ class FormKkController extends GetxController {
   late TextEditingController noaktaceraiC;
   late TextEditingController orgagamaC;
   late TextEditingController kewarganegaraanC;
+  late TextEditingController emailC;
+  late TextEditingController nikC;
+  late TextEditingController kkC;
 
   Rx<DateTime?> _selectedTanggallahir = DateTime.now().obs;
   DateTime? get selectedTanggallahir => _selectedTanggallahir.value;
@@ -344,6 +351,62 @@ class FormKkController extends GetxController {
   late File image;
   var imagePath = ''.obs;
 
+  List<String> listKeperluan1 = [
+    "Pengurusan Surat Pindah",
+    "Pengurusan Surat Datang",
+    "Surat Kontrak Rumah",
+    "Pengurusan Surat Kelahiran",
+    "Pengurusan Surat Kematian",
+    "Surat Keterangan Tidak Mampu",
+    "Surat Pernyataan Waris",
+    "Surat Ijin Keramaian",
+    "Pengurusan Surat Ijin Usaha",
+    "Pengantar Surat Nikah",
+    "Pengurusan Surat Pensiun",
+    "Surat Keterangan Penghasilan",
+    "Surat Keterangan Permohonan KPR",
+    "Surat Keterangan Bersih Diri",
+    "Surat Keterangan Catatan Kepolisian",
+    "Surat Tunjangan Keluarga",
+    "Surat Pengurusan Paspor",
+    "Surat Keterangan Domisili",
+    "Surat Boro Kerja",
+    "Pengurusan KTP Baru",
+    "Pengurusan KK Baru",
+    "Surat Ijin Mendirikan Bangunan"
+  ];
+  String? selectedKeperluan1;
+
+  List<String> listKeperluan2 = [
+    "Pengurusan Surat Pindah",
+    "Pengurusan Surat Datang",
+    "Surat Kontrak Rumah",
+    "Pengurusan Surat Kelahiran",
+    "Pengurusan Surat Kematian",
+    "Surat Keterangan Tidak Mampu",
+    "Surat Pernyataan Waris",
+    "Surat Ijin Keramaian",
+    "Pengurusan Surat Ijin Usaha",
+    "Pengantar Surat Nikah",
+    "Pengurusan Surat Pensiun",
+    "Surat Keterangan Penghasilan",
+    "Surat Keterangan Permohonan KPR",
+    "Surat Keterangan Bersih Diri",
+    "Surat Keterangan Catatan Kepolisian",
+    "Surat Tunjangan Keluarga",
+    "Surat Pengurusan Paspor",
+    "Surat Keterangan Domisili",
+    "Surat Boro Kerja",
+    "Pengurusan KTP Baru",
+    "Pengurusan KK Baru",
+    "Surat Ijin Mendirikan Bangunan"
+  ];
+  String? selectedKeperluan2;
+
+  var _selectedWNI = ''.obs;
+  String get selectedWNI => _selectedWNI.value;
+  set selectedWNI(String value) => _selectedWNI.value = value;
+
   var _isSaving = false.obs;
   bool get isSaving => _isSaving.value;
   set isSaving(bool value) => _isSaving.value = value;
@@ -407,6 +470,7 @@ class FormKkController extends GetxController {
     kk.aktalahir = selectedAktalahir;
     kk.noakta = noaktalahirC.text;
     kk.orgagama = orgagamaC.text;
+    kk.noaktakawin = noaktakawinC.text;
     kk.aktakawin = selectedAktakawin;
     kk.tanggalkawin = selectedTanggalkawin;
     kk.aktacerai = selectedAktacerai;
@@ -425,7 +489,7 @@ class FormKkController extends GetxController {
     kk.nikayah = int.tryParse(nikayahC.text);
     kk.namaibu = namaibuC.text;
     kk.namaayah = namaayahC.text;
-
+    kk.email = emailC.text;
     if (kk.id == null) {
       kk.waktu = DateTime.now();
     }
@@ -433,10 +497,64 @@ class FormKkController extends GetxController {
       await kk.save();
       Get.defaultDialog(
           title: "Berhasil",
-          textConfirm: "Okay",
+          textConfirm: "Oke",
           onConfirm: () {
             Get.back();
-          });
+            Get.back();
+          },
+          buttonColor: primary,
+          cancelTextColor: primary,
+          confirmTextColor: white,
+          titleStyle: TextStyle(color: primary),
+          middleTextStyle: TextStyle(color: primary));
+    } catch (e) {
+      print(e);
+    } finally {
+      isSaving = false;
+    }
+  }
+
+  var keperluan = "Pengurusan KK baru";
+
+  Future storepengantar(Pengantar pengantar) async {
+    isSaving = true;
+    pengantar.nama = namakepalaC.text;
+    pengantar.pekerjaan = selectedPekerjaan;
+    pengantar.agama = selectedAgama;
+    pengantar.status = selectedStatus;
+    pengantar.alamat = alamatC.text;
+    pengantar.pendidikan = selectedPendidikan;
+    pengantar.keperluan1 = keperluan;
+    // pengantar.keperluan2 = selectedKeperluan2;
+    // pengantar.kk = int.tryParse(kkC.text);
+    pengantar.wni = selectedWNI;
+    pengantar.kelamin = selectedKelamin;
+    // pengantar.nik = int.tryParse(nikC.text);
+    pengantar.tanggallahir = selectedTanggallahir;
+    pengantar.tempatlahir = tempatC.text;
+    pengantar.email = emailC.text;
+    if (pengantar.id == null) {
+      pengantar.waktu = DateTime.now();
+    }
+    try {
+      await pengantar.save();
+    } catch (e) {
+      print(e);
+    } finally {
+      isSaving = false;
+    }
+  }
+
+  Future storeabsen(Absen absen) async {
+    isSaving = true;
+    absen.nama = namakepalaC.text;
+    absen.alamat = alamatC.text;
+    absen.email = emailC.text;
+    if (absen.id == null) {
+      absen.waktu = DateTime.now();
+    }
+    try {
+      await absen.save();
     } catch (e) {
       print(e);
     } finally {
@@ -475,6 +593,7 @@ class FormKkController extends GetxController {
     noaktaceraiC = TextEditingController();
     orgagamaC = TextEditingController();
     kewarganegaraanC = TextEditingController();
+    emailC = TextEditingController();
   }
 
   @override
@@ -512,5 +631,6 @@ class FormKkController extends GetxController {
     noaktaceraiC.clear();
     orgagamaC.clear();
     kewarganegaraanC.clear();
+    emailC.clear();
   }
 }

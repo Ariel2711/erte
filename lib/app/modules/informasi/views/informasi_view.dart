@@ -16,18 +16,20 @@ class InformasiView extends GetView<InformasiController> {
   final GlobalKey<FormState> form = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    controller.modelToController(info);
     return Scaffold(
         backgroundColor: Color.fromARGB(255, 252, 247, 247),
         appBar: AppBar(
           title: Text('Informasi RT'),
           // centerTitle: true,
           leading: InkWell(
-            onTap: () => authC.user.role == "Admin"
-            ? Get.offAndToNamed(Routes.ADMIN) : Get.offAndToNamed(Routes.HOME),
-            child: Icon(
-              Icons.arrow_back,
-              color: white,
-            )),
+              onTap: () => authC.user.role == "Admin"
+                  ? Get.offAndToNamed(Routes.ADMIN)
+                  : Get.offAndToNamed(Routes.HOME),
+              child: Icon(
+                Icons.arrow_back,
+                color: white,
+              )),
         ),
         body: SingleChildScrollView(
           child: Padding(
@@ -37,7 +39,6 @@ class InformasiView extends GetView<InformasiController> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  
                   SizedBox(
                     height: 5,
                   ),
@@ -96,10 +97,10 @@ class InformasiView extends GetView<InformasiController> {
                                 height: 200,
                                 child: Center(
                                     child: Padding(
-                                      padding: const EdgeInsets.all(10.0),
-                                      child: Image(
-                                          image: AssetImage("images/home.png")),
-                                    )),
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Image(
+                                      image: AssetImage("images/home.png")),
+                                )),
                                 decoration: BoxDecoration(
                                   color: white,
                                   borderRadius: BorderRadius.circular(20),
@@ -113,9 +114,9 @@ class InformasiView extends GetView<InformasiController> {
                     child: Container(
                       width: 160,
                       child: FloatingActionButton.extended(
-                        onPressed: () => controller.pickImage(),
-                        label: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+                          onPressed: () => controller.pickImage(),
+                          label: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Icon(
                                 Icons.upload,
@@ -127,7 +128,9 @@ class InformasiView extends GetView<InformasiController> {
                           )),
                     ),
                   ),
-                  SizedBox(height: 10,),
+                  SizedBox(
+                    height: 10,
+                  ),
                   Center(
                     child: Obx(
                       () => Container(

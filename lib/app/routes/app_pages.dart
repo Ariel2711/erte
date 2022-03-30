@@ -6,12 +6,16 @@ import '../modules/admin_surat/bindings/admin_surat_binding.dart';
 import '../modules/admin_surat/views/admin_surat_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
+import '../modules/buku_tamu/bindings/buku_tamu_binding.dart';
+import '../modules/buku_tamu/views/buku_tamu_view.dart';
 import '../modules/form_kk/bindings/form_kk_binding.dart';
 import '../modules/form_kk/views/form_kk_view.dart';
 import '../modules/form_ktp/bindings/form_ktp_binding.dart';
 import '../modules/form_ktp/views/form_ktp_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/info_lengkap/bindings/info_lengkap_binding.dart';
+import '../modules/info_lengkap/views/info_lengkap_view.dart';
 import '../modules/informasi/bindings/informasi_binding.dart';
 import '../modules/informasi/views/informasi_view.dart';
 import '../modules/intro/bindings/intro_binding.dart';
@@ -156,6 +160,16 @@ class AppPages {
       name: _Paths.INFORMASI,
       page: () => InformasiView(),
       binding: InformasiBinding(),
+    ),
+    GetPage(
+      name: _Paths.BUKU_TAMU,
+      page: () => BukuTamuView(),
+      binding: BukuTamuBinding(),
+    ),
+    GetPage(
+      name: _Paths.INFO_LENGKAP,
+      page: () => InfoLengkapView(),
+      binding: InfoLengkapBinding(),
     ),
   ];
 }

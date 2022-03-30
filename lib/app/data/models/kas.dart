@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erte/app/const/color.dart';
 import 'package:erte/app/data/database.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 const String lid = "id";
 const String lkategori = "kategori";
@@ -18,25 +20,29 @@ class Kas {
 
   Kas({this.id, this.kategori, this.deskripsi, this.uang, this.waktu});
 
-  Kas.fromJson(DocumentSnapshot doc) {
+  Kas fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
-    // return Kas(
-    //   id: doc.id,
-    //   kategori: json[lkategori],
-    //   deskripsi: json[ldeskripsi],
-    //   uang: json[luang],
-    //   waktu: (json[lwaktu] as Timestamp?)?.toDate(),
-    // );
+    return Kas(
+      id: doc.id,
+      kategori: json[lkategori],
+      deskripsi: json[ldeskripsi],
+      uang: json[luang],
+      waktu: (json[lwaktu] as Timestamp?)?.toDate(),
+    );
+  }
+
+  Kas.fromJson(DocumentSnapshot doc) {
+    Map<String, dynamic>? json = doc.data() as Map<String, dynamic>?;
     id =
     doc.id;
     kategori =
-    json[lkategori];
+    json?[lkategori];
     deskripsi =
-    json[ldeskripsi];
+    json?[ldeskripsi];
     uang =
-    json[luang];
+    json?[luang];
     waktu =
-    (json[lwaktu] as Timestamp?)?.toDate();
+    (json?[lwaktu] as Timestamp?)?.toDate();
   }
 
   Map<String, dynamic> get toJson => {
@@ -61,9 +67,25 @@ class Kas {
     return this;
   }
 
+  Future delete() async {
+    if (id == null) {
+      Get.defaultDialog(
+        title: "Error",
+        middleText: "ID Tidak Valid",
+        onConfirm: () => Get.back(),
+        textConfirm: "Oke",
+        buttonColor: primary,
+        confirmTextColor: white,
+        cancelTextColor: primary,
+      );
+      return;
+    }
+    return await db.delete(id!);
+  }
+
   Stream<List<Kas>> streamList() async* {
     yield* db.collectionReference
-        .orderBy("time", descending: true)
+        .orderBy("waktu", descending: true)
         .snapshots()
         .map((query) {
       List<Kas> list = [];

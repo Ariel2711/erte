@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:avatar_glow/avatar_glow.dart';
 import 'package:erte/app/const/color.dart';
+import 'package:erte/app/data/models/informasi.dart';
 import 'package:erte/app/modules/auth/controllers/auth_controller.dart';
 import 'package:erte/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
@@ -95,7 +98,7 @@ class HomeView extends GetView<HomeController> {
                         scrollDirection: Axis.horizontal,
                         child: Text(
                           authC.user.email ?? "-",
-                          style: TextStyle(color: white, fontSize: 20),
+                          style: TextStyle(color: white, fontSize: 17),
                         ),
                       ),
                     ),
@@ -114,19 +117,21 @@ class HomeView extends GetView<HomeController> {
                     children: [
                       Column(
                         children: [
-                          Obx(()=> authC.user.role == "Admin"
-                          ? ListTile(
-                            onTap: () => Get.toNamed(Routes.ADMIN),
-                            leading: Icon(
-                              Icons.person_outline_outlined,
-                              color: primary,
-                            ),
-                            title: Text(
-                              "Halaman Admin",
-                              style: TextStyle(color: primary),
-                            ),
-                          )
-                          : Container(),),
+                          Obx(
+                            () => authC.user.role == "Admin"
+                                ? ListTile(
+                                    onTap: () => Get.toNamed(Routes.ADMIN),
+                                    leading: Icon(
+                                      Icons.person_outline_outlined,
+                                      color: primary,
+                                    ),
+                                    title: Text(
+                                      "Halaman Admin",
+                                      style: TextStyle(color: primary),
+                                    ),
+                                  )
+                                : Container(),
+                          ),
                           ListTile(
                             onTap: () => Get.toNamed(Routes.PROFIL),
                             leading: Icon(
@@ -138,44 +143,41 @@ class HomeView extends GetView<HomeController> {
                               style: TextStyle(color: primary),
                             ),
                           ),
-                          
-                          Obx(() =>
-                              authC.user.id != null
-                                  ? ListTile(
-                                      onTap: () => Get.toNamed(Routes.RIWAYAT),
-                                      leading: Icon(
-                                        Icons.history,
-                                        color: primary,
-                                      ),
-                                      title: Text(
-                                        "Riwayat",
-                                        style: TextStyle(color: primary),
-                                      ),
-                                    )
-                                  : Container()),
-                          
-                              ListTile(
-                                  onTap: () => Get.toNamed(Routes.LAPOR),
+                          Obx(() => authC.user.id != null
+                              ? ListTile(
+                                  onTap: () => Get.toNamed(Routes.RIWAYAT),
                                   leading: Icon(
-                                    Icons.notifications,
+                                    Icons.history,
                                     color: primary,
                                   ),
                                   title: Text(
-                                    "Lapor RT",
+                                    "Riwayat",
                                     style: TextStyle(color: primary),
                                   ),
-                                ),
-                                ListTile(
-                                  onTap: () => Get.toNamed(Routes.KAS),
-                                  leading: Icon(
-                                    Icons.money,
-                                    color: primary,
-                                  ),
-                                  title: Text(
-                                    "Kas RT",
-                                    style: TextStyle(color: primary),
-                                  ),
-                                ),
+                                )
+                              : Container()),
+                          ListTile(
+                            onTap: () => Get.toNamed(Routes.LAPOR),
+                            leading: Icon(
+                              Icons.notifications,
+                              color: primary,
+                            ),
+                            title: Text(
+                              "Lapor RT",
+                              style: TextStyle(color: primary),
+                            ),
+                          ),
+                          ListTile(
+                            onTap: () => Get.toNamed(Routes.KAS),
+                            leading: Icon(
+                              Icons.money,
+                              color: primary,
+                            ),
+                            title: Text(
+                              "Kas RT",
+                              style: TextStyle(color: primary),
+                            ),
+                          ),
                           Obx(
                             () => authC.user.id == null
                                 ? ListTile(
@@ -308,6 +310,14 @@ class HomeView extends GetView<HomeController> {
                             width: 130,
                             decoration: BoxDecoration(
                                 color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: dark,
+                                    spreadRadius: 1,
+                                    blurRadius: 5,
+                                    offset: Offset(0, 1),
+                                  )
+                                ],
                                 borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               children: [
@@ -348,6 +358,14 @@ class HomeView extends GetView<HomeController> {
                             width: 130,
                             decoration: BoxDecoration(
                                 color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: dark,
+                                    spreadRadius: 1,
+                                    blurRadius: 5,
+                                    offset: Offset(0, 1),
+                                  )
+                                ],
                                 borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               children: [
@@ -389,6 +407,14 @@ class HomeView extends GetView<HomeController> {
                             width: 130,
                             decoration: BoxDecoration(
                                 color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: dark,
+                                    spreadRadius: 1,
+                                    blurRadius: 5,
+                                    offset: Offset(0, 1),
+                                  )
+                                ],
                                 borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               children: [
@@ -426,6 +452,14 @@ class HomeView extends GetView<HomeController> {
                             width: 130,
                             decoration: BoxDecoration(
                                 color: white,
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: dark,
+                                    spreadRadius: 1,
+                                    blurRadius: 5,
+                                    offset: Offset(0, 1),
+                                  )
+                                ],
                                 borderRadius: BorderRadius.circular(10)),
                             child: Column(
                               children: [
@@ -462,24 +496,255 @@ class HomeView extends GetView<HomeController> {
                   SizedBox(
                     height: 20,
                   ),
-                  Align(
-                      alignment: Alignment.centerLeft,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                        child: Text(
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text(
                           "Informasi",
                           style: TextStyle(
                               color: primary,
                               fontSize: 20,
                               fontWeight: FontWeight.w600),
                         ),
-                      )),
-                      SizedBox(height: 100,),
+                        TextButton(
+                            onPressed: () {
+                              Get.toNamed(Routes.INFO_LENGKAP);
+                            },
+                            child: Text(
+                              "Lihat Semua",
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w600, color: primary),
+                            ))
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 15),
+                    height: 200,
+                    child: Obx(
+                      () => controller.infos.length < 1
+                          ? Center(
+                              child: Text(
+                                "Kosong",
+                                style: TextStyle(color: primary),
+                              ),
+                            )
+                          : SingleChildScrollView(
+                              scrollDirection: Axis.horizontal,
+                              child: ListView.builder(
+                                shrinkWrap: true,
+                                scrollDirection: Axis.horizontal,
+                                itemCount: controller.infos.length,
+                                physics: ScrollPhysics(),
+                                itemBuilder: (context, index) => InfoCard(
+                                  info: controller.infos[index],
+                                ),
+                              ),
+                            ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
                 ],
               ),
             ],
           ),
         ));
+  }
+}
+
+class InfoCard extends GetView<HomeController> {
+  InfoCard({required this.info});
+  Informasi info;
+  @override
+  Widget build(BuildContext context) {
+    controller.modelToController(info);
+    return InkWell(
+      onTap: () async {
+        await showDialog(
+            context: context,
+            builder: (context) {
+              return SimpleDialog(
+                backgroundColor: white,
+                children: [
+                  Container(
+                    height: 480,
+                    width: 100,
+                    decoration: BoxDecoration(color: white),
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Column(
+                        children: [
+                          Center(
+                            child: Text(
+                              "Informasi RT",
+                              style: TextStyle(fontSize: 20),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 15,
+                          ),
+                          Form(
+                            child: SingleChildScrollView(
+                              child: Column(children: [
+                                Text("Judul"),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                AppTextField(
+                                  controller: controller.judulC,
+                                  enabled: false,
+                                  textFieldType: TextFieldType.NAME,
+                                  textInputAction: TextInputAction.next,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder()),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Text("Deskripsi"),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                                AppTextField(
+                                  controller: controller.deskripsiC,
+                                  enabled: false,
+                                  textFieldType: TextFieldType.NAME,
+                                  textInputAction: TextInputAction.done,
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder()),
+                                ),
+                                SizedBox(
+                                  height: 20,
+                                ),
+                                Obx(() => controller.imagePath.value != ''
+                                    ? Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Container(
+                                          height: 200,
+                                          width: 400,
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              image: DecorationImage(
+                                                  image: FileImage(File(
+                                                      controller
+                                                          .imagePath.value)),
+                                                  fit: BoxFit.cover)),
+                                        ))
+                                    : info.image != null
+                                        ? Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Container(
+                                              height: 200,
+                                              width: 400,
+                                              decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(10),
+                                                  image: DecorationImage(
+                                                      image: NetworkImage(
+                                                          info.image!),
+                                                      fit: BoxFit.cover)),
+                                            ))
+                                        : Padding(
+                                            padding: const EdgeInsets.all(10),
+                                            child: Container(
+                                              width: 400,
+                                              height: 200,
+                                              child: Center(
+                                                  child: Padding(
+                                                padding:
+                                                    const EdgeInsets.all(10.0),
+                                                child: Image(
+                                                    image: AssetImage(
+                                                        "images/home.png")),
+                                              )),
+                                              decoration: BoxDecoration(
+                                                color: white,
+                                                borderRadius:
+                                                    BorderRadius.circular(20),
+                                              ),
+                                            ),
+                                          )),
+                                SizedBox(
+                                  height: 10,
+                                ),
+                              ]),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              );
+            });
+      },
+      child: Container(
+        padding: EdgeInsets.all(10),
+        width: 250,
+        height: 200,
+        margin: EdgeInsets.all(10),
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              info.image != null
+                  ? Container(
+                      height: 90,
+                      width: 240,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              image: NetworkImage(info.image!),
+                              fit: BoxFit.cover)),
+                    )
+                  : Container(
+                      height: 90,
+                      width: 240,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          image: DecorationImage(
+                              image: AssetImage("assets/home.png"),
+                              fit: BoxFit.fitHeight)),
+                    ),
+              SizedBox(
+                height: 15,
+              ),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Text(
+                  info.judul!,
+                  style: TextStyle(fontSize: 18),
+                ),
+              ),
+              SizedBox(
+                height: 5,
+              ),
+            ],
+          ),
+        ),
+        decoration: BoxDecoration(
+          color: white,
+          boxShadow: [
+            BoxShadow(
+              color: dark,
+              spreadRadius: 1,
+              blurRadius: 5,
+              offset: Offset(0, 1),
+            )
+          ],
+          borderRadius: BorderRadius.circular(10),
+        ),
+      ),
+    );
   }
 }
 

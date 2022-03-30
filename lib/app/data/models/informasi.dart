@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erte/app/const/color.dart';
 import 'package:erte/app/data/database.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 const String lid = "id";
 const String ljudul = "judul";
@@ -18,25 +20,29 @@ class Informasi {
 
   Informasi({this.id, this.judul, this.deskripsi, this.image, this.waktu});
 
-  Informasi.fromJson(DocumentSnapshot doc) {
+  Informasi fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
-    // return Informasi(
-    //   id: doc.id,
-    //   kategori: json[lkategori],
-    //   deskripsi: json[ldeskripsi],
-    //   uang: json[luang],
-    //   waktu: (json[lwaktu] as Timestamp?)?.toDate(),
-    // );
+    return Informasi(
+      id: doc.id,
+      judul: json[ljudul],
+      deskripsi: json[ldeskripsi],
+      image: json[limage],
+      waktu: (json[lwaktu] as Timestamp?)?.toDate(),
+    );
+  }
+
+  Informasi.fromJson(DocumentSnapshot doc) {
+    Map<String, dynamic>? json = doc.data() as Map<String, dynamic>?;
     id =
     doc.id;
     judul = 
-    json[ljudul];
+    json?[ljudul];
     deskripsi = 
-    json[ldeskripsi];
+    json?[ldeskripsi];
     image = 
-    json[limage];
+    json?[limage];
     waktu =
-    (json[lwaktu] as Timestamp?)?.toDate();
+    (json?[lwaktu] as Timestamp?)?.toDate();
   }
 
   Map<String, dynamic> get toJson => {
@@ -62,9 +68,25 @@ class Informasi {
     return this;
   }
 
+  Future delete() async {
+    if (id == null) {
+      Get.defaultDialog(
+        title: "Error",
+        middleText: "ID Tidak Valid",
+        onConfirm: () => Get.back(),
+        textConfirm: "Oke",
+        buttonColor: primary,
+        confirmTextColor: white,
+        cancelTextColor: primary,
+      );
+      return;
+    }
+    return await db.delete(id!, url: image);
+  }
+
   Stream<List<Informasi>> streamList() async* {
     yield* db.collectionReference
-        .orderBy("time", descending: true)
+        .orderBy("waktu", descending: true)
         .snapshots()
         .map((query) {
       List<Informasi> list = [];

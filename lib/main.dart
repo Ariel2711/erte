@@ -1,6 +1,5 @@
 import 'package:erte/app/const/color.dart';
 import 'package:erte/app/modules/auth/controllers/auth_controller.dart';
-import 'package:erte/app/modules/profil/controllers/profil_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -18,16 +17,14 @@ void main() async {
 
 class MyApp extends StatelessWidget {
   final authC = Get.put(AuthController(), permanent: true);
-  final profilC = Get.put(ProfilController(), permanent: true);
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
       theme: ThemeData(
-        
-        appBarTheme: AppBarTheme(backgroundColor: primary),
-        bottomAppBarColor: primary,
-        floatingActionButtonTheme: FloatingActionButtonThemeData(backgroundColor: primary)
-      ),
+          appBarTheme: AppBarTheme(backgroundColor: primary),
+          bottomAppBarColor: primary,
+          floatingActionButtonTheme:
+              FloatingActionButtonThemeData(backgroundColor: primary)),
       debugShowCheckedModeBanner: false,
       title: "ERTE",
       initialRoute: Routes.INTRO,

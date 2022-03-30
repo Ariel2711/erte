@@ -13,6 +13,7 @@ const String salamat = "alamat";
 const String skeperluan1 = "keperluan1";
 const String skeperluan2 = "keperluan2";
 const String swaktu = "waktu";
+const String semail = "email";
 
 class Domisili {
   String? id;
@@ -25,6 +26,7 @@ class Domisili {
   String? keperluan1;
   String? keperluan2;
   DateTime? waktu;
+  String? email;
 
   Domisili(
       {this.id,
@@ -36,7 +38,8 @@ class Domisili {
       this.alamat,
       this.keperluan1,
       this.keperluan2,
-      this.waktu});
+      this.waktu,
+      this.email,});
 
   Domisili fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
@@ -51,6 +54,7 @@ class Domisili {
       keperluan1: json[skeperluan1],
       keperluan2: json[skeperluan2],
       waktu: (json[swaktu] as Timestamp?)?.toDate(),
+      email: json[semail],
     );
   }
 
@@ -65,6 +69,7 @@ class Domisili {
         skeperluan1: keperluan1,
         skeperluan2: keperluan2,
         swaktu: waktu,
+        semail: email,
       };
 
   Database db = Database(

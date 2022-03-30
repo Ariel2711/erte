@@ -1,8 +1,10 @@
 import 'dart:io';
+import 'package:erte/app/const/color.dart';
 import 'package:erte/app/data/models/lapor.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class LaporController extends GetxController {
   late File image;
@@ -19,9 +21,9 @@ class LaporController extends GetxController {
     }
   }
 
-  RxList<Lapor> rxLapor = RxList<Lapor>();
-  List<Lapor> get lapors => rxLapor.value;
-  set lapors(List<Lapor> value) => rxLapor.value = value;
+  RxList<Lapor> rxLapors = RxList<Lapor>();
+  List<Lapor> get lapors => rxLapors.value;
+  set lapors(List<Lapor> value) => rxLapors.value = value;
 
   var _isSaving = false.obs;
   bool get isSaving => _isSaving.value;
@@ -40,13 +42,20 @@ class LaporController extends GetxController {
           file: imagePath.value == '' ? null : File(imagePath.value));
       Get.defaultDialog(
           title: "Berhasil",
-          textConfirm: "Okay",
+          textConfirm: "Oke",
           onConfirm: () {
             namaC.clear();
             deskripsiC.clear();
             judulC.clear();
             Get.back();
-          });
+            Get.back();
+            imagePath.value = '';
+          },
+          buttonColor: primary,
+          cancelTextColor: primary,
+          confirmTextColor: white,
+          titleStyle: TextStyle(color: primary),
+          middleTextStyle: TextStyle(color: primary));
     } catch (e) {
       print(e);
     } finally {
@@ -54,12 +63,18 @@ class LaporController extends GetxController {
     }
   }
 
+  modelToController(Lapor lapor) {
+    namaC.text = lapor.nama ?? '';
+    judulC.text = lapor.judul ?? '';
+    deskripsiC.text = lapor.deskripsi ?? '';
+  }
+
   @override
   void onInit() {
     namaC = TextEditingController();
     judulC = TextEditingController();
     deskripsiC = TextEditingController();
-    rxLapor.bindStream(Lapor().streamList());
+    rxLapors.bindStream(Lapor().streamList());
     super.onInit();
   }
 
@@ -69,5 +84,6 @@ class LaporController extends GetxController {
     deskripsiC.clear();
     judulC.clear();
     super.onClose();
+    imagePath.value = '';
   }
 }

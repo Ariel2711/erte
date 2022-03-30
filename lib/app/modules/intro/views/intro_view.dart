@@ -49,7 +49,7 @@ class IntroView extends GetView<IntroController> {
       ],
       done: const Text(
         "DONE",
-        style: TextStyle(fontWeight: FontWeight.w600, color: primary),
+        style: TextStyle(color: primary),
       ),
       showNextButton: true,
       next: Text("NEXT", style: TextStyle(color: primary),),

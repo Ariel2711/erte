@@ -24,6 +24,8 @@ abstract class Routes {
   static const ADMIN_SURAT = _Paths.ADMIN_SURAT;
   static const KAS = _Paths.KAS;
   static const INFORMASI = _Paths.INFORMASI;
+  static const BUKU_TAMU = _Paths.BUKU_TAMU;
+  static const INFO_LENGKAP = _Paths.INFO_LENGKAP;
 }
 
 abstract class _Paths {
@@ -49,4 +51,6 @@ abstract class _Paths {
   static const ADMIN_SURAT = '/admin-surat';
   static const KAS = '/kas';
   static const INFORMASI = '/informasi';
+  static const BUKU_TAMU = '/buku-tamu';
+  static const INFO_LENGKAP = '/info-lengkap';
 }

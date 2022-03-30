@@ -53,6 +53,7 @@ const String srw = "rw";
 const String skelamin = "kelamin";
 const String skewarganegaraan = "kewarganegaraan";
 const String swaktu = "waktu";
+const String semail = "email";
 
 class KK {
   String? id;
@@ -106,6 +107,7 @@ class KK {
   int? rw;
   String? kelamin;
   DateTime? waktu;
+  String? email;
 
   KK({
     this.agama,
@@ -158,7 +160,8 @@ class KK {
     this.tempatpertama,
     this.waktu,
     // this.wni,
-    this.kewarganegaraan
+    this.kewarganegaraan,
+    this.email,
   });
 
   KK fromJson(DocumentSnapshot doc) {
@@ -215,6 +218,7 @@ class KK {
       tanggalpaspor: (json[stanggalpaspor] as Timestamp?)?.toDate(),
       tanggalpertama: (json[stanggalpertama] as Timestamp?)?.toDate(),
       tanggalterbititas: (json[stanggalterbititas] as Timestamp?)?.toDate(),
+      email: json[semail],
     );
   }
 
@@ -269,6 +273,7 @@ class KK {
         swaktu: waktu,
         srt: rt,
         srw: rw,
+        semail: email,
       };
 
   Database db = Database(

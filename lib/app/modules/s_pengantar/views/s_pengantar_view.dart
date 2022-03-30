@@ -1,4 +1,6 @@
 import 'package:dropdown_search/dropdown_search.dart';
+import 'package:erte/app/const/color.dart';
+import 'package:erte/app/data/models/absen.dart';
 import 'package:erte/app/data/models/s_pengantar.dart';
 import 'package:erte/app/modules/auth/controllers/auth_controller.dart';
 import 'package:erte/app/modules/profil/controllers/profil_controller.dart';
@@ -12,17 +14,19 @@ import '../controllers/s_pengantar_controller.dart';
 class SPengantarView extends GetView<SPengantarController> {
   final GlobalKey<FormState> form = GlobalKey<FormState>();
   final authC = Get.find<AuthController>();
-  final profilC = Get.find<ProfilController>();
   Pengantar pengantar = Pengantar();
+  Absen absen = Absen();
   @override
   Widget build(BuildContext context) {
-    profilC.modelToController(authC.user);
     return Scaffold(
         appBar: AppBar(
           title: Text('Surat Pengantar'),
           leading: InkWell(
-            onTap: () => Get.back(),
-            child: Icon(Icons.arrow_back, color: white,)),
+              onTap: () => Get.back(),
+              child: Icon(
+                Icons.arrow_back,
+                color: white,
+              )),
           // centerTitle: true,
         ),
         body: Padding(
@@ -33,6 +37,7 @@ class SPengantarView extends GetView<SPengantarController> {
               child: Column(children: [
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), label: Text("Nama")),
                   controller: controller.namaC,
@@ -56,6 +61,9 @@ class SPengantarView extends GetView<SPengantarController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Laki-Laki",
                                   groupValue: controller.selectedKelamin,
                                   onChanged: (value) =>
@@ -65,6 +73,9 @@ class SPengantarView extends GetView<SPengantarController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "Perempuan",
                                   groupValue: controller.selectedKelamin,
                                   onChanged: (value) =>
@@ -95,6 +106,7 @@ class SPengantarView extends GetView<SPengantarController> {
                 ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
+                  textInputAction: TextInputAction.next,
                   controller: controller.tempatC,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(),
@@ -171,6 +183,9 @@ class SPengantarView extends GetView<SPengantarController> {
                             children: [
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "WNI",
                                   groupValue: controller.selectedWNI,
                                   onChanged: (value) =>
@@ -180,6 +195,9 @@ class SPengantarView extends GetView<SPengantarController> {
                               ),
                               Expanded(
                                 child: RadioListTile<String>(
+                                  selectedTileColor: primary,
+                                  activeColor: primary,
+                                  toggleable: true,
                                   value: "WNA",
                                   groupValue: controller.selectedWNI,
                                   onChanged: (value) =>
@@ -223,6 +241,7 @@ class SPengantarView extends GetView<SPengantarController> {
                 ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), label: Text("Pekerjaan")),
                   controller: controller.pekerjaanC,
@@ -232,6 +251,7 @@ class SPengantarView extends GetView<SPengantarController> {
                 ),
                 AppTextField(
                   textFieldType: TextFieldType.PHONE,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), label: Text("NIK")),
                   controller: controller.nikC,
@@ -241,6 +261,7 @@ class SPengantarView extends GetView<SPengantarController> {
                 ),
                 AppTextField(
                   textFieldType: TextFieldType.PHONE,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), label: Text("No KK")),
                   controller: controller.kkC,
@@ -250,6 +271,7 @@ class SPengantarView extends GetView<SPengantarController> {
                 ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
+                  textInputAction: TextInputAction.next,
                   decoration: InputDecoration(
                       border: OutlineInputBorder(), label: Text("Alamat")),
                   controller: controller.alamatC,
@@ -283,6 +305,16 @@ class SPengantarView extends GetView<SPengantarController> {
                 SizedBox(
                   height: 15,
                 ),
+                AppTextField(
+                  textFieldType: TextFieldType.NAME,
+                  textInputAction: TextInputAction.done,
+                  decoration: InputDecoration(
+                      border: OutlineInputBorder(), label: Text("Email")),
+                  controller: controller.emailC,
+                ),
+                SizedBox(
+                  height: 15,
+                ),
                 Obx(
                   () => Container(
                     width: Get.width,
@@ -292,6 +324,7 @@ class SPengantarView extends GetView<SPengantarController> {
                             : () {
                                 if (form.currentState!.validate()) {
                                   controller.store(pengantar);
+                                  controller.storeabsen(absen);
                                 }
                               },
                         label: controller.isSaving
@@ -299,7 +332,9 @@ class SPengantarView extends GetView<SPengantarController> {
                             : Text("Kirim")),
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
               ]),
             ),
           ),

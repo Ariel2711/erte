@@ -20,6 +20,7 @@ const String srt = "rt";
 const String srw = "rw";
 const String skelurahan = "kelurahan";
 const String skecamatan = "kecamatan";
+const String semail = "email";
 
 class KTP {
   String? id;
@@ -41,6 +42,7 @@ class KTP {
   String? kecamatan;
   String? kelurahan;
   String? image;
+  String? email;
 
   KTP(
       {this.id,
@@ -61,7 +63,8 @@ class KTP {
       this.kecamatan,
       this.kelurahan,
       this.rt,
-      this.rw});
+      this.rw,
+      this.email,});
 
   KTP fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
@@ -84,6 +87,7 @@ class KTP {
       kelurahan: json[skelurahan],
       alamat: json[salamat],
       waktu: (json[swaktu] as Timestamp?)?.toDate(),
+      email: json[semail],
     );
   }
 
@@ -106,6 +110,7 @@ class KTP {
         srw: rw,
         skecamatan: kecamatan,
         skelurahan: kelurahan,
+        semail: email,
       };
 
   Database db = Database(

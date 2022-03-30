@@ -1,9 +1,11 @@
+import 'package:erte/app/const/color.dart';
 import 'package:erte/app/data/database.dart';
 import 'package:erte/app/data/models/user.dart';
 import 'package:erte/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class AuthController extends GetxController {
   // RxBool hidden = true.obs;
@@ -42,27 +44,42 @@ class AuthController extends GetxController {
         }
       } else {
         Get.defaultDialog(
-          title: "Failed Login",
-          middleText: "Verify email first. Do you want to re-sent",
+          title: "Gagal Login",
+          middleText: "Verifikasi email terlebih dahulu. Apakah verifikasi perlu dikirim ulang",
           onConfirm: () async {
             await myuser.user!.sendEmailVerification();
             Get.back();
           },
-          textConfirm: "Yes",
-          textCancel: "Cancel",
+          textConfirm: "Iya",
+          textCancel: "Tidak",
+          buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
         );
       }
     } on FirebaseAuthException catch (e) {
       Get.defaultDialog(
         title: "Error",
-        textConfirm: "Okay",
+        textConfirm: "Oke",
         onConfirm: () => Get.back(),
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
     } catch (e) {
       Get.defaultDialog(
         title: "Error",
-        textConfirm: "Okay",
+        textConfirm: "Oke",
         onConfirm: () => Get.back(),
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
     }
   }
@@ -93,8 +110,8 @@ class AuthController extends GetxController {
               .set(user.toJson)
               .then((value) {
             Get.defaultDialog(
-              title: "Succeed",
-              textConfirm: "Okay",
+              title: "Berhasil",
+              textConfirm: "Oke",
               onConfirm: () {
                 // Get.toNamed(Routes.HOME);
                 nameC.clear();
@@ -102,6 +119,11 @@ class AuthController extends GetxController {
                 emailC.clear();
                 Get.back();
               },
+              buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
             );
           });
         }
@@ -111,7 +133,7 @@ class AuthController extends GetxController {
       isSaving = false;
       Get.defaultDialog(
         title: "Error",
-        textConfirm: "Okay",
+        textConfirm: "Oke",
         onConfirm: () {
           Get.back();
           nameC.clear();
@@ -120,6 +142,11 @@ class AuthController extends GetxController {
           // selectedGender = 0;
           // selectedDate = DateTime.now();
         },
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
     }
   }
@@ -127,7 +154,7 @@ class AuthController extends GetxController {
   void logout() async {
     Get.defaultDialog(
       title: "Logout",
-      middleText: "Are you sure you want to logout?",
+      middleText: "Anda yakin ingin keluar?",
       onConfirm: () async {
         await FirebaseAuth.instance.signOut();
         Get.back();
@@ -138,8 +165,13 @@ class AuthController extends GetxController {
         // selectedGender = 0;
         // selectedDate = DateTime.now();
       },
-      textConfirm: "Yes",
-      textCancel: "No",
+      textConfirm: "Iya",
+      textCancel: "Tidak",
+      buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
     );
   }
 
@@ -147,20 +179,30 @@ class AuthController extends GetxController {
     if (email != "" && GetUtils.isEmail(email)) {
       await _auth.sendPasswordResetEmail(email: email);
       Get.defaultDialog(
-        title: "Succeed",
-        middleText: "Successfully sent the reset password to your email",
+        title: "Berhasil",
+        middleText: "Berhasil mengirim link reset password ke email anda",
         onConfirm: () {
           Get.back();
           Get.back();
         },
-        textConfirm: "Okay",
+        textConfirm: "Oke",
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
     } else {
       Get.defaultDialog(
-        title: "Warning",
-        middleText: "Invalid Email",
-        textConfirm: "Okay",
+        title: "Error",
+        middleText: "Email tidak valid",
+        textConfirm: "Oke",
         onConfirm: () => Get.back(),
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
     }
   }

@@ -1,7 +1,11 @@
 import 'dart:io';
+import 'dart:ui';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:erte/app/const/color.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:firebase_storage/firebase_storage.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
@@ -10,8 +14,9 @@ const pengantarCollection = "surat_pengantar";
 const domisiliCollection = "surat_domisili";
 const ktpCollection = "form_ktp";
 const kkCollection = "form_kk";
-const laporCollection = "surat_lapor";
+const laporCollection = "laporan";
 const userCollection = "user";
+const absenCollection = "absen";
 const kasCollection = "kas";
 const informasiCollection = "informasi";
 // const pernyataanCollection = "surat_pernyataan";
@@ -34,16 +39,26 @@ class Database {
     } on FirebaseException catch (e) {
       Get.defaultDialog(
         title: "Error",
-        middleText: "Book failed to add",
+        middleText: "Gagal Menambahkan",
         onConfirm: () => Get.back(),
-        textConfirm: "Okay",
+        textConfirm: "Oke",
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
     } catch (e) {
       Get.defaultDialog(
         title: "Error",
         middleText: e.toString(),
         onConfirm: () => Get.back(),
-        textConfirm: "Okay",
+        textConfirm: "Oke",
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
     }
   }
@@ -57,7 +72,12 @@ class Database {
         title: "Error",
         middleText: e.toString(),
         onConfirm: () => Get.back(),
-        textConfirm: "Okay",
+        textConfirm: "Oke",
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
       rethrow;
     }
@@ -74,7 +94,12 @@ class Database {
         title: "Error",
         middleText: e.toString(),
         onConfirm: () => Get.back(),
-        textConfirm: "Okay",
+        textConfirm: "Oke",
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
       rethrow;
     }
@@ -93,16 +118,26 @@ class Database {
 
       Get.defaultDialog(
         title: "Error",
-        middleText: "Image failed to upload",
+        middleText: "Gagal Upload Gambar",
         onConfirm: () => Get.back(),
-        textConfirm: "Okay",
+        textConfirm: "Oke",
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
     } on FirebaseException catch (e) {
       Get.defaultDialog(
         title: "Error",
         middleText: e.toString(),
         onConfirm: () => Get.back(),
-        textConfirm: "Okay",
+        textConfirm: "Oke",
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
       rethrow;
     } catch (e) {
@@ -110,7 +145,12 @@ class Database {
         title: "Error",
         middleText: e.toString(),
         onConfirm: () => Get.back(),
-        textConfirm: "Okay",
+        textConfirm: "Oke",
+        buttonColor: primary,
+        cancelTextColor: primary,
+        confirmTextColor: white,
+        titleStyle: TextStyle(color: primary),
+        middleTextStyle: TextStyle(color: primary)
       );
       rethrow;
     }

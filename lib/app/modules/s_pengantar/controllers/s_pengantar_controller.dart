@@ -1,7 +1,10 @@
+import 'package:erte/app/const/color.dart';
+import 'package:erte/app/data/models/absen.dart';
 import 'package:erte/app/data/models/s_pengantar.dart';
 import 'package:erte/app/data/models/user.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 
 class SPengantarController extends GetxController {
   late TextEditingController namaC;
@@ -12,6 +15,7 @@ class SPengantarController extends GetxController {
   late TextEditingController alamatC;
   late TextEditingController keperluanC;
   UserModel? selectedUser;
+  late TextEditingController emailC;
 
   RxList<UserModel> rxUser = RxList<UserModel>();
   List<UserModel> get users => rxUser.value;
@@ -156,6 +160,7 @@ class SPengantarController extends GetxController {
     pengantar.kk = int.tryParse(kkC.text);
     pengantar.tanggallahir = selectedTanggal;
     pengantar.tempatlahir = tempatC.text;
+    pengantar.email = emailC.text;
     if (pengantar.id == null) {
       pengantar.waktu = DateTime.now();
     }
@@ -163,7 +168,7 @@ class SPengantarController extends GetxController {
       await pengantar.save();
       Get.defaultDialog(
           title: "Berhasil",
-          textConfirm: "Okay",
+          textConfirm: "Oke",
           onConfirm: () {
             namaC.clear();
             pekerjaanC.clear();
@@ -179,7 +184,31 @@ class SPengantarController extends GetxController {
             selectedWNI = '';
             selectedTanggal = DateTime.now();
             Get.back();
-          });
+            Get.back();
+            emailC.clear();
+          },
+          buttonColor: primary,
+          cancelTextColor: primary,
+          confirmTextColor: white,
+          titleStyle: TextStyle(color: primary),
+          middleTextStyle: TextStyle(color: primary));
+    } catch (e) {
+      print(e);
+    } finally {
+      isSaving = false;
+    }
+  }
+
+  Future storeabsen(Absen absen) async {
+    isSaving = true;
+    absen.nama = namaC.text;
+    absen.alamat = alamatC.text;
+    absen.email = emailC.text;
+    if (absen.id == null) {
+      absen.waktu = DateTime.now();
+    }
+    try {
+      await absen.save();
     } catch (e) {
       print(e);
     } finally {
@@ -198,6 +227,7 @@ class SPengantarController extends GetxController {
     alamatC = TextEditingController();
     keperluanC = TextEditingController();
     rxUser.bindStream(UserModel().allstreamList());
+    emailC = TextEditingController();
   }
 
   @override
@@ -219,6 +249,7 @@ class SPengantarController extends GetxController {
     selectedPendidikan = '';
     selectedStatus = '';
     selectedWNI = '';
+    emailC.clear();
     selectedTanggal = DateTime.now();
   }
 }
