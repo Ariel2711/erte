@@ -21,23 +21,25 @@ class ProfilView extends GetView<ProfilController> {
   Widget build(BuildContext context) {
     controller.modelToController(authC.user);
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.edit.value = true;
-          if (controller.edit.value == true) {
-            Get.defaultDialog(
-                title: "Mode Edit",
-                titleStyle: TextStyle(color: primary),
-                middleText: "Mode Edit Aktif",
-                middleTextStyle: TextStyle(color: primary),
-                textConfirm: "Oke",
-                onConfirm: () => Get.back(),
-                confirmTextColor: white,
-                buttonColor: primary);
-          }
-        },
-        child: Icon(Icons.edit, color: white),
-      ),
+      floatingActionButton: Obx(() => controller.edit.value == false ? FloatingActionButton(
+              onPressed: () {
+                controller.edit.value = true;
+                if (controller.edit.value == true) {
+                  Get.defaultDialog(
+                      title: "Mode Edit",
+                      titleStyle: TextStyle(color: primary),
+                      middleText: "Mode Edit Aktif",
+                      middleTextStyle: TextStyle(color: primary),
+                      textConfirm: "Oke",
+                      onConfirm: () => Get.back(),
+                      confirmTextColor: white,
+                      buttonColor: primary);
+                }
+              },
+              child: Icon(Icons.edit, color: white),
+            )
+            : Container()
+            ),
       backgroundColor: Color.fromARGB(255, 252, 247, 247),
       appBar: AppBar(
         leading: InkWell(
@@ -53,29 +55,31 @@ class ProfilView extends GetView<ProfilController> {
       ),
       body: authC.user.id == null
           ? Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    height: 300,
-                    width: 300,
-                    child: Lottie.asset("images/login.json", fit: BoxFit.cover),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Container(
-                      width: Get.width,
-                      child: FloatingActionButton.extended(
-                          onPressed: () {
-                            Get.toNamed(Routes.AUTH);
-                          },
-                          label: Text("Login Terlebih Dahulu")),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      height: 300,
+                      width: 300,
+                      child: Lottie.asset("images/login.json", fit: BoxFit.cover),
                     ),
-                  ),
-                ],
+                    SizedBox(
+                      height: 15,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(20.0),
+                      child: Container(
+                        width: Get.width,
+                        child: FloatingActionButton.extended(
+                            onPressed: () {
+                              Get.toNamed(Routes.AUTH);
+                            },
+                            label: Text("Login Terlebih Dahulu")),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             )
           : SingleChildScrollView(
@@ -451,26 +455,26 @@ class ProfilView extends GetView<ProfilController> {
                             SizedBox(
                               height: 15,
                             ),
-                            ListTile(
-                              enabled: controller.edit.value,
-                              leading: Container(
-                                  width: 24,
-                                  alignment: Alignment.centerLeft,
-                                  child: Icon(
-                                    Icons.calendar_today,
-                                  )),
-                              onTap: () async =>
-                                  await controller.tanggalLahir(context),
-                              title: Text(
-                                "Tanggal Lahir",
-                                style: TextStyle(fontSize: 12),
-                              ),
-                              subtitle: Obx(() => Text(
-                                  controller.selectedTanggal is DateTime
-                                      ? DateFormat("EEE, dd MMM y")
-                                          .format(controller.selectedTanggal!)
-                                      : '--')),
-                            ),
+                            Obx(() => ListTile(
+                                                          enabled: controller.edit.value,
+                                                          leading: Container(
+                                                              width: 24,
+                                                              alignment: Alignment.centerLeft,
+                                                              child: Icon(
+                                                                Icons.calendar_today,
+                                                              )),
+                                                          onTap: () async =>
+                                                              await controller.tanggalLahir(context),
+                                                          title: Text(
+                                                            "Tanggal Lahir",
+                                                            style: TextStyle(fontSize: 12),
+                                                          ),
+                                                          subtitle: Obx(() => Text(
+                                                              controller.selectedTanggal is DateTime
+                                                                  ? DateFormat("EEE, dd MMM y")
+                                                                      .format(controller.selectedTanggal!)
+                                                                  : '--')),
+                                                        )),
                             Divider(
                               color: black,
                               height: 0,
@@ -751,7 +755,7 @@ class ProfilView extends GetView<ProfilController> {
                           ]),
                         ),
                         Obx(
-                          () => Padding(
+                          () => controller.edit.value == true ? Padding(
                             padding: const EdgeInsets.all(8.0),
                             child: Container(
                               width: Get.width,
@@ -787,7 +791,8 @@ class ProfilView extends GetView<ProfilController> {
                                           "Simpan",
                                         )),
                             ),
-                          ),
+                          )
+                          :Container(),
                         ),
                         SizedBox(
                           height: 50,

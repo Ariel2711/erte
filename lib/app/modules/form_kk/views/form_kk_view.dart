@@ -223,7 +223,7 @@ class FormKkView extends GetView<FormKkController> {
                           : '--')),
                 ),
                 Divider(
-                  color: white,
+                  color: black,
                   height: 0,
                   thickness: 1,
                 ),
@@ -354,7 +354,7 @@ class FormKkView extends GetView<FormKkController> {
                           : '--')),
                 ),
                 Divider(
-                  color: white,
+                  color: black,
                   height: 0,
                   thickness: 1,
                 ),
@@ -593,7 +593,7 @@ class FormKkView extends GetView<FormKkController> {
                           : '--')),
                 ),
                 Divider(
-                  color: white,
+                  color: black,
                   height: 0,
                   thickness: 1,
                 ),
@@ -689,7 +689,7 @@ class FormKkView extends GetView<FormKkController> {
                           : '--')),
                 ),
                 Divider(
-                  color: white,
+                  color: black,
                   height: 0,
                   thickness: 1,
                 ),
@@ -848,7 +848,7 @@ class FormKkView extends GetView<FormKkController> {
                           : '--')),
                 ),
                 Divider(
-                  color: white,
+                  color: black,
                   height: 0,
                   thickness: 1,
                 ),
@@ -874,7 +874,7 @@ class FormKkView extends GetView<FormKkController> {
                           : '--')),
                 ),
                 Divider(
-                  color: white,
+                  color: black,
                   height: 0,
                   thickness: 1,
                 ),
@@ -911,7 +911,7 @@ class FormKkView extends GetView<FormKkController> {
                           : '--')),
                 ),
                 Divider(
-                  color: white,
+                  color: black,
                   height: 0,
                   thickness: 1,
                 ),
@@ -1064,7 +1064,7 @@ class FormKkView extends GetView<FormKkController> {
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Email")),
+                      border: OutlineInputBorder(), label: Text("Email / No Telepon")),
                   controller: controller.emailC,
                 ),
                 SizedBox(

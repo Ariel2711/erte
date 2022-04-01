@@ -26,6 +26,7 @@ abstract class Routes {
   static const INFORMASI = _Paths.INFORMASI;
   static const BUKU_TAMU = _Paths.BUKU_TAMU;
   static const INFO_LENGKAP = _Paths.INFO_LENGKAP;
+  static const TES_PDF = _Paths.TES_PDF;
 }
 
 abstract class _Paths {
@@ -53,4 +54,5 @@ abstract class _Paths {
   static const INFORMASI = '/informasi';
   static const BUKU_TAMU = '/buku-tamu';
   static const INFO_LENGKAP = '/info-lengkap';
+  static const TES_PDF = '/tes-pdf';
 }

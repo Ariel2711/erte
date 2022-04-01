@@ -348,7 +348,7 @@ class LaporCard extends GetView<LaporController> {
       },
       child: Container(
         padding: EdgeInsets.all(10),
-        width: 250,
+        width: Get.width,
         height: 110,
         margin: EdgeInsets.all(10),
         child: SingleChildScrollView(

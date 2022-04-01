@@ -297,7 +297,7 @@ class HomeView extends GetView<HomeController> {
                     ],
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 40,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

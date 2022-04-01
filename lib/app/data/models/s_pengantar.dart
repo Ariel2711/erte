@@ -20,10 +20,12 @@ const String skeperluan1 = "keperluan1";
 const String skeperluan2 = "keperluan2";
 const String swaktu = "waktu";
 const String semail = "email";
+const String snomer = "nomer";
 
 class Pengantar {
   String? id;
   String? nama;
+  int? nomer;
   String? kelamin;
   String? tempatlahir;
   DateTime? tanggallahir;
@@ -40,24 +42,26 @@ class Pengantar {
   DateTime? waktu;
   String? email;
 
-  Pengantar(
-      {this.id,
-      this.nama,
-      this.kelamin,
-      this.tempatlahir,
-      this.tanggallahir,
-      this.agama,
-      this.status,
-      this.wni,
-      this.pendidikan,
-      this.pekerjaan,
-      this.nik,
-      this.kk,
-      this.alamat,
-      this.keperluan1,
-      this.keperluan2,
-      this.waktu,
-      this.email,});
+  Pengantar({
+    this.id,
+    this.nama,
+    this.kelamin,
+    this.tempatlahir,
+    this.tanggallahir,
+    this.agama,
+    this.status,
+    this.wni,
+    this.pendidikan,
+    this.pekerjaan,
+    this.nik,
+    this.kk,
+    this.alamat,
+    this.keperluan1,
+    this.keperluan2,
+    this.waktu,
+    this.email,
+    this.nomer
+  });
 
   Pengantar fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
@@ -74,6 +78,7 @@ class Pengantar {
       pekerjaan: json[spekerjaan],
       nik: json[snik],
       kk: json[skk],
+      nomer: json[snomer],
       alamat: json[salamat],
       keperluan1: json[skeperluan1],
       keperluan2: json[skeperluan2],
@@ -100,6 +105,7 @@ class Pengantar {
         skeperluan2: keperluan2,
         swaktu: waktu,
         semail: email,
+        snomer: nomer,
       };
 
   Database db = Database(
@@ -114,5 +120,15 @@ class Pengantar {
       db.edit(toJson);
     }
     return this;
+  }
+
+  Future <Pengantar> streamList() async {
+    print("getStream");
+    return await db.collectionReference
+        .orderBy("waktu", descending: true)
+        .get()
+        .then((event) {
+      return fromJson(event.docs.first);
+    });
   }
 }

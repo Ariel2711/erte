@@ -68,42 +68,48 @@ class InformasiView extends GetView<InformasiController> {
                   Obx(() => controller.imagePath.value != ''
                       ? Padding(
                           padding: const EdgeInsets.all(10),
-                          child: Container(
-                            height: 200,
-                            width: 400,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                image: DecorationImage(
-                                    image: FileImage(
-                                        File(controller.imagePath.value)),
-                                    fit: BoxFit.cover)),
+                          child: Center(
+                            child: Container(
+                              height: 200,
+                              width: 400,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                      image: FileImage(
+                                          File(controller.imagePath.value)),
+                                      fit: BoxFit.cover)),
+                            ),
                           ))
                       : info.image != null
                           ? Padding(
                               padding: const EdgeInsets.all(10),
-                              child: Container(
-                                height: 200,
-                                width: 400,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    image: DecorationImage(
-                                        image: NetworkImage(info.image!),
-                                        fit: BoxFit.cover)),
+                              child: Center(
+                                child: Container(
+                                  height: 200,
+                                  width: 400,
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10),
+                                      image: DecorationImage(
+                                          image: NetworkImage(info.image!),
+                                          fit: BoxFit.cover)),
+                                ),
                               ))
                           : Padding(
                               padding: const EdgeInsets.all(10),
-                              child: Container(
-                                width: 400,
-                                height: 200,
-                                child: Center(
-                                    child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: Image(
-                                      image: AssetImage("images/home.png")),
-                                )),
-                                decoration: BoxDecoration(
-                                  color: white,
-                                  borderRadius: BorderRadius.circular(20),
+                              child: Center(
+                                child: Container(
+                                  width: 400,
+                                  height: 200,
+                                  child: Center(
+                                      child: Padding(
+                                    padding: const EdgeInsets.all(10.0),
+                                    child: Image(
+                                        image: AssetImage("images/home.png")),
+                                  )),
+                                  decoration: BoxDecoration(
+                                    color: white,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
                                 ),
                               ),
                             )),

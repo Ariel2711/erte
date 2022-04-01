@@ -137,7 +137,7 @@ class SDomisiliView extends GetView<SDomisiliController> {
                           : '--')),
                 ),
                 Divider(
-                  color: white,
+                  color: black,
                   height: 0,
                   thickness: 1,
                 ),
@@ -164,165 +164,165 @@ class SDomisiliView extends GetView<SDomisiliController> {
                 SizedBox(
                   height: 15,
                 ),
-                DropdownSearch<String>(
-                  items: controller.listKeperluan1,
-                  onChanged: (value) => controller.selectedKeperluan1 = value,
-                  mode: Mode.MENU,
-                  dropdownSearchDecoration: InputDecoration(
-                    labelText: "Keperluan 1",
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  selectedItem: controller.selectedKeperluan1,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                DropdownSearch<String>(
-                  items: controller.listKeperluan2,
-                  onChanged: (value) => controller.selectedKeperluan2 = value,
-                  mode: Mode.MENU,
-                  dropdownSearchDecoration: InputDecoration(
-                    labelText: "Keperluan 2",
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  selectedItem: controller.selectedKeperluan2,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                DropdownSearch<String>(
-                  items: controller.listAgama,
-                  onChanged: (value) => controller.selectedAgama = value,
-                  mode: Mode.MENU,
-                  dropdownSearchDecoration: InputDecoration(
-                    labelText: "Agama",
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  selectedItem: controller.selectedAgama,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                DropdownSearch<String>(
-                  items: controller.listStatus,
-                  onChanged: (value) => controller.selectedStatus = value,
-                  mode: Mode.MENU,
-                  dropdownSearchDecoration: InputDecoration(
-                    labelText: "Status",
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  selectedItem: controller.selectedStatus,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                FormField<String>(
-                  validator: (value) => controller.selectedWNI.isNotEmpty
-                      ? null
-                      : "This field is required",
-                  builder: (wni) => Obx(
-                    () => ListTile(
-                      visualDensity: VisualDensity.compact,
-                      title: Text("Kewarganegaraan"),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(15)),
-                      subtitle: Column(
-                        children: [
-                          Row(
-                            children: [
-                              Expanded(
-                                child: RadioListTile<String>(
-                                  selectedTileColor: primary,
-                                  activeColor: primary,
-                                  toggleable: true,
-                                  value: "WNI",
-                                  groupValue: controller.selectedWNI,
-                                  onChanged: (value) =>
-                                      controller.selectedWNI = value ?? '',
-                                  title: Text("WNI"),
-                                ),
-                              ),
-                              Expanded(
-                                child: RadioListTile<String>(
-                                  selectedTileColor: primary,
-                                  activeColor: primary,
-                                  toggleable: true,
-                                  value: "WNA",
-                                  groupValue: controller.selectedWNI,
-                                  onChanged: (value) =>
-                                      controller.selectedWNI = value ?? '',
-                                  title: Text(
-                                    "WNA",
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                          if (wni.hasError)
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                wni.errorText!,
-                                style:
-                                    TextStyle(color: Colors.red, fontSize: 12),
-                              ),
-                            ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                DropdownSearch<String>(
-                  items: controller.listPendidikan,
-                  onChanged: (value) => controller.selectedPendidikan = value,
-                  mode: Mode.MENU,
-                  dropdownSearchDecoration: InputDecoration(
-                    labelText: "Pendidikan",
-                    contentPadding: EdgeInsets.zero,
-                  ),
-                  selectedItem: controller.selectedPendidikan,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                AppTextField(
-                  textFieldType: TextFieldType.NAME,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Pekerjaan")),
-                  controller: controller.pekerjaanC,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                AppTextField(
-                  textFieldType: TextFieldType.PHONE,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("NIK")),
-                  controller: controller.nikC,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
-                AppTextField(
-                  textFieldType: TextFieldType.PHONE,
-                  textInputAction: TextInputAction.next,
-                  decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("No KK")),
-                  controller: controller.kkC,
-                ),
-                SizedBox(
-                  height: 15,
-                ),
+                // DropdownSearch<String>(
+                //   items: controller.listKeperluan1,
+                //   onChanged: (value) => controller.selectedKeperluan1 = value,
+                //   mode: Mode.MENU,
+                //   dropdownSearchDecoration: InputDecoration(
+                //     labelText: "Keperluan 1",
+                //     contentPadding: EdgeInsets.zero,
+                //   ),
+                //   selectedItem: controller.selectedKeperluan1,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // DropdownSearch<String>(
+                //   items: controller.listKeperluan2,
+                //   onChanged: (value) => controller.selectedKeperluan2 = value,
+                //   mode: Mode.MENU,
+                //   dropdownSearchDecoration: InputDecoration(
+                //     labelText: "Keperluan 2",
+                //     contentPadding: EdgeInsets.zero,
+                //   ),
+                //   selectedItem: controller.selectedKeperluan2,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // DropdownSearch<String>(
+                //   items: controller.listAgama,
+                //   onChanged: (value) => controller.selectedAgama = value,
+                //   mode: Mode.MENU,
+                //   dropdownSearchDecoration: InputDecoration(
+                //     labelText: "Agama",
+                //     contentPadding: EdgeInsets.zero,
+                //   ),
+                //   selectedItem: controller.selectedAgama,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // DropdownSearch<String>(
+                //   items: controller.listStatus,
+                //   onChanged: (value) => controller.selectedStatus = value,
+                //   mode: Mode.MENU,
+                //   dropdownSearchDecoration: InputDecoration(
+                //     labelText: "Status",
+                //     contentPadding: EdgeInsets.zero,
+                //   ),
+                //   selectedItem: controller.selectedStatus,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // FormField<String>(
+                //   validator: (value) => controller.selectedWNI.isNotEmpty
+                //       ? null
+                //       : "This field is required",
+                //   builder: (wni) => Obx(
+                //     () => ListTile(
+                //       visualDensity: VisualDensity.compact,
+                //       title: Text("Kewarganegaraan"),
+                //       shape: RoundedRectangleBorder(
+                //           borderRadius: BorderRadius.circular(15)),
+                //       subtitle: Column(
+                //         children: [
+                //           Row(
+                //             children: [
+                //               Expanded(
+                //                 child: RadioListTile<String>(
+                //                   selectedTileColor: primary,
+                //                   activeColor: primary,
+                //                   toggleable: true,
+                //                   value: "WNI",
+                //                   groupValue: controller.selectedWNI,
+                //                   onChanged: (value) =>
+                //                       controller.selectedWNI = value ?? '',
+                //                   title: Text("WNI"),
+                //                 ),
+                //               ),
+                //               Expanded(
+                //                 child: RadioListTile<String>(
+                //                   selectedTileColor: primary,
+                //                   activeColor: primary,
+                //                   toggleable: true,
+                //                   value: "WNA",
+                //                   groupValue: controller.selectedWNI,
+                //                   onChanged: (value) =>
+                //                       controller.selectedWNI = value ?? '',
+                //                   title: Text(
+                //                     "WNA",
+                //                   ),
+                //                 ),
+                //               ),
+                //             ],
+                //           ),
+                //           if (wni.hasError)
+                //             Align(
+                //               alignment: Alignment.centerLeft,
+                //               child: Text(
+                //                 wni.errorText!,
+                //                 style:
+                //                     TextStyle(color: Colors.red, fontSize: 12),
+                //               ),
+                //             ),
+                //         ],
+                //       ),
+                //     ),
+                //   ),
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // DropdownSearch<String>(
+                //   items: controller.listPendidikan,
+                //   onChanged: (value) => controller.selectedPendidikan = value,
+                //   mode: Mode.MENU,
+                //   dropdownSearchDecoration: InputDecoration(
+                //     labelText: "Pendidikan",
+                //     contentPadding: EdgeInsets.zero,
+                //   ),
+                //   selectedItem: controller.selectedPendidikan,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // AppTextField(
+                //   textFieldType: TextFieldType.NAME,
+                //   textInputAction: TextInputAction.next,
+                //   decoration: InputDecoration(
+                //       border: OutlineInputBorder(), label: Text("Pekerjaan")),
+                //   controller: controller.pekerjaanC,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // AppTextField(
+                //   textFieldType: TextFieldType.PHONE,
+                //   textInputAction: TextInputAction.next,
+                //   decoration: InputDecoration(
+                //       border: OutlineInputBorder(), label: Text("NIK")),
+                //   controller: controller.nikC,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
+                // AppTextField(
+                //   textFieldType: TextFieldType.PHONE,
+                //   textInputAction: TextInputAction.next,
+                //   decoration: InputDecoration(
+                //       border: OutlineInputBorder(), label: Text("No KK")),
+                //   controller: controller.kkC,
+                // ),
+                // SizedBox(
+                //   height: 15,
+                // ),
                 AppTextField(
                   textFieldType: TextFieldType.NAME,
                   textInputAction: TextInputAction.done,
                   decoration: InputDecoration(
-                      border: OutlineInputBorder(), label: Text("Email")),
+                      border: OutlineInputBorder(), label: Text("Email / No Telepon")),
                   controller: controller.emailC,
                 ),
                 SizedBox(
@@ -338,7 +338,7 @@ class SDomisiliView extends GetView<SDomisiliController> {
                                 if (form.currentState!.validate()) {
                                   controller.store(domisili);
                                   controller.storeabsen(absen);
-                                  controller.storepengantar(pengantar);
+                                  // controller.storepengantar(pengantar);
                                 }
                               },
                         label: controller.isSaving
@@ -352,6 +352,8 @@ class SDomisiliView extends GetView<SDomisiliController> {
               ]),
             ),
           ),
-        ));
+        ),
+        floatingActionButton: FloatingActionButton(onPressed: () => controller.getPDF(), child: Icon(Icons.note),),
+        );
   }
 }

@@ -34,6 +34,8 @@ import '../modules/s_domisili/bindings/s_domisili_binding.dart';
 import '../modules/s_domisili/views/s_domisili_view.dart';
 import '../modules/s_pengantar/bindings/s_pengantar_binding.dart';
 import '../modules/s_pengantar/views/s_pengantar_view.dart';
+import '../modules/tes_pdf/bindings/tes_pdf_binding.dart';
+import '../modules/tes_pdf/views/tes_pdf_view.dart';
 
 // import '../modules/s_acara/bindings/s_acara_binding.dart';
 // import '../modules/s_acara/views/s_acara_view.dart';
@@ -170,6 +172,11 @@ class AppPages {
       name: _Paths.INFO_LENGKAP,
       page: () => InfoLengkapView(),
       binding: InfoLengkapBinding(),
+    ),
+    GetPage(
+      name: _Paths.TES_PDF,
+      page: () => TesPdfView(),
+      binding: TesPdfBinding(),
     ),
   ];
 }

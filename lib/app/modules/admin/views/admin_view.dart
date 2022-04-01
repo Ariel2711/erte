@@ -257,7 +257,7 @@ class AdminView extends GetView<AdminController> {
                     ],
                   ),
                   SizedBox(
-                    height: 100,
+                    height: 40,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
