@@ -29,7 +29,7 @@ class IntroView extends GetView<IntroController> {
           titleWidget: Container(
             height: 90,
             width: 130,
-            child: Image.asset("images/erte.png", fit: BoxFit.fitWidth,)),
+            child: Image.asset("images/rtq.png", fit: BoxFit.fitWidth,)),
           body:
               "Aplikasi Untuk Membuat Surat Pengantar Untuk Kebutuhan Seperti Surat Kelahiran, Kematian, Domisili, Membuat KTP, DLL",
           image: Center(

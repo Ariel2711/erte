@@ -94,14 +94,7 @@ class AbsenCard extends GetView<BukuTamuController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.namaC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(absen.nama!, style: TextStyle(fontSize: 13),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -109,14 +102,7 @@ class AbsenCard extends GetView<BukuTamuController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.alamatC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.done,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(absen.alamat!, style: TextStyle(fontSize: 13),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -124,14 +110,7 @@ class AbsenCard extends GetView<BukuTamuController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.emailC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.done,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(absen.email!, style: TextStyle(fontSize: 13),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -152,6 +131,7 @@ class AbsenCard extends GetView<BukuTamuController> {
         height: 110,
         margin: EdgeInsets.all(10),
         child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -168,34 +148,37 @@ class AbsenCard extends GetView<BukuTamuController> {
               SizedBox(
                 width: 15,
               ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Text(
-                      "${absen.nama}",
-                      style: TextStyle(fontSize: 18),
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        "${absen.nama}",
+                        style: TextStyle(fontSize: 18),
+                      ),
                     ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  SingleChildScrollView(
-                    scrollDirection: Axis.horizontal,
-                    child: Text(
-                      "${absen.email}",
-                      style: TextStyle(fontSize: 18),
+                    SizedBox(
+                      height: 10,
                     ),
-                  ),
-                  SizedBox(
-                    height: 15,
-                  ),
-                  // Text(
-                  //   "${DateFormat.yMMMEd().format(absen.waktu!)}",
-                  //   style: TextStyle(fontSize: 15),
-                  // )
-                ],
+                    SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Text(
+                        "${absen.email}",
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    ),
+                    SizedBox(
+                      height: 15,
+                    ),
+                    // Text(
+                    //   "${DateFormat.yMMMEd().format(absen.waktu!)}",
+                    //   style: TextStyle(fontSize: 15),
+                    // )
+                  ],
+                ),
               ),
             ],
           ),

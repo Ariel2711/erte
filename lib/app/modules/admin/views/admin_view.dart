@@ -204,7 +204,7 @@ class AdminView extends GetView<AdminController> {
                                 height: 40,
                                 width: 70,
                                 child: Image.asset(
-                                  "images/erte_putih.png",
+                                  "images/rtq_putih.png",
                                   fit: BoxFit.fitWidth,
                                 )),
                           ),
@@ -280,32 +280,28 @@ class AdminView extends GetView<AdminController> {
                                 )
                               ],
                             ),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.ADMIN_SURAT),
+                            child: InkWell(
+                              onTap: () => Get.toNamed(Routes.ADMIN_SURAT),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/admin_surat.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.ADMIN_SURAT),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [Text("Surat"), Text("Warga")],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -325,31 +321,28 @@ class AdminView extends GetView<AdminController> {
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () => Get.toNamed(Routes.LAPOR),
+                            child: InkWell(
+                              onTap: () => Get.toNamed(Routes.LAPOR),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/laporan.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.LAPOR),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [Text("Laporan"), Text("Warga")],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -369,32 +362,28 @@ class AdminView extends GetView<AdminController> {
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.BUKU_TAMU),
+                            child: InkWell(
+                              onTap: () => Get.toNamed(Routes.BUKU_TAMU),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/absen.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.BUKU_TAMU),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [Text("Buku"), Text("Tamu")],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -418,31 +407,28 @@ class AdminView extends GetView<AdminController> {
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () => Get.toNamed(Routes.KAS),
+                            child: InkWell(
+                              onTap: () => Get.toNamed(Routes.KAS),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/kas.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.KAS),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [Text("Kas"), Text("RT")],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -462,32 +448,28 @@ class AdminView extends GetView<AdminController> {
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.INFORMASI),
+                            child: InkWell(
+                              onTap: () => Get.toNamed(Routes.INFORMASI),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/informasi.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.INFORMASI),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [Text("Informasi"), Text("RT")],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -513,10 +495,16 @@ class AdminView extends GetView<AdminController> {
                         onPressed: () {
                           Get.toNamed(Routes.INFO_LENGKAP);
                         },
-                        child: Text(
-                          "Lihat Semua",
-                          style: TextStyle(
-                              fontSize: 17, fontWeight: FontWeight.w600, color: dark),
+                        child: Row(
+                          children: [
+                            Text(
+                              "Lihat Semua",
+                              style: TextStyle(
+                                  fontSize: 17, fontWeight: FontWeight.w600, color: dark),
+                            ),
+                            SizedBox(width: 5,),
+                            Icon(Icons.arrow_forward, color: dark,),
+                          ],
                         ))
                   ],
                     ),
@@ -742,6 +730,7 @@ class KasAdmin extends GetView<AdminController> {
         height: 110,
         margin: EdgeInsets.all(10),
         child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,

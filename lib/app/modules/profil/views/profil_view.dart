@@ -393,7 +393,7 @@ class ProfilView extends GetView<ProfilController> {
                                       borderRadius: BorderRadius.circular(15)),
                                   subtitle: Column(
                                     children: [
-                                      Row(
+                                     controller.edit.value == true ? Row(
                                         children: [
                                           Expanded(
                                             child: RadioListTile<String>(
@@ -424,7 +424,8 @@ class ProfilView extends GetView<ProfilController> {
                                             ),
                                           ),
                                         ],
-                                      ),
+                                      )
+                                      : SizedBox(height: 20,),
                                       if (kelamin.hasError)
                                         Align(
                                           alignment: Alignment.centerLeft,

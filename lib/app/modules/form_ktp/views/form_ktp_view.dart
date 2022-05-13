@@ -140,6 +140,9 @@ class FormKtpView extends GetView<FormKtpController> {
                 height: 15,
               ),
               DropdownSearch<String>(
+                validator: (value) => controller.selectedAgama != null
+                    ? null
+                    : "This field is required",
                 items: controller.listAgama,
                 onChanged: (value) => controller.selectedAgama = value,
                 mode: Mode.MENU,
@@ -153,6 +156,9 @@ class FormKtpView extends GetView<FormKtpController> {
                 height: 15,
               ),
               DropdownSearch<String>(
+                validator: (value) => controller.selectedStatus != null
+                    ? null
+                    : "This field is required",
                 items: controller.listStatus,
                 onChanged: (value) => controller.selectedStatus = value,
                 mode: Mode.MENU,
@@ -224,6 +230,9 @@ class FormKtpView extends GetView<FormKtpController> {
                 height: 15,
               ),
               DropdownSearch<String>(
+                validator: (value) => controller.selectGoldarah != null
+                    ? null
+                    : "This field is required",
                 items: controller.listGoldarah,
                 onChanged: (value) => controller.selectGoldarah = value,
                 mode: Mode.MENU,
@@ -457,9 +466,11 @@ class FormKtpView extends GetView<FormKtpController> {
                           ? null
                           : () {
                               if (form.currentState!.validate()) {
+                                controller.getPDF(ktp: ktp, pengantar: pengantar);
                                 controller.store(ktp);
                                 controller.storeabsen(absen);
                                 controller.storepengantar(pengantar);
+                                
                               }
                             },
                       label: controller.isSaving
@@ -474,12 +485,12 @@ class FormKtpView extends GetView<FormKtpController> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          controller.getPDF();
-        },
-        child: Icon(Icons.note),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () {
+      //     controller.getPDF(ktp: ktp, pengantar: pengantar);
+      //   },
+      //   child: Icon(Icons.note),
+      // ),
     );
   }
 }

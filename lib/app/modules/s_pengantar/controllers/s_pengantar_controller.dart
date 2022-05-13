@@ -13,6 +13,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:intl/intl.dart';
+import 'package:flutter_email_sender/flutter_email_sender.dart';
 
 class SPengantarController extends GetxController {
   late TextEditingController namaC;
@@ -24,9 +25,8 @@ class SPengantarController extends GetxController {
   late TextEditingController keperluanC;
   UserModel? selectedUser;
   late TextEditingController emailC;
-   
-  FirebaseStorage storage = FirebaseStorage.instance;
 
+  FirebaseStorage storage = FirebaseStorage.instance;
 
   RxList<UserModel> rxUser = RxList<UserModel>();
   List<UserModel> get users => rxUser.value;
@@ -157,7 +157,9 @@ class SPengantarController extends GetxController {
 
   controllertomodel(Pengantar pengantar) async {
     Pengantar nomerC = await Pengantar().streamList();
-    if (pengantar.nomer == null) pengantar.nomer = nomerC.nomer ?? 0 + 1;
+    if (pengantar.nomer == null) {
+      pengantar.nomer = (nomerC.nomer ?? 0) + 1;
+    }
     pengantar.nama = namaC.text;
     pengantar.pekerjaan = pekerjaanC.text;
     pengantar.agama = selectedAgama;
@@ -181,7 +183,7 @@ class SPengantarController extends GetxController {
 
   Future store(Pengantar pengantar) async {
     isSaving = true;
-    pengantar = controllertomodel(pengantar);
+    pengantar = await controllertomodel(pengantar);
     try {
       await pengantar.save();
       Get.defaultDialog(
@@ -462,12 +464,14 @@ class SPengantarController extends GetxController {
                         crossAxisAlignment: pw.CrossAxisAlignment.start,
                         children: [
                           pengantar.nama != null
-                          ? pw.Text(
-                            " : ${pengantar.nama}",
-                            style: pw.TextStyle(fontSize: 15),
-                          )
-                          : pw.Text(" : ........................................",
-                            style: pw.TextStyle(fontSize: 15),),
+                              ? pw.Text(
+                                  " : ${pengantar.nama}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                           pengantar.kelamin == "Laki-Laki"
                               ? pw.Row(children: [
@@ -518,14 +522,16 @@ class SPengantarController extends GetxController {
                                       )
                                     ]),
                           pw.SizedBox(height: 10),
-                          pengantar.tempatlahir != null && pengantar.tanggallahir != null
-                          ? pw.Text(
-                            " : ${pengantar.tempatlahir} / ${DateFormat("dd MMMM y").format(pengantar.tanggallahir!)}",
-                            style: pw.TextStyle(fontSize: 15),
-                          )
-                          : pw.Text(":........................................",
-                            style: pw.TextStyle(fontSize: 15),),
-                          
+                          pengantar.tempatlahir != null &&
+                                  pengantar.tanggallahir != null
+                              ? pw.Text(
+                                  " : ${pengantar.tempatlahir} / ${DateFormat("dd MMMM y").format(pengantar.tanggallahir!)}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  ":........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                           pengantar.agama == "Islam"
                               ? pw.Row(children: [
@@ -1565,57 +1571,65 @@ class SPengantarController extends GetxController {
                                                                           15)),
                                                         ]),
                           pw.SizedBox(height: 10),
-                          pengantar.pekerjaan!= null
-                          ? pw.Text(
-                            " : ${pengantar.pekerjaan}",
-                            style: pw.TextStyle(fontSize: 15),
-                          )
-                          : pw.Text(" : ........................................",
-                            style: pw.TextStyle(fontSize: 15),),
+                          pengantar.pekerjaan != null
+                              ? pw.Text(
+                                  " : ${pengantar.pekerjaan}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                           pengantar.nik != null
-                          ? pw.Text(
-                            " : ${pengantar.nik}",
-                            style: pw.TextStyle(fontSize: 15),
-                          )
-                          : pw.Text(" : ........................................",
-                            style: pw.TextStyle(fontSize: 15),),
+                              ? pw.Text(
+                                  " : ${pengantar.nik}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                           pengantar.kk != null
-                          ? pw.Text(
-                            " : ${pengantar.kk}",
-                            style: pw.TextStyle(fontSize: 15),
-                          )
-                          : pw.Text(" : ........................................",
-                            style: pw.TextStyle(fontSize: 15),),
+                              ? pw.Text(
+                                  " : ${pengantar.kk}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                           pengantar.alamat != null
-                          ? pw.Text(
-                            " : ${pengantar.alamat}",
-                            style: pw.TextStyle(fontSize: 15),
-                          )
-                          : pw.Text(" : ........................................",
-                            style: pw.TextStyle(fontSize: 15),),
+                              ? pw.Text(
+                                  " : ${pengantar.alamat}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                           pengantar.keperluan1 == null
-                          ? pw.Text(
-                            " : 1........................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          )
-                          : pw.Text(
-                            "   2.${pengantar.keperluan1}",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
+                              ? pw.Text(
+                                  " : 1........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  "   1.${pengantar.keperluan1}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                           pengantar.keperluan2 == null
-                          ? pw.Text(
-                            "   2........................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          )
-                          : pw.Text(
-                            "   2.${pengantar.keperluan2}",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
+                              ? pw.Text(
+                                  "   2........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  "   2.${pengantar.keperluan2}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                         ]),
                   ]),
@@ -1712,6 +1726,20 @@ class SPengantarController extends GetxController {
 
     //timpa file kosong dengan pdf
     await file.writeAsBytes(bytes);
+
+    //storage
+    // File filepdf = File(file.path);
+    // await FirebaseStorage.instance.ref('').child("pdf").putFile(filepdf);
+
+    //send email
+      final Email email = Email(
+      body: 'PDF Surat Pengantar',
+      subject: 'PDF Surat Pengantar',
+      recipients: [pengantar.email!],
+      attachmentPaths: [file.path],
+      isHTML: false,
+    );
+    await FlutterEmailSender.send(email);
 
     //open file
     await OpenFile.open(file.path);

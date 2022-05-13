@@ -349,10 +349,10 @@ class SPengantarView extends GetView<SPengantarController> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () => controller.getPDF(pengantar),
-        child: Icon(Icons.note),
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   onPressed: () => controller.getPDF(pengantar),
+      //   child: Icon(Icons.note),
+      // ),
     );
   }
 }

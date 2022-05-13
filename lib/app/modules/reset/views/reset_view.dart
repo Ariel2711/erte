@@ -28,7 +28,7 @@ class ResetView extends GetView<ResetController> {
                     child: Container(
             height: 90,
             width: 130,
-            child: Image.asset("images/erte.png", fit: BoxFit.fitWidth,)),),
+            child: Image.asset("images/rtq.png", fit: BoxFit.fitWidth,)),),
                     SizedBox(height: 10,),
                 Container(
                   height: 300,

@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           floatingActionButtonTheme:
               FloatingActionButtonThemeData(backgroundColor: primary)),
       debugShowCheckedModeBanner: false,
-      title: "ERTE",
+      title: "RTQ",
       initialRoute: Routes.INTRO,
       getPages: AppPages.routes,
     );

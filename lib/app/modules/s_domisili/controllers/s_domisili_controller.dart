@@ -1,10 +1,8 @@
 import 'dart:io';
 import 'dart:typed_data';
-
 import 'package:erte/app/const/color.dart';
 import 'package:erte/app/data/models/absen.dart';
 import 'package:erte/app/data/models/s_domisili.dart';
-import 'package:erte/app/data/models/s_pengantar.dart';
 import 'package:erte/app/data/models/user.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -104,8 +102,11 @@ class SDomisiliController extends GetxController {
 
   var keperluan1 = "Surat Keterangan Domisili";
 
-  Future store(Domisili domisili) async {
-    isSaving = true;
+  controllertomodel(Domisili domisili) async {
+    Domisili nomerC = await Domisili().streamList();
+    if (domisili.nomer == null) {
+      domisili.nomer = (nomerC.nomer ?? 0) + 1;
+    }
     domisili.nama = namaC.text;
     domisili.alamat = alamatC.text;
     domisili.keperluan1 = keperluan1;
@@ -118,6 +119,12 @@ class SDomisiliController extends GetxController {
     if (domisili.id == null) {
       domisili.waktu = DateTime.now();
     }
+    return domisili;
+  }
+
+  Future store(Domisili domisili) async {
+    isSaving = true;
+    domisili = await controllertomodel(domisili);
     try {
       await domisili.save();
       Get.defaultDialog(
@@ -179,9 +186,11 @@ class SDomisiliController extends GetxController {
   // ];
   // String? selectedPendidikan;
 
-  void getPDF() async {
+  void getPDF(Domisili domisili) async {
     //dokumen
     final pdf = pw.Document();
+
+    domisili = await controllertomodel(domisili);
 
     //page
     pdf.addPage(
@@ -235,7 +244,7 @@ class SDomisiliController extends GetxController {
                 height: 5,
               ),
               pw.Text(
-                "Nomor : .../.../...",
+                "Nomor : ${domisili.nomer}/II-IX/${DateFormat("dd-M-y").format(DateTime.now())}",
                 style: pw.TextStyle(fontSize: 15),
               ),
               pw.SizedBox(
@@ -311,40 +320,66 @@ class SDomisiliController extends GetxController {
                     pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.start,
                         children: [
-                          pw.Text(
-                            " : ....................................................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
+                          domisili.nama != null
+                              ? pw.Text(
+                                  " : ${domisili.nama}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
-                          pw.Text(
-                            " : ....................................................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
+                          domisili.kelamin != null
+                              ? pw.Text(
+                                  " : ${domisili.kelamin}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
-                          pw.Text(
-                            " : ....................................................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
+                          domisili.tempatlahir != null &&
+                                  domisili.tanggallahir != null
+                              ? pw.Text(
+                                  " : ${domisili.tempatlahir} / ${DateFormat("dd MMMM y").format(domisili.tanggallahir!)}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  ":........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
-                          pw.Text(
-                            " : ....................................................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
+                          domisili.nktp != null
+                              ? pw.Text(
+                                  " : ${domisili.nktp}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
-                          pw.Text(
-                            " : ....................................................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
+                          domisili.alamat != null
+                              ? pw.Text(
+                                  " : ${domisili.alamat}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
-                          pw.Text(
-                            " : 1....................................................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
-                          pw.SizedBox(height: 10),
-                          pw.Text(
-                            "   2....................................................................",
-                            style: pw.TextStyle(fontSize: 15),
-                          ),
+                          domisili.keperluan1 != null
+                              ? pw.Text(
+                                  " : ${domisili.keperluan1}",
+                                  style: pw.TextStyle(fontSize: 15),
+                                )
+                              : pw.Text(
+                                  " : ........................................",
+                                  style: pw.TextStyle(fontSize: 15),
+                                ),
                           pw.SizedBox(height: 10),
                         ]),
                   ]),
@@ -410,6 +445,11 @@ class SDomisiliController extends GetxController {
                               style: pw.TextStyle(fontSize: 20),
                             ),
                           ),
+                          pw.SizedBox(height: 80),
+                          pw.Text(
+                            "(...................)",
+                            style: pw.TextStyle(fontSize: 20),
+                          ),
                         ]),
                     pw.Column(
                         crossAxisAlignment: pw.CrossAxisAlignment.center,
@@ -427,6 +467,11 @@ class SDomisiliController extends GetxController {
                               "Ketua RT II",
                               style: pw.TextStyle(fontSize: 20),
                             ),
+                          ),
+                          pw.SizedBox(height: 80),
+                          pw.Text(
+                            "(...................)",
+                            style: pw.TextStyle(fontSize: 20),
                           ),
                         ]),
                   ])

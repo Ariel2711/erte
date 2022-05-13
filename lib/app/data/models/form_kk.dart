@@ -54,6 +54,7 @@ const String skelamin = "kelamin";
 const String skewarganegaraan = "kewarganegaraan";
 const String swaktu = "waktu";
 const String semail = "email";
+const String sverifikasi = "verifikasi";
 
 class KK {
   String? id;
@@ -108,6 +109,7 @@ class KK {
   String? kelamin;
   DateTime? waktu;
   String? email;
+  String? verifikasi;
 
   KK({
     this.agama,
@@ -162,6 +164,7 @@ class KK {
     // this.wni,
     this.kewarganegaraan,
     this.email,
+    this.verifikasi
   });
 
   KK fromJson(DocumentSnapshot doc) {
@@ -219,7 +222,65 @@ class KK {
       tanggalpertama: (json[stanggalpertama] as Timestamp?)?.toDate(),
       tanggalterbititas: (json[stanggalterbititas] as Timestamp?)?.toDate(),
       email: json[semail],
+      verifikasi: json[sverifikasi],
     );
+  }
+
+  KK.fromJson(DocumentSnapshot doc) {
+    Map<String, dynamic>? json = doc.data() as Map<String, dynamic>?;
+    id = doc.id;
+      namakepala = json?[snamakepala];
+      namalengkap = json?[snamalengkap];
+      namaayah = json?[snamaayah];
+      namaibu = json?[snamaibu];
+      namasponsor = json?[snamasponsor];
+      kelamin = json?[skelamin];
+      tempatlahir = json?[stempatlahir];
+      tanggallahir = (json?[stanggallahir] as Timestamp?)?.toDate();
+      agama = json?[sagama];
+      statuskawin = json?[sstatuskawin];
+      statuskeluarga = json?[sstatuskeluarga];
+      // wni = json?[swni];
+      pekerjaan = json?[spekerjaan];
+      nikibu = json?[snikibu];
+      nikayah = json?[nikayah];
+      goldarah = json?[sgoldarah];
+      rt = json?[srt];
+      rw = json?[srw];
+      alamat = json?[salamat];
+      waktu = (json?[swaktu] as Timestamp?)?.toDate();
+      aktacerai = json?[saktacerai];
+      aktakawin = json?[saktakawin];
+      aktalahir = json?[saktalahir];
+      alamatsponsor = json?[salamatsponsor];
+      cacat = json?[scacat];
+      datakeluarga = json?[sdatakeluarga];
+      gelarbelakang = json?[sgelarbelakang];
+      gelardepan = json?[sgelardepan];
+      jeniscacat = json?[sjeniscacat];
+      jumkeluarga = json?[sjumkeluarga];
+      kodeppos = json?[skodeppos];
+      noakta = json?[snoakta];
+      noaktacerai = json?[saktacerai];
+      noaktakawin = json?[saktakawin];
+      noitas = json?[snoitas];
+      nopaspor = json?[snopaspor];
+      nowali = json?[snowali];
+      orgagama = json?[sorgagama];
+      pendidikan = json?[spendidikan];
+      telepon = json?[stelepon];
+      tempatitas = json?[stempatitas];
+      tempatpertama = json?[stempatpertama];
+      tipesponsor = json?[stipesponsor];
+      kewarganegaraan = json?[skewarganegaraan];
+      tanggalcerai = (json?[stanggalcerai] as Timestamp?)?.toDate();
+      tanggalitas = (json?[stanggalitas] as Timestamp?)?.toDate();
+      tanggalkawin = (json?[stanggalkawin] as Timestamp?)?.toDate();
+      tanggalpaspor = (json?[stanggalpaspor] as Timestamp?)?.toDate();
+      tanggalpertama = (json?[stanggalpertama] as Timestamp?)?.toDate();
+      tanggalterbititas = (json?[stanggalterbititas] as Timestamp?)?.toDate();
+      email = json?[semail];
+      verifikasi = json?[sverifikasi];
   }
 
   Map<String, dynamic> get toJson => {
@@ -274,6 +335,7 @@ class KK {
         srt: rt,
         srw: rw,
         semail: email,
+        sverifikasi: verifikasi,
       };
 
   Database db = Database(
@@ -288,5 +350,22 @@ class KK {
       db.edit(toJson);
     }
     return this;
+  }
+
+  Stream<List<KK>> streamallList() async* {
+    yield* db.collectionReference
+        .orderBy("waktu", descending: true)
+        .snapshots()
+        .map((query) {
+      List<KK> list = [];
+      for (var doc in query.docs) {
+        list.add(
+          KK.fromJson(
+            doc,
+          ),
+        );
+      }
+      return list;
+    });
   }
 }

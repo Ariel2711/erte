@@ -242,14 +242,7 @@ class LaporCard extends GetView<LaporController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.namaC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(lapor.nama!, style: TextStyle(fontSize: 13),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -257,14 +250,7 @@ class LaporCard extends GetView<LaporController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.judulC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(lapor.judul!, style: TextStyle(fontSize: 13),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -272,14 +258,7 @@ class LaporCard extends GetView<LaporController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.deskripsiC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.done,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(lapor.deskripsi!, style: TextStyle(fontSize: 13),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -352,6 +331,7 @@ class LaporCard extends GetView<LaporController> {
         height: 110,
         margin: EdgeInsets.all(10),
         child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,

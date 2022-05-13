@@ -13,6 +13,8 @@ const String salamat = "alamat";
 const String skeperluan1 = "keperluan1";
 const String swaktu = "waktu";
 const String semail = "email";
+const String snomer = "nomer";
+const String sverifikasi = "verifikasi";
 
 class Domisili {
   String? id;
@@ -25,6 +27,8 @@ class Domisili {
   String? keperluan1;
   DateTime? waktu;
   String? email;
+  int? nomer;
+  String? verifikasi;
 
   Domisili(
       {this.id,
@@ -36,7 +40,9 @@ class Domisili {
       this.alamat,
       this.keperluan1,
       this.waktu,
-      this.email,});
+      this.email,
+      this.nomer,
+      this.verifikasi});
 
   Domisili fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
@@ -51,7 +57,25 @@ class Domisili {
       keperluan1: json[skeperluan1],
       waktu: (json[swaktu] as Timestamp?)?.toDate(),
       email: json[semail],
+      nomer: json[snomer],
+      verifikasi: json[sverifikasi],
     );
+  }
+
+  Domisili.fromJson(DocumentSnapshot doc) {
+    Map<String, dynamic>? json = doc.data() as Map<String, dynamic>?;
+    id = doc.id;
+      nama = json?[snama];
+      kelamin = json?[skelamin];
+      tempatlahir = json?[stempatlahir];
+      tanggallahir = (json?[stanggallahir] as Timestamp?)?.toDate();
+      nktp = json?[snktp];
+      alamat = json?[salamat];
+      keperluan1 = json?[skeperluan1];
+      waktu = (json?[swaktu] as Timestamp?)?.toDate();
+      email = json?[semail];
+      nomer = json?[snomer];
+      verifikasi = json?[sverifikasi];
   }
 
   Map<String, dynamic> get toJson => {
@@ -65,6 +89,8 @@ class Domisili {
         skeperluan1: keperluan1,
         swaktu: waktu,
         semail: email,
+        snomer: nomer,
+        sverifikasi: verifikasi,
       };
 
   Database db = Database(
@@ -79,5 +105,36 @@ class Domisili {
       db.edit(toJson);
     }
     return this;
+  }
+
+  Future<Domisili> streamList() async {
+    print("getStream");
+    return await db.collectionReference
+        .orderBy("waktu", descending: true)
+        .get()
+        .then((event) {
+      if (event.docs.length > 0) {
+        return fromJson(event.docs.first);
+      } else {
+        return Domisili();
+      }
+    });
+  }
+
+  Stream<List<Domisili>> streamallList() async* {
+    yield* db.collectionReference
+        .orderBy("waktu", descending: true)
+        .snapshots()
+        .map((query) {
+      List<Domisili> list = [];
+      for (var doc in query.docs) {
+        list.add(
+          Domisili.fromJson(
+            doc,
+          ),
+        );
+      }
+      return list;
+    });
   }
 }

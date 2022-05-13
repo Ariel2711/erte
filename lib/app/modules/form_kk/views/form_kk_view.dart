@@ -242,6 +242,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
+                  validator: (value) => controller.selectedSponsor != null
+                    ? null
+                    : "This field is required",
                   items: controller.listSponsor,
                   onChanged: (value) => controller.selectedSponsor = value,
                   mode: Mode.MENU,
@@ -454,6 +457,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
+                  validator: (value) => controller.selectGoldarah != null
+                    ? null
+                    : "This field is required",
                   items: controller.listGoldarah,
                   onChanged: (value) => controller.selectGoldarah = value,
                   mode: Mode.MENU,
@@ -467,6 +473,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
+                  validator: (value) => controller.selectedAgama != null
+                    ? null
+                    : "This field is required",
                   items: controller.listAgama,
                   onChanged: (value) => controller.selectedAgama = value,
                   mode: Mode.MENU,
@@ -492,6 +501,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
+                  validator: (value) => controller.selectedStatus != null
+                    ? null
+                    : "This field is required",
                   items: controller.listStatus,
                   onChanged: (value) => controller.selectedStatus = value,
                   mode: Mode.MENU,
@@ -697,6 +709,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
+                  validator: (value) => controller.selectedHubungan != null
+                    ? null
+                    : "This field is required",
                   items: controller.listHubungan,
                   onChanged: (value) => controller.selectedHubungan = value,
                   mode: Mode.MENU,
@@ -769,6 +784,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
+                  validator: (value) => controller.selectedJenisCacat != null
+                    ? null
+                    : "This field is required",
                   items: controller.listJenisCacat,
                   onChanged: (value) => controller.selectedJenisCacat = value,
                   mode: Mode.MENU,
@@ -782,6 +800,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
+                  validator: (value) => controller.selectedPendidikan != null
+                    ? null
+                    : "This field is required",
                   items: controller.listPendidikan,
                   onChanged: (value) => controller.selectedPendidikan = value,
                   mode: Mode.MENU,
@@ -795,6 +816,9 @@ class FormKkView extends GetView<FormKkController> {
                   height: 15,
                 ),
                 DropdownSearch<String>(
+                  validator: (value) => controller.selectedPekerjaan != null
+                    ? null
+                    : "This field is required",
                     items: controller.listPekerjaan,
                     onChanged: (value) => controller.selectedPekerjaan = value,
                     mode: Mode.MENU,

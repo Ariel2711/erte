@@ -91,14 +91,10 @@ class InfoCard extends GetView<InfoLengkapController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.judulC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
+                                SizedBox(
+                                  height: 10,
                                 ),
+                                Text(info.judul!, style: TextStyle(fontSize: 16),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -106,14 +102,7 @@ class InfoCard extends GetView<InfoLengkapController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.deskripsiC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.done,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(info.deskripsi!, style: TextStyle(fontSize: 13),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -186,6 +175,7 @@ class InfoCard extends GetView<InfoLengkapController> {
         height: 110,
         margin: EdgeInsets.all(10),
         child: SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
           child: Row(
             mainAxisSize: MainAxisSize.max,
             crossAxisAlignment: CrossAxisAlignment.start,

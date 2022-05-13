@@ -184,6 +184,7 @@ class KasCard extends GetView<KasController> {
       height: 110,
       margin: EdgeInsets.all(10),
       child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
         child: Row(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,

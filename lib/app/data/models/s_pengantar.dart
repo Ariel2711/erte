@@ -21,6 +21,7 @@ const String skeperluan2 = "keperluan2";
 const String swaktu = "waktu";
 const String semail = "email";
 const String snomer = "nomer";
+const String sverifikasi = "verifikasi";
 
 class Pengantar {
   String? id;
@@ -41,27 +42,28 @@ class Pengantar {
   String? keperluan2;
   DateTime? waktu;
   String? email;
+  String? verifikasi;
 
-  Pengantar({
-    this.id,
-    this.nama,
-    this.kelamin,
-    this.tempatlahir,
-    this.tanggallahir,
-    this.agama,
-    this.status,
-    this.wni,
-    this.pendidikan,
-    this.pekerjaan,
-    this.nik,
-    this.kk,
-    this.alamat,
-    this.keperluan1,
-    this.keperluan2,
-    this.waktu,
-    this.email,
-    this.nomer
-  });
+  Pengantar(
+      {this.id,
+      this.nama,
+      this.kelamin,
+      this.tempatlahir,
+      this.tanggallahir,
+      this.agama,
+      this.status,
+      this.wni,
+      this.pendidikan,
+      this.pekerjaan,
+      this.nik,
+      this.kk,
+      this.alamat,
+      this.keperluan1,
+      this.keperluan2,
+      this.waktu,
+      this.email,
+      this.nomer,
+      this.verifikasi});
 
   Pengantar fromJson(DocumentSnapshot doc) {
     Map<String, dynamic> json = doc.data() as Map<String, dynamic>;
@@ -84,7 +86,31 @@ class Pengantar {
       keperluan2: json[skeperluan2],
       waktu: (json[swaktu] as Timestamp?)?.toDate(),
       email: json[semail],
+      verifikasi: json[sverifikasi],
     );
+  }
+
+  Pengantar.fromJson(DocumentSnapshot doc) {
+    Map<String, dynamic>? json = doc.data() as Map<String, dynamic>?;
+    id = doc.id;
+      nama = json?[snama];
+      kelamin = json?[skelamin];
+      tempatlahir = json?[stempatlahir];
+      tanggallahir = (json?[stanggallahir] as Timestamp?)?.toDate();
+      agama = json?[sagama];
+      status = json?[sstatus];
+      wni = json?[swni];
+      pendidikan = json?[spendidikan];
+      pekerjaan = json?[spekerjaan];
+      nik = json?[snik];
+      kk = json?[skk];
+      nomer = json?[snomer];
+      alamat = json?[salamat];
+      keperluan1 = json?[skeperluan1];
+      keperluan2 = json?[skeperluan2];
+      waktu = (json?[swaktu] as Timestamp?)?.toDate();
+      email = json?[semail];
+      verifikasi = json?[sverifikasi];
   }
 
   Map<String, dynamic> get toJson => {
@@ -106,6 +132,7 @@ class Pengantar {
         swaktu: waktu,
         semail: email,
         snomer: nomer,
+        sverifikasi: verifikasi,
       };
 
   Database db = Database(
@@ -122,13 +149,34 @@ class Pengantar {
     return this;
   }
 
-  Future <Pengantar> streamList() async {
+  Future<Pengantar> streamList() async {
     print("getStream");
     return await db.collectionReference
         .orderBy("waktu", descending: true)
         .get()
         .then((event) {
-      return fromJson(event.docs.first);
+      if (event.docs.length > 0) {
+        return fromJson(event.docs.first);
+      } else {
+        return Pengantar();
+      }
+    });
+  }
+
+  Stream<List<Pengantar>> streamallList() async* {
+    yield* db.collectionReference
+        .orderBy("waktu", descending: true)
+        .snapshots()
+        .map((query) {
+      List<Pengantar> list = [];
+      for (var doc in query.docs) {
+        list.add(
+          Pengantar.fromJson(
+            doc,
+          ),
+        );
+      }
+      return list;
     });
   }
 }

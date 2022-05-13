@@ -244,7 +244,7 @@ class HomeView extends GetView<HomeController> {
                                 height: 40,
                                 width: 70,
                                 child: Image.asset(
-                                  "images/erte_putih.png",
+                                  "images/rtq_putih.png",
                                   fit: BoxFit.fitWidth,
                                 )),
                           ),
@@ -319,35 +319,31 @@ class HomeView extends GetView<HomeController> {
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.S_PENGANTAR),
+                            child: InkWell(
+                              onTap: ()=> Get.toNamed(Routes.S_PENGANTAR),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/pernyataan.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.S_PENGANTAR),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [
                                       Text("Surat"),
                                       Text("Pengantar")
                                     ],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -367,32 +363,28 @@ class HomeView extends GetView<HomeController> {
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.FORM_KK),
+                            child: InkWell(
+                              onTap: ()=> Get.toNamed(Routes.FORM_KK),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/kk.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.FORM_KK),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [Text("Form"), Text("KK")],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -416,32 +408,28 @@ class HomeView extends GetView<HomeController> {
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.S_DOMISILI),
+                            child: InkWell(
+                              onTap: ()=>Get.toNamed(Routes.S_DOMISILI),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/domisili.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.S_DOMISILI),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [Text("Surat"), Text("Domisili")],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -461,32 +449,28 @@ class HomeView extends GetView<HomeController> {
                                   )
                                 ],
                                 borderRadius: BorderRadius.circular(10)),
-                            child: Column(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Container(
-                                      height: 70,
-                                      width: 70,
-                                      child: InkWell(
-                                        onTap: () =>
-                                            Get.toNamed(Routes.FORM_KTP),
+                            child: InkWell(
+                              onTap: () => Get.toNamed(Routes.FORM_KTP),
+                              child: Column(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Container(
+                                        height: 70,
+                                        width: 70,
                                         child: Image.asset(
                                           "images/ktp.png",
                                           fit: BoxFit.cover,
-                                        ),
-                                      )),
-                                ),
-                                SizedBox(
-                                  height: 5,
-                                ),
-                                InkWell(
-                                  onTap: () => Get.toNamed(Routes.FORM_KTP),
-                                  child: Column(
+                                        )),
+                                  ),
+                                  SizedBox(
+                                    height: 5,
+                                  ),
+                                  Column(
                                     children: [Text("Form"), Text("KTP")],
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ],
@@ -512,10 +496,23 @@ class HomeView extends GetView<HomeController> {
                             onPressed: () {
                               Get.toNamed(Routes.INFO_LENGKAP);
                             },
-                            child: Text(
-                              "Lihat Semua",
-                              style: TextStyle(
-                                  fontSize: 17, fontWeight: FontWeight.w600, color: primary),
+                            child: Row(
+                              children: [
+                                Text(
+                                  "Lihat Semua",
+                                  style: TextStyle(
+                                      fontSize: 17,
+                                      fontWeight: FontWeight.w600,
+                                      color: primary),
+                                ),
+                                SizedBox(
+                                  width: 5,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: primary,
+                                ),
+                              ],
                             ))
                       ],
                     ),
@@ -597,14 +594,7 @@ class InfoCard extends GetView<HomeController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.judulC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.next,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(info.judul!, style: TextStyle(fontSize: 16),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -612,14 +602,7 @@ class InfoCard extends GetView<HomeController> {
                                 SizedBox(
                                   height: 10,
                                 ),
-                                AppTextField(
-                                  controller: controller.deskripsiC,
-                                  enabled: false,
-                                  textFieldType: TextFieldType.NAME,
-                                  textInputAction: TextInputAction.done,
-                                  decoration: InputDecoration(
-                                      border: OutlineInputBorder()),
-                                ),
+                                Text(info.deskripsi!, style: TextStyle(fontSize: 13),),
                                 SizedBox(
                                   height: 20,
                                 ),
@@ -685,6 +668,8 @@ class InfoCard extends GetView<HomeController> {
                 ],
               );
             });
+        // controller.judulC.clear();
+        // controller.deskripsiC.clear();
       },
       child: Container(
         padding: EdgeInsets.all(10),
